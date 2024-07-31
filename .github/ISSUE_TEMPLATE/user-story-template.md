@@ -1,7 +1,7 @@
 ---
 name: User Story template
 about: Custom user story template for MemoVault
-title: ''
+title: 'USER STORY: <TITLE>'
 labels: ''
 assignees: devnickocodes
 
