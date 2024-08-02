@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import styles from "../../styles/SignInUpForm.module.css";
+import btnStyles from "../../styles/Button.module.css";
+import appStyles from "../../App.module.css";
+import feature_image from '../../assets/feature_image.jpg'
 import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
 
 const SignUpForm = () => {
@@ -15,6 +19,15 @@ const SignUpForm = () => {
             Already have an account? Sign <span>in</span>
           </Link>
         </Container>
+      </Col>
+      <Col
+        md={6}
+        className="my-auto d-none d-md-block p-2"
+      >
+        <Image
+          className={`${styles.FeatureImage}`}
+          src={feature_image}
+        />
       </Col>
     </Row>
   );
