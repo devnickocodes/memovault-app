@@ -4,10 +4,12 @@
 
 .Logo{
     font-size: 1.8rem;
+    letter-spacing: 0.10em;
 }
 
 .Logo span{
     color: #9b22b9;
+    text-transform: uppercase;
     font-weight: 900;
     border-top: 2px solid #9b22b9;
     border-bottom: 2px solid #9b22b9;
@@ -28,6 +30,21 @@
 
 .NavLink{
     padding: 5px;
+    font-size: 1.2rem;
+    transition: box-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
+    color: #000000;
+}
+
+.NavLink:hover{
+    box-shadow: 0 2px 0 0 #9b22b9;
+    text-decoration: none;
+    color: #000000;
+}
+
+.NavLink:hover i {
+    font-size: 1.2rem; 
+    color: #9b22b9;
+    transition: color ease-in-out 0.3s;
 }
 
 .Active i {
@@ -39,4 +56,3 @@
 .Active{
     box-shadow: 0 2px 0 0 #9b22b9;
 }
-

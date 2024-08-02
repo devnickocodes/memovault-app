@@ -1,0 +1,54 @@
+.Row {
+  margin-top: 20px;
+}
+
+.Header {
+  font-size: 1.5rem;
+  line-height: 19px;
+  text-align: center;
+  color: #000;
+}
+
+.Header span{
+    color: #9b22b9;
+    font-weight: 900;
+    border-top: 2px solid #9b22b9;
+    border-bottom: 2px solid #9b22b9;
+    text-transform: uppercase;
+}
+
+.Content {
+    background-color: #ffffff;
+    border-radius: 2px;
+    border: 2px solid #dadadf;
+    transition: border-color 0.3s ease-in-out;
+    padding: 0;
+}
+
+.Content:hover{
+    border-color: #9b22b9;
+}
+
+
+.SignInLink {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin: auto;
+  color: #000;
+  padding: 15px;
+}
+
+.SignInLink:hover{
+    text-decoration: none;
+    color: #000;
+}
+
+.SignInLink span{
+    color: #9b22b9;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-top: 2px solid #9b22b9;
+    border-bottom: 2px solid #9b22b9;
+}
+
