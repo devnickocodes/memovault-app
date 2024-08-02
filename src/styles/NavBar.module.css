@@ -1,0 +1,19 @@
+.Logo{
+    font-size: 1.7rem;
+}
+
+a {
+  font-size: 1.2rem;
+  color: red;
+  transition: box-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+a:hover {
+  box-shadow: 0 2px 0 0 #9b22b9;
+}
+
+a:hover i{
+  font-size: 1.2rem; 
+  color: #9b22b9;
+  transition: color ease-in-out 0.3s;
+}

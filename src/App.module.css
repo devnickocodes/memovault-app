@@ -1,5 +1,10 @@
 .App {
     font-family: "Nunito", sans-serif;
-    background-color: #faf8f1;
+    background-color: #ffffff;
     min-height: 100vh;
 }
+
+* {
+    box-sizing: border-box;
+}
+
