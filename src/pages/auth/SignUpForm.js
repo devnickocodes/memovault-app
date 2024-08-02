@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
+// import appStyles from "../../App.module.css";
 import feature_image from "../../assets/feature_image.jpg";
 import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
 
@@ -32,8 +32,8 @@ const SignUpForm = () => {
               <Form.Control className={styles.Input} type="password" placeholder="Confirm Password" name="password2"/>
             </Form.Group>
 
-            <Button type="submit">
-              Sign Up
+            <Button className={btnStyles.Button} type="submit">
+              Sign <span>Up</span>
             </Button>
           </Form>
 
@@ -45,7 +45,7 @@ const SignUpForm = () => {
         </Container>
       </Col>
       <Col md={6} className="my-auto d-none d-md-block p-2">
-        <Image className={`${styles.FeatureImage}`} src={feature_image} />
+        <Image className={styles.FeatureImage} src={feature_image} />
       </Col>
     </Row>
   );
