@@ -14,7 +14,11 @@ const SignInForm = () => {
         password: ''
     })
 
-    const {username, password} = signInData
+    const [errors, setErrors] = useState({});
+
+    const {username, password} = signInData;
+
+    const history = useHistory();
 
     const handleChange = (event) => {
         setSignInData({
@@ -22,6 +26,17 @@ const SignInForm = () => {
             [event.target.name]: event.target.value,
         })
     }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        
+        try {
+            await axios.post("/dj-rest-auth/login/", signInData);
+            history.push('/')
+        } catch (err) {
+            setErrors(err.response?.data)
+        }
+      }
 
   return (
     <Row className={styles.Row}>
@@ -31,7 +46,7 @@ const SignInForm = () => {
             Sign <span>in</span>
           </h1>
 
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
@@ -44,6 +59,11 @@ const SignInForm = () => {
 
               />
             </Form.Group>
+            {errors.username?.map((message, idx) => 
+            <Alert className="mt-2" key={idx} variant="warning">
+            {message}
+            </Alert>
+            )}
 
 
             <Form.Group controlId="password">
@@ -57,11 +77,21 @@ const SignInForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.password?.map((message, idx) => 
+            <Alert className="mt-2" key={idx} variant="warning">
+            {message}
+            </Alert>
+            )}
  
 
             <Button className={btnStyles.Button} type="submit">
               Sign <span>In</span>
             </Button>
+            {errors.non_field_errors?.map((message, idx) => 
+            <Alert className="mt-2" key={idx} variant="warning">
+            {message}
+            </Alert>
+            )}
 
           </Form>
         </Container>
