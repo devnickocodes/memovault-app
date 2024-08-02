@@ -27,7 +27,9 @@
     font-size: 1.2rem; 
 }
 
-
+i{
+    vertical-align: middle;
+}
 .NavLink{
     padding: 5px;
     font-size: 1.2rem;
