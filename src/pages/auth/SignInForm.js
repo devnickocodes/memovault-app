@@ -9,6 +9,20 @@ import axios from "axios";
 
 const SignInForm = () => {
 
+    const [signInData, setSignInData] = useState({
+        username: '',
+        password: ''
+    })
+
+    const {username, password} = signInData
+
+    const handleChange = (event) => {
+        setSignInData({
+            ...signInData,
+            [event.target.name]: event.target.value,
+        })
+    }
+
   return (
     <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2" md={6}>
@@ -26,6 +40,7 @@ const SignInForm = () => {
                 placeholder="Username"
                 name="username"
                 value={username}
+                onChange={handleChange}
 
               />
             </Form.Group>
@@ -39,7 +54,7 @@ const SignInForm = () => {
                 placeholder="Password"
                 name="password"
                 value={password}
-
+                onChange={handleChange}
               />
             </Form.Group>
  
