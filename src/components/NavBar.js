@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <Navbar className={styles.navContainer} expand="md" fixed="top">
       <Container>
-        <Navbar.Brand className={styles.Logo}>MemoVault<i className="fa-solid fa-icons ml-3"></i></Navbar.Brand>
+        <Navbar.Brand className={styles.Logo}>Memo<span>Vault</span><i className="fa-solid fa-icons ml-3"></i></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
