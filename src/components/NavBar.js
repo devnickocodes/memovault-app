@@ -24,13 +24,23 @@ const NavBar = () => {
 
   const addPostIcon = (
     <NavLink
-    className={styles.NavLink}
+    className={`${styles.NavLink} ${styles.addPostIcon}`}
     activeClassName={styles.Active}
     to="/posts/create"
   >
     <i className="fa-solid fa-circle-plus mr-2"></i>Add Post
   </NavLink>
   )
+
+  const dropdownAddPostIcon = (
+    <NavLink
+      className={`${styles.NavLink} ${styles.dropdownAddPostIcon}`}
+      activeClassName={styles.Active}
+      to="/posts/create"
+    >
+      <i className="fa-solid fa-circle-plus mr-2"></i>Add Post
+    </NavLink>
+  );
 
   const loggedInIcons = <>
     <NavLink
@@ -106,6 +116,7 @@ const NavBar = () => {
             >
               <i className="fa-solid fa-house mr-1"></i>Home
             </NavLink>
+           {currentUser && dropdownAddPostIcon}
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>

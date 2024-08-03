@@ -1,5 +1,6 @@
 .navContainer{
     border-bottom: 1px solid #c4c4c4;
+    background-color: #ffffff;
 }
 
 .Logo{
@@ -57,4 +58,25 @@ i{
 
 .Active{
     box-shadow: 0 2px 0 0 #9b22b9;
+}
+
+/* Display addPostIcons depending on screen size */
+.addPostIcon {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .addPostIcon {
+    display: none;
+  }
+}
+
+.dropdownAddPostIcon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .dropdownAddPostIcon {
+    display: flex;
+  }
 }
