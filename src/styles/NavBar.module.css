@@ -21,11 +21,13 @@
 }
 
 .LogoLink:hover i {
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
+    color: #9b22b9; 
 }
 
 .LogoLink i {
     font-size: 1.2rem; 
+    transition: color 0.2s ease-in-out;
 }
 
 i{
