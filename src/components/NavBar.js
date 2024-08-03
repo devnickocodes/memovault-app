@@ -31,7 +31,7 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/posts/create"
     >
-      <i className="fa-solid fa-circle-plus mr-2"></i>Add Post
+      <i className="fa-solid fa-circle-plus mr-1"></i>Add Post
     </NavLink>
   );
 
@@ -41,7 +41,7 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/posts/create"
     >
-      <i className="fa-solid fa-circle-plus mr-2"></i>Add Post
+      <i className="fa-solid fa-circle-plus mr-1"></i>Add Post
     </NavLink>
   );
 
@@ -68,7 +68,7 @@ const NavBar = () => {
         to={`/profiles/${currentUser?.profile_id}`}
         onClick={() => {}}
       >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={32} />
+        <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={32} />
       </NavLink>
 
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
