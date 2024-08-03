@@ -18,7 +18,37 @@ const NavBar = () => {
   )
 
   const loggedInIcons = <>
-  
+    <NavLink
+    className={styles.NavLink}
+    activeClassName={styles.Active}
+    to="/feed"
+  >
+    <i className="fa-solid fa-bars-staggered mr-2"></i>Feed
+  </NavLink>
+
+  <NavLink
+    className={styles.NavLink}
+    activeClassName={styles.Active}
+    to="/reports"
+  >
+    <i className="fa-solid fa-flag mr-2"></i>Reports
+  </NavLink>
+
+  <NavLink
+    className={styles.NavLink}
+    to={`/profiles/${currentUser?.profile_id}`}
+    onClick={()=> {}}
+  >
+    <img src={currentUser?.profile_image} />
+  </NavLink>
+
+  <NavLink
+    className={styles.NavLink}
+    to="/"
+    onClick={()=> {}}
+  >
+    <i className="fa-solid fa-arrow-right-from-bracket mr-2"></i>Sign Out
+  </NavLink>
   </>
 
   const loggedOutIcons = (
