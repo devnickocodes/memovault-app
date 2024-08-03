@@ -30,14 +30,13 @@
     transition: color 0.2s ease-in-out;
 }
 
-i{
-    vertical-align: middle;
-}
 .NavLink{
     padding: 5px;
     font-size: 1.2rem;
     transition: box-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
     color: #000000;
+    display: flex;
+    align-items: center;
 }
 
 .NavLink:hover{
