@@ -14,6 +14,14 @@ import Asset from "../../components/Asset";
 function PostCreateForm() {
   const [errors, setErrors] = useState({});
 
+  const [postData, setPostData] = useState({
+    title: '',
+    content: '',
+    image: ''
+  })
+
+  const {title, content, image} = postData
+
   return (
     <Form>
       <Container
@@ -39,16 +47,16 @@ function PostCreateForm() {
         <Row className="w-100 justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="title" className="mt-3 text-center">
-              <Form.Label>Title</Form.Label>
-              <Form.Control type="text" name="title" />
+              <Form.Label className={styles.inputLabels}>Title</Form.Label>
+              <Form.Control type="text" name="title" value={title} />
             </Form.Group>
           </Col>
         </Row>
         <Row className="w-100 justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="content" className="mt-3 text-center">
-              <Form.Label>Content</Form.Label>
-              <Form.Control as="textarea" rows={6} name="content" />
+              <Form.Label className={styles.inputLabels}>Content</Form.Label>
+              <Form.Control as="textarea" rows={6} name="content" value={content}/>
             </Form.Group>
           </Col>
         </Row>
