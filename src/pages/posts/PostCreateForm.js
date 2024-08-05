@@ -20,7 +20,7 @@ function PostCreateForm() {
   const textFields = (
     <div className="text-center">
       <Button
-        className={btnStyles.Button}
+        className={`${btnStyles.GreyButton} ${btnStyles.Button} mb-2`}
         onClick={() => {}}
       >
         cancel
