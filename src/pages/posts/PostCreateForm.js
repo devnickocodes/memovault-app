@@ -9,7 +9,6 @@ import Container from "react-bootstrap/Container";
 import uploadImage from "../../assets/upload_image_placeholder.jpg";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
-import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 function PostCreateForm() {
