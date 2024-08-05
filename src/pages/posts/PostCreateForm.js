@@ -9,7 +9,9 @@ import uploadImage from "../../assets/upload_image_placeholder.jpg";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import appStyles from "../../App.module.css"
 import Asset from "../../components/Asset";
+import { Image } from "react-bootstrap";
 
 function PostCreateForm() {
   const [errors, setErrors] = useState({});
@@ -50,7 +52,19 @@ function PostCreateForm() {
         <Row className="w-100 justify-content-center">
           <Col xs={12} md={8} lg={6} className="text-center">
             <Form.Group className="text-center">
-              <Form.Label
+                {image ? (
+                    <>
+                    <figure>
+                        <Image className={appStyles.Image} src={image} rounded/>
+                    </figure>
+                    <div>
+                        <Form.Label className={`${btnStyles.Button} btn`} htmlFor="image-upload">
+                        Change the image
+                        </Form.Label>
+                    </div>
+                    </>
+                ) : (
+                    <Form.Label
                 className="d-flex justify-content-center mt-3"
                 htmlFor="image-upload"
               >
@@ -60,8 +74,10 @@ function PostCreateForm() {
                   width="100%"
                   height="auto"
                 />
-                <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage}/>
               </Form.Label>
+                )}
+              
+              <Form.File className={styles.hiddenFileInput} id="image-upload" accept="image/*" onChange={handleChangeImage}/>
             </Form.Group>
           </Col>
         </Row>
