@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -13,65 +12,60 @@ import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 
 function PostCreateForm() {
-
   const [errors, setErrors] = useState({});
-
-
-  const textFields = (
-    <div className="text-center">
-        <Form.Group controlId="password1">
-              <Form.Label>Title</Form.Label>
-              <Form.Control
-                type="text"
-                name="title"
-              />
-            </Form.Group>
-
-            <Form.Group controlId="password1">
-              <Form.Label>Content</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={6}
-                name="content"
-              />
-            </Form.Group>
-
-      <Button
-        className={`${btnStyles.GreyButton} ${btnStyles.Button} mb-2`}
-        onClick={() => {}}
-      >
-        cancel
-      </Button>
-      <Button className={btnStyles.Button} type="submit">
-        create
-      </Button>
-    </div>
-  );
 
   return (
     <Form>
-      <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={`${styles.Container} d-flex flex-column justify-content-center`}
-          >
+      <Container
+        className={`${styles.Container} d-flex flex-column align-items-center`}
+      >
+        <Row className="w-100 justify-content-center">
+          <Col xs={12} md={8} lg={6} className="text-center">
             <Form.Group className="text-center">
-              
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
-                >
-                  <Asset src={uploadImage} message="Click or tap to upload an image"/>
-                </Form.Label>
-
+              <Form.Label
+                className="d-flex justify-content-center mt-3"
+                htmlFor="image-upload"
+              >
+                <Asset
+                  src={uploadImage}
+                  message="Click or tap to upload an image"
+                  width="100%"
+                  height="auto"
+                />
+              </Form.Label>
             </Form.Group>
-            <div className="d-md-none">{textFields}</div>
-          </Container>
-        </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container>{textFields}</Container>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+        <Row className="w-100 justify-content-center">
+          <Col xs={12} md={8} lg={6}>
+            <Form.Group controlId="title" className="mt-3 text-center">
+              <Form.Label>Title</Form.Label>
+              <Form.Control type="text" name="title" />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="w-100 justify-content-center">
+          <Col xs={12} md={8} lg={6}>
+            <Form.Group controlId="content" className="mt-3 text-center">
+              <Form.Label>Content</Form.Label>
+              <Form.Control as="textarea" rows={6} name="content" />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="w-100 justify-content-center mt-3">
+          <Col xs={12} md={8} lg={6} className="d-flex justify-content-center">
+            <Button
+              className={`${btnStyles.GreyButton} ${btnStyles.Button} mr-2`}
+              onClick={() => {}}
+            >
+              Cancel
+            </Button>
+            <Button className={btnStyles.Button} type="submit">
+              Create
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     </Form>
   );
 }

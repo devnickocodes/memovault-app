@@ -1,3 +1,8 @@
 .Container {
-  min-height: 343px;
+    min-height: 343px;
+}
+
+.inputLabels{
+    border-bottom: 2px solid #9b229b;
+    font-size: 1.2rem;
 }
