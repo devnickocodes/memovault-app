@@ -22,6 +22,13 @@ function PostCreateForm() {
 
   const {title, content, image} = postData
 
+  const handleChange = (event) => {
+    setPostData({
+        ...postData,
+        [event.target.name]: event.target.value
+    })
+  }
+
   return (
     <Form>
       <Container
@@ -48,7 +55,7 @@ function PostCreateForm() {
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="title" className="mt-3 text-center">
               <Form.Label className={styles.inputLabels}>Title</Form.Label>
-              <Form.Control type="text" name="title" value={title} />
+              <Form.Control type="text" name="title" value={title} onChange={handleChange} />
             </Form.Group>
           </Col>
         </Row>
@@ -56,7 +63,7 @@ function PostCreateForm() {
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="content" className="mt-3 text-center">
               <Form.Label className={styles.inputLabels}>Content</Form.Label>
-              <Form.Control as="textarea" rows={6} name="content" value={content}/>
+              <Form.Control as="textarea" rows={6} name="content" value={content} onChange={handleChange}/>
             </Form.Group>
           </Col>
         </Row>
