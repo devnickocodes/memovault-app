@@ -10,6 +10,7 @@ import uploadImage from "../../assets/upload_image_placeholder.jpg";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import Asset from "../../components/Asset";
 
 function PostCreateForm() {
 
@@ -18,6 +19,23 @@ function PostCreateForm() {
 
   const textFields = (
     <div className="text-center">
+        <Form.Group controlId="password1">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+              />
+            </Form.Group>
+
+            <Form.Group controlId="password1">
+              <Form.Label>Content</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={6}
+                name="content"
+              />
+            </Form.Group>
+
       <Button
         className={`${btnStyles.GreyButton} ${btnStyles.Button} mb-2`}
         onClick={() => {}}
@@ -43,7 +61,7 @@ function PostCreateForm() {
                   className="d-flex justify-content-center"
                   htmlFor="image-upload"
                 >
-                  ASSET
+                  <Asset src={uploadImage} message="Click or tap to upload an image"/>
                 </Form.Label>
 
             </Form.Group>
