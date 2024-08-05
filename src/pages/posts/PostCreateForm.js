@@ -29,6 +29,19 @@ function PostCreateForm() {
     })
   }
 
+
+  const handleChangeImage = (event) => {
+    if  (event.target.files.length){
+        URL.revokeObjectURL(image)
+        setPostData({
+            ...postData,
+            image: URL.createObjectURL(event.target.files[0])
+        })
+    }
+  }
+
+
+
   return (
     <Form>
       <Container
@@ -47,6 +60,7 @@ function PostCreateForm() {
                   width="100%"
                   height="auto"
                 />
+                <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage}/>
               </Form.Label>
             </Form.Group>
           </Col>
