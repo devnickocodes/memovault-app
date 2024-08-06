@@ -17,13 +17,13 @@ function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [loaded, setLoaded] = useState(false)
   const {pathname} = useLocation()
-
   const [errors, setErrors] = useState()
+  const [query, setQuery] = useState("")
 
   useEffect(() => {
     const fetchPosts = async () => {
         try {
-            const {data} = await axiosReq.get(`/posts/?${filter}`)
+            const {data} = await axiosReq.get(`/posts/?${filter}search=${query}`)
             setPosts(data)
             setLoaded(true)
         } catch(err){
@@ -32,8 +32,13 @@ function PostsPage({ message, filter = "" }) {
     }
 
     setLoaded(false)
-    fetchPosts()
-  }, [filter, pathname])
+    const timer = setTimeout(() => {
+        fetchPosts()
+    }, 1000);
+    return () => {
+        clearTimeout(timer)
+    }
+  }, [filter, query, pathname])
 
   return (
     <Row className="h-100">
@@ -47,7 +52,7 @@ function PostsPage({ message, filter = "" }) {
         )}
         <i class={`fas fa-search ${styles.SearchIcon}`}></i>
         <Form className={styles.SearchBar} onSubmit={(event)=> event.preventDefault()}>
-            <Form.Control type="text" placeholder="Type to Search..." />
+            <Form.Control type="text" placeholder="Type to Search..." value={query} onChange={(event) => {setQuery(event.target.value)}}/>
         </Form>
         {loaded ? (
             <>
