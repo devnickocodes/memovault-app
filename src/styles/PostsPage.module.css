@@ -1,5 +1,6 @@
-.noResults{
-    box-shadow: rgba(155, 34, 185, 0.25) 0px 4px 8px -2px, rgba(155, 34, 185, 0.08) 0px 0px 0px 1px;
+.noResults {
+  box-shadow: rgba(155, 34, 185, 0.25) 0px 4px 8px -2px,
+    rgba(155, 34, 185, 0.08) 0px 0px 0px 1px;
 }
 .SearchIcon {
   position: absolute;

@@ -4,43 +4,50 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import feature_image from "../../assets/feature_image.jpg";
-import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Image,
+  Col,
+  Row,
+  Container,
+  Alert,
+} from "react-bootstrap";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const SignInForm = () => {
+  const setCurrentUser = useSetCurrentUser();
 
-  const setCurrentUser = useSetCurrentUser()
+  const [signInData, setSignInData] = useState({
+    username: "",
+    password: "",
+  });
 
-    const [signInData, setSignInData] = useState({
-        username: '',
-        password: ''
-    })
+  const [errors, setErrors] = useState({});
 
-    const [errors, setErrors] = useState({});
+  const { username, password } = signInData;
 
-    const {username, password} = signInData;
+  const history = useHistory();
 
-    const history = useHistory();
+  const handleChange = (event) => {
+    setSignInData({
+      ...signInData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
-    const handleChange = (event) => {
-        setSignInData({
-            ...signInData,
-            [event.target.name]: event.target.value,
-        })
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      history.push("/");
+    } catch (err) {
+      setErrors(err.response?.data);
     }
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        
-        try {
-            const {data} = await axios.post("/dj-rest-auth/login/", signInData);
-            setCurrentUser(data.user)
-            history.push('/')
-        } catch (err) {
-            setErrors(err.response?.data)
-        }
-      }
+  };
 
   return (
     <Row className={styles.Row}>
@@ -60,15 +67,13 @@ const SignInForm = () => {
                 name="username"
                 value={username}
                 onChange={handleChange}
-
               />
             </Form.Group>
-            {errors.username?.map((message, idx) => 
-            <Alert className="mt-2" key={idx} variant="warning">
-            {message}
-            </Alert>
-            )}
-
+            {errors.username?.map((message, idx) => (
+              <Alert className="mt-2" key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
 
             <Form.Group controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
@@ -81,22 +86,20 @@ const SignInForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.password?.map((message, idx) => 
-            <Alert className="mt-2" key={idx} variant="warning">
-            {message}
-            </Alert>
-            )}
- 
+            {errors.password?.map((message, idx) => (
+              <Alert className="mt-2" key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
 
             <Button className={btnStyles.Button} type="submit">
               Sign <span>In</span>
             </Button>
-            {errors.non_field_errors?.map((message, idx) => 
-            <Alert className="mt-2" key={idx} variant="warning">
-            {message}
-            </Alert>
-            )}
-
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert className="mt-2" key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
           </Form>
         </Container>
         <Container className={`mt-3 ${styles.Content}`}>

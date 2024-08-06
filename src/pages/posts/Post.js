@@ -30,38 +30,46 @@ const Post = (props) => {
 
   const handleLike = async () => {
     try {
-      const { data } = await axiosRes.post('/like/post/', { post: id });
+      const { data } = await axiosRes.post("/like/post/", { post: id });
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) =>
           post.id === id
-            ? { ...post, post_likes_count: post.post_likes_count + 1, post_like_id: data.id }
+            ? {
+                ...post,
+                post_likes_count: post.post_likes_count + 1,
+                post_like_id: data.id,
+              }
             : post
         ),
       }));
     } catch (err) {
-        setErrors("Failed to like the post. Please try again.");
+      setErrors("Failed to like the post. Please try again.");
     }
   };
 
   const handleUnlike = async () => {
     try {
-        await axiosRes.delete(`/like/post/${post_like_id}`)
-        setPosts((prevPosts) => ({
-            ...prevPosts,
-            results: prevPosts.results.map((post) =>
-              post.id === id
-                ? { ...post, post_likes_count: post.post_likes_count - 1, post_like_id: null }
-                : post
-            ),
-          }));
-    } catch(err){
-        setErrors("Failed to unlike the post. Please try again.");
+      await axiosRes.delete(`/like/post/${post_like_id}`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) =>
+          post.id === id
+            ? {
+                ...post,
+                post_likes_count: post.post_likes_count - 1,
+                post_like_id: null,
+              }
+            : post
+        ),
+      }));
+    } catch (err) {
+      setErrors("Failed to unlike the post. Please try again.");
     }
-  } 
+  };
 
   return (
-    <Card className={styles.Container}>
+    <Card className={`mb-4 ${styles.Container}`}>
       <Card.Header className="p-2">
         <Media className="d-flex justify-content-between align-items-center">
           <Link
@@ -87,7 +95,10 @@ const Post = (props) => {
       </Card.Body>
       <div className="text-center">
         {is_owner ? (
-          <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>You can't like your own post!</Tooltip>}
+          >
             <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
           </OverlayTrigger>
         ) : post_like_id ? (
@@ -99,21 +110,26 @@ const Post = (props) => {
             <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
           </span>
         ) : (
-          <OverlayTrigger placement="top" overlay={<Tooltip>Please log in to like posts!</Tooltip>}>
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>Please log in to like posts!</Tooltip>}
+          >
             <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
           </OverlayTrigger>
         )}
         {post_likes_count}
         <Link to={`/posts/${id}`}>
-          <i className={`fa-regular fa-comment ml-2 mr-2 ${styles.Comment}`}></i>
+          <i
+            className={`fa-regular fa-comment ml-2 mr-2 ${styles.Comment}`}
+          ></i>
         </Link>
         {comments_count}
       </div>
       {errors && (
-          <Alert className="mt-2 text-center" variant="warning">
-            {errors}
-          </Alert>
-        )}
+        <Alert className="mt-2 text-center" variant="warning">
+          {errors}
+        </Alert>
+      )}
     </Card>
   );
 };
