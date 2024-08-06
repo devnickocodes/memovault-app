@@ -6,12 +6,14 @@ import Container from "react-bootstrap/Container";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
+import { Alert } from "react-bootstrap";
 
 
 function PostPage() {
   const {id} = useParams()
 
   const [post, setPost] = useState({results:[]})
+  const [errors, setErrors] = useState()
 
   useEffect(() => {
     const handleMount = async (event) => {
@@ -22,17 +24,21 @@ function PostPage() {
             setPost({results:[post]})
             console.log(post)
         } catch(err){
-            console.log(err)
+          setErrors("Sorry, an error occured. Please try again.");
         }
     }
     handleMount()
   }, [id])
-
   return (
     <Row className="h-100">
       <Col lg={8} className="py-2 p-0 p-lg-2">
         <p>Popular Profiles</p>
         <p>Profiles With The Most Posts</p>
+        {errors && (
+          <Alert className="mt-2 text-center" variant="warning">
+            {errors}
+          </Alert>
+        )}
         <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container>
           Comments
