@@ -30,16 +30,24 @@ function PostPage() {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Most Followed Profiles</p>
+      <Col lg={8} className="py-2 p-0 p-lg-2">
+        <p>Popular Profiles</p>
         <p>Profiles With The Most Posts</p>
         <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container>
           Comments
         </Container>
       </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        Popular profiles for desktop
+
+      <Col lg={4} className="d-flex flex-column p-0 p-lg-2">
+        <div className="d-flex flex-column">
+          <div className="mb-3">
+          Popular profiles for desktop
+          </div>
+          <div>
+          Most Active profiles for desktop
+          </div>
+        </div>
       </Col>
     </Row>
   );
