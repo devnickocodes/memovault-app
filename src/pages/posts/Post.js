@@ -28,10 +28,10 @@ const Post = (props) => {
         <Media className="d-flex justify-content-between align-items-center">
           <Link
             to={`/profiles/${profile_id}`}
-            className="d-flex align-items-center text-decoration-none"
+            className={`d-flex align-items-center text-decoration-none ${styles.avatarImage}`}
           >
             <Avatar src={profile_image} />
-            <span>{owner}</span>
+            <span className={styles.usernameLine}>{owner}</span>
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
