@@ -11,11 +11,14 @@ import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import Asset from "../../components/Asset";
+import { Alert } from "react-bootstrap";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [loaded, setLoaded] = useState(false)
   const {pathname} = useLocation()
+
+  const [errors, setErrors] = useState()
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -24,7 +27,7 @@ function PostsPage({ message, filter = "" }) {
             setPosts(data)
             setLoaded(true)
         } catch(err){
-            console.log(err)
+            setErrors("Sorry, an error occured. Please try again.");
         }
     }
 
@@ -37,6 +40,11 @@ function PostsPage({ message, filter = "" }) {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular Profiles</p>
         <p>Profiles With The Most Posts</p>
+        {errors && (
+          <Alert className="mt-2 text-center" variant="warning">
+            {errors}
+          </Alert>
+        )}
         {loaded ? (
             <>
             {posts.results.length? (
