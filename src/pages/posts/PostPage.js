@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import Post from "./Post";
 
 
 function PostPage() {
@@ -32,7 +33,7 @@ function PostPage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Most Followed Profiles</p>
         <p>Profiles With The Most Posts</p>
-        <p>Post component</p>
+        <Post {...post.results[0]} setPosts={setPost} />
         <Container>
           Comments
         </Container>
