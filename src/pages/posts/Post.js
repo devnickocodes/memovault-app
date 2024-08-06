@@ -53,24 +53,24 @@ const Post = (props) => {
       <div className="text-center">
         {is_owner ? (
             <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
-                <i className="fa-solid fa-heart"></i>
+                <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
             </OverlayTrigger>
         ): post_like_id ? (
             <span onClick={() => {}}>
-                <i className="fa-solid fa-heart"></i>
+                <i className={`fa-solid fa-heart ${styles.Heart}`}></i>
             </span>
         ): currentUser ? (
             <span onClick={() => {}}>
-                <i className="fa-solid fa-heart"></i>
+                <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
             </span>
         ): (
             <OverlayTrigger placement="top" overlay={<Tooltip>Please log in to like posts!</Tooltip>}>
-                <i className="fa-solid fa-heart"></i>
+                <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
             </OverlayTrigger>
         )}
         {post_likes_count}
         <Link to={`/posts/${id}`}>
-        <i class="fa-regular fa-comment"></i>
+        <i class={`fa-regular fa-comment ml-2 mr-2 ${styles.Comment}`}></i>
         </Link>
         {comments_count}
       </div>

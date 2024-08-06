@@ -7,3 +7,14 @@
   filter: brightness(1.1);
   color: #000000;
 }
+
+.Heart{
+    color: #b57bcc;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+
+.Comment{
+    font-size: 1.2rem;
+}
