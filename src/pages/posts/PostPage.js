@@ -33,7 +33,7 @@ function PostPage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Most Followed Profiles</p>
         <p>Profiles With The Most Posts</p>
-        <Post {...post.results[0]} setPosts={setPost} />
+        <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container>
           Comments
         </Container>
