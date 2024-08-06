@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Post.module.css";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Card, Media, OverlayTrigger, Tooltip, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Post = (props) => {
   const {
@@ -21,9 +22,27 @@ const Post = (props) => {
     image,
     updated_at,
     postPage,
+    setPosts,
   } = props;
 
-  const currentUser = useCurrentUser()
+  const currentUser = useCurrentUser();
+  const [errors, setErrors] = useState(null);
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post('/like/post/', { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) =>
+          post.id === id
+            ? { ...post, post_likes_count: post.post_likes_count + 1, post_like_id: data.id }
+            : post
+        ),
+      }));
+    } catch (err) {
+        setErrors("Failed to like the post. Please try again.");
+    }
+  };
 
   return (
     <Card>
@@ -52,28 +71,33 @@ const Post = (props) => {
       </Card.Body>
       <div className="text-center">
         {is_owner ? (
-            <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
-                <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
-            </OverlayTrigger>
-        ): post_like_id ? (
-            <span onClick={() => {}}>
-                <i className={`fa-solid fa-heart ${styles.Heart}`}></i>
-            </span>
-        ): currentUser ? (
-            <span onClick={() => {}}>
-                <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
-            </span>
-        ): (
-            <OverlayTrigger placement="top" overlay={<Tooltip>Please log in to like posts!</Tooltip>}>
-                <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
-            </OverlayTrigger>
+          <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
+            <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
+          </OverlayTrigger>
+        ) : post_like_id ? (
+          <span onClick={() => {}}>
+            <i className={`fa-solid fa-heart ${styles.Heart}`}></i>
+          </span>
+        ) : currentUser ? (
+          <span onClick={handleLike}>
+            <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
+          </span>
+        ) : (
+          <OverlayTrigger placement="top" overlay={<Tooltip>Please log in to like posts!</Tooltip>}>
+            <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
+          </OverlayTrigger>
         )}
         {post_likes_count}
         <Link to={`/posts/${id}`}>
-        <i class={`fa-regular fa-comment ml-2 mr-2 ${styles.Comment}`}></i>
+          <i className={`fa-regular fa-comment ml-2 mr-2 ${styles.Comment}`}></i>
         </Link>
         {comments_count}
       </div>
+      {errors && (
+          <Alert className="mt-2 text-center" variant="warning">
+            {errors}
+          </Alert>
+        )}
     </Card>
   );
 };
