@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
-import { Card, Media } from "react-bootstrap";
+import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const Post = (props) => {
   const {
@@ -22,6 +23,8 @@ const Post = (props) => {
     postPage,
   } = props;
 
+  const currentUser = useCurrentUser()
+
   return (
     <Card>
       <Card.Header className="p-2">
@@ -31,7 +34,7 @@ const Post = (props) => {
             className={`d-flex align-items-center text-decoration-none ${styles.avatarImage}`}
           >
             <Avatar src={profile_image} />
-            <span className={styles.usernameLine}>{owner}</span>
+            <span>{owner}</span>
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
@@ -47,6 +50,30 @@ const Post = (props) => {
         {title && <Card.Title>{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
       </Card.Body>
+      <div className="text-center">
+        {is_owner ? (
+            <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
+                <i className="fa-solid fa-heart"></i>
+            </OverlayTrigger>
+        ): post_like_id ? (
+            <span onClick={() => {}}>
+                <i className="fa-solid fa-heart"></i>
+            </span>
+        ): currentUser ? (
+            <span onClick={() => {}}>
+                <i className="fa-solid fa-heart"></i>
+            </span>
+        ): (
+            <OverlayTrigger placement="top" overlay={<Tooltip>Please log in to like posts!</Tooltip>}>
+                <i className="fa-solid fa-heart"></i>
+            </OverlayTrigger>
+        )}
+        {post_likes_count}
+        <Link to={`/posts/${id}`}>
+        <i class="fa-regular fa-comment"></i>
+        </Link>
+        {comments_count}
+      </div>
     </Card>
   );
 };
