@@ -44,6 +44,22 @@ const Post = (props) => {
     }
   };
 
+  const handleUnlike = async () => {
+    try {
+        await axiosRes.delete(`/like/post/${post_like_id}`)
+        setPosts((prevPosts) => ({
+            ...prevPosts,
+            results: prevPosts.results.map((post) =>
+              post.id === id
+                ? { ...post, post_likes_count: post.post_likes_count - 1, post_like_id: null }
+                : post
+            ),
+          }));
+    } catch(err){
+        setErrors("Failed to unlike the post. Please try again.");
+    }
+  } 
+
   return (
     <Card>
       <Card.Header className="p-2">
@@ -75,7 +91,7 @@ const Post = (props) => {
             <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
           </OverlayTrigger>
         ) : post_like_id ? (
-          <span onClick={() => {}}>
+          <span onClick={handleUnlike}>
             <i className={`fa-solid fa-heart ${styles.Heart}`}></i>
           </span>
         ) : currentUser ? (
