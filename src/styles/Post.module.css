@@ -1,11 +1,15 @@
+.Container{
+    box-shadow: rgba(155, 34, 185, 0.25) 0px 4px 8px -2px, rgba(155, 34, 185, 0.08) 0px 0px 0px 1px;
+}
+
 .avatarImage {
-  transition: filter 0.4s ease-in-out;
-  color: #000000;
+    transition: filter 0.4s ease-in-out;
+    color: #000000;
 }
 
 .avatarImage:hover {
-  filter: brightness(1.1);
-  color: #000000;
+    filter: brightness(1.1);
+    color: #000000;
 }
 
 .Heart{
@@ -18,3 +22,4 @@
 .Comment{
     font-size: 1.2rem;
 }
+

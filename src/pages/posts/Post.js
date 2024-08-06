@@ -61,7 +61,7 @@ const Post = (props) => {
   } 
 
   return (
-    <Card>
+    <Card className={styles.Container}>
       <Card.Header className="p-2">
         <Media className="d-flex justify-content-between align-items-center">
           <Link
