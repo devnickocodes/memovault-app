@@ -72,16 +72,19 @@ function PostPage() {
             <p className={`${commentStyles.CommentsHeading} mb-3`}>Comments</p>
           ) : null}
           {comments.results.length ? (
-            <InfiniteScroll 
-            children={
-              comments.results.map((comment) => (
-                <Comment key={comment.id} {...comment} />
-              ))
-            }
-            dataLength={comments.results.length}
-            loader={<Asset spinner />}
-            hasMore={!!comments.next}
-            next={() => fetchMoreData(comments, setComments)}
+            <InfiniteScroll
+              children={comments.results.map((comment) => (
+                <Comment
+                  setComments={setComments}
+                  setPost={setPost}
+                  key={comment.id}
+                  {...comment}
+                />
+              ))}
+              dataLength={comments.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
             />
           ) : currentUser ? (
             <p className="text-muted">
