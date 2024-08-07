@@ -7,13 +7,19 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import { Alert } from "react-bootstrap";
-import alertStyles from "../../styles/Post.module.css"
+import alertStyles from "../../styles/Post.module.css";
+import CommentCreateForm from "../comments/CommentCreateForm";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PostPage() {
   const { id } = useParams();
 
   const [post, setPost] = useState({ results: [] });
   const [errors, setErrors] = useState(null);
+
+  const currentUser = useCurrentUser();
+  const profile_image = currentUser?.profile_image;
+  const [comments, setComments] = useState({ results: [] });
 
   useEffect(() => {
     const handleMount = async (event) => {
@@ -42,12 +48,27 @@ function PostPage() {
         <p>Popular Profiles</p>
         <p>Profiles With The Most Posts</p>
         {errors && (
-          <Alert className={`mt-2 text-center ${alertStyles.Alert}`} variant="warning">
+          <Alert
+            className={`mt-2 text-center ${alertStyles.Alert}`}
+            variant="warning"
+          >
             {errors}
           </Alert>
         )}
         <Post {...post.results[0]} setPosts={setPost} postPage />
-        <Container>Comments</Container>
+        <Container>
+          {currentUser ? (
+            <CommentCreateForm
+              profile_id={currentUser.profile_id}
+              profileImage={profile_image}
+              post={id}
+              setPost={setPost}
+              setComments={setComments}
+            />
+          ) : comments.results.length ? (
+            "Comments"
+          ) : null}
+        </Container>
       </Col>
 
       <Col lg={4} className="d-flex flex-column p-0 p-lg-2">
