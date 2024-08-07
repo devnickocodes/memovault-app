@@ -6,6 +6,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/Post.module.css";
 import { DropdownOptions } from "../../components/DropdownOptions";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Post = (props) => {
   const {
@@ -28,6 +29,11 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const [errors, setErrors] = useState(null);
+  const history = useHistory()
+
+  const handleEdit = () => {
+    history.push(`/posts/${id}/edit`)
+  }
 
   const handleLike = async () => {
     try {
@@ -83,7 +89,7 @@ const Post = (props) => {
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
             {postPage && (is_owner || is_admin) && (
-              <DropdownOptions isAdmin={is_admin} />
+              <DropdownOptions isAdmin={is_admin} handleEdit={handleEdit} />
             )}
           </div>
         </Media>
