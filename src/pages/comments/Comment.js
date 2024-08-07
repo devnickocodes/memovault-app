@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Media from "react-bootstrap/Media";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Comment.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { DropdownOptions } from "../../components/DropdownOptions";
 import { axiosRes } from "../../api/axiosDefaults";
-
+import { Alert } from "react-bootstrap";
+import alertStyles from "../../styles/Post.module.css";
 const Comment = (props) => {
   const {
     profile_id,
@@ -21,27 +21,36 @@ const Comment = (props) => {
     setComments,
   } = props;
 
-  const handleDelete = async () => {
-    try{
-        await axiosRes.delete(`/comments/${id}/`)
-        setPost(prevPost => ({
-            results: [{
-                ...prevPost.results[0],
-                comments_count: prevPost.results[0].comments_count - 1
-            }]
-        }))
+  const [errors, setErrors] = useState(null);
 
-        setComments(prevComment => ({
-            ...prevComment,
-            results: prevComment.results.filter(comment => comment.id !== id)
-        }))
-    } catch(err) {
-        console.log(err)
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/commens/${id}/`);
+      setPost((prevPost) => ({
+        results: [
+          {
+            ...prevPost.results[0],
+            comments_count: prevPost.results[0].comments_count - 1,
+          },
+        ],
+      }));
+
+      setComments((prevComment) => ({
+        ...prevComment,
+        results: prevComment.results.filter((comment) => comment.id !== id),
+      }));
+    } catch (err) {
+      setErrors("Sorry there was an error trying to delete the comment. Please try again");
     }
-  }
+  };
 
   return (
     <div className={`${styles.CommentContainer} p-3 mb-3`}>
+      {errors && (
+        <Alert className={`mt-2 text-center ${alertStyles.Alert}`}>
+          {errors}
+        </Alert>
+      )}
       <Media className="align-items-start">
         <Link to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} />
