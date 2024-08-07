@@ -11,6 +11,9 @@ import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
 import commentStyles from "../../styles/Comment.module.css";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
 
 function PostPage() {
   const { id } = useParams();
@@ -69,9 +72,17 @@ function PostPage() {
             <p className={`${commentStyles.CommentsHeading} mb-3`}>Comments</p>
           ) : null}
           {comments.results.length ? (
-            comments.results.map((comment) => (
-              <Comment key={comment.id} {...comment} />
-            ))
+            <InfiniteScroll 
+            children={
+              comments.results.map((comment) => (
+                <Comment key={comment.id} {...comment} />
+              ))
+            }
+            dataLength={comments.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!comments.next}
+            next={() => fetchMoreData(comments, setComments)}
+            />
           ) : currentUser ? (
             <p className="text-muted">
               It would be great if you were the first to comment!
