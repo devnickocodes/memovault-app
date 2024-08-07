@@ -35,6 +35,15 @@ const Post = (props) => {
     history.push(`/posts/${id}/edit`)
   }
 
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${id}`)
+      history.goBack()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/like/post/", { post: id });
@@ -89,7 +98,7 @@ const Post = (props) => {
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
             {postPage && (is_owner || is_admin) && (
-              <DropdownOptions isAdmin={is_admin} handleEdit={handleEdit} />
+              <DropdownOptions isAdmin={is_admin} handleEdit={handleEdit} handleDelete={handleDelete} />
             )}
           </div>
         </Media>

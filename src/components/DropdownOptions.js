@@ -15,11 +15,11 @@ const GearToggle = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
-export const DropdownOptions = ({ isAdmin, handleEdit }) => {
+export const DropdownOptions = ({ isAdmin, handleEdit, handleDelete }) => {
   return (
     <Dropdown className={`ml-2 ${styles.Dropdown}`} drop="left">
       <Dropdown.Toggle as={GearToggle} />
-      <Dropdown.Menu className="text-center">
+      <Dropdown.Menu popperConfig={{ strategy: "fixed" }} className="text-center">
         {!isAdmin && (
           <Dropdown.Item
             className={styles.DropdownItem}
@@ -31,7 +31,7 @@ export const DropdownOptions = ({ isAdmin, handleEdit }) => {
         )}
         <Dropdown.Item
           className={styles.DropdownItem}
-          onClick={() => {}}
+          onClick={handleDelete}
           aria-label="delete"
         >
           <i className={`fa-regular fa-trash-can ${styles.Red}`}></i>
