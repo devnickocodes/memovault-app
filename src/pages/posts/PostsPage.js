@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -7,7 +6,6 @@ import Container from "react-bootstrap/Container";
 import NoResults from "../../assets/no-results.jpg";
 import styles from "../../styles/PostsPage.module.css";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import Asset from "../../components/Asset";
@@ -50,20 +48,17 @@ function PostsPage({ message, filter = "" }) {
             {errors}
           </Alert>
         )}
-        <i class={`fas fa-search ${styles.SearchIcon}`}></i>
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            type="text"
-            placeholder="Type to Search..."
-            value={query}
-            onChange={(event) => {
-              setQuery(event.target.value);
-            }}
-          />
-        </Form>
+        <div className={`mb-3 ${styles.SearchBar}`}>
+          <i className={`fas fa-search ${styles.SearchIcon}`}></i>
+          <Form onSubmit={(event) => event.preventDefault()}>
+            <Form.Control
+              type="text"
+              placeholder="Type to Search..."
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </Form>
+        </div>
         {loaded ? (
           <>
             {posts.results.length ? (
