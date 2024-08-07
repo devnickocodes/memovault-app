@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import NoResults from "../../assets/no-results.jpg";
 import styles from "../../styles/PostsPage.module.css";
+import alertStyles from "../../styles/Post.module.css"
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
@@ -54,7 +55,7 @@ function PostsPage({ message, filter = "" }) {
         <p>Popular Profiles</p>
         <p>Profiles With The Most Posts</p>
         {errors && (
-          <Alert className="mt-2 text-center" variant="warning">
+          <Alert className={`mt-2 text-center ${alertStyles.Alert}`} variant="warning">
             {errors}
           </Alert>
         )}

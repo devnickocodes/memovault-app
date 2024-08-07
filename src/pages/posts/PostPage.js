@@ -7,12 +7,13 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import { Alert } from "react-bootstrap";
+import alertStyles from "../../styles/Post.module.css"
 
 function PostPage() {
   const { id } = useParams();
 
   const [post, setPost] = useState({ results: [] });
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState(null);
 
   useEffect(() => {
     const handleMount = async (event) => {
@@ -27,13 +28,21 @@ function PostPage() {
     };
     handleMount();
   }, [id]);
+
+  useEffect(() => {
+    let timer;
+    if (errors) {
+      timer = setTimeout(() => setErrors(null), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errors]);
   return (
     <Row className="h-100">
       <Col lg={8} className="py-2 p-0 p-lg-2">
         <p>Popular Profiles</p>
         <p>Profiles With The Most Posts</p>
         {errors && (
-          <Alert className="mt-2 text-center" variant="warning">
+          <Alert className={`mt-2 text-center ${alertStyles.Alert}`} variant="warning">
             {errors}
           </Alert>
         )}
