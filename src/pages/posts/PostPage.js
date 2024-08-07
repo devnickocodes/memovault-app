@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -7,31 +6,31 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import { Alert } from "react-bootstrap";
-import alertStyles from "../../styles/Post.module.css";
+import styles from "../../styles/Post.module.css";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Comment from "../comments/Comment";
+import commentStyles from "../../styles/Comment.module.css";
 
 function PostPage() {
   const { id } = useParams();
-
   const [post, setPost] = useState({ results: [] });
   const [errors, setErrors] = useState(null);
-
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
 
   useEffect(() => {
-    const handleMount = async (event) => {
+    const handleMount = async () => {
       try {
         const [{ data: post }, { data: comments }] = await Promise.all([
           axiosReq.get(`/posts/${id}/`),
-          axiosReq.get(`/comments/?post=${id}`)
+          axiosReq.get(`/comments/?post=${id}`),
         ]);
         setPost({ results: [post] });
         setComments(comments);
       } catch {
-        setErrors("Sorry, an error occured. Please try again.");
+        setErrors("Sorry, an error occurred. Please try again.");
       }
     };
     handleMount();
@@ -44,21 +43,20 @@ function PostPage() {
     }
     return () => clearTimeout(timer);
   }, [errors]);
+
   return (
     <Row className="h-100">
       <Col lg={8} className="py-2 p-0 p-lg-2">
-        <p>Popular Profiles</p>
-        <p>Profiles With The Most Posts</p>
         {errors && (
           <Alert
-            className={`mt-2 text-center ${alertStyles.Alert}`}
+            className={`mt-2 text-center ${styles.Alert}`}
             variant="warning"
           >
             {errors}
           </Alert>
         )}
         <Post {...post.results[0]} setPosts={setPost} postPage />
-        <Container>
+        <Container className="mt-3">
           {currentUser ? (
             <CommentCreateForm
               profile_id={currentUser.profile_id}
@@ -68,16 +66,20 @@ function PostPage() {
               setComments={setComments}
             />
           ) : comments.results.length ? (
-            "Comments"
+            <p className={`${commentStyles.CommentsHeading} mb-3`}>Comments</p>
           ) : null}
           {comments.results.length ? (
-            comments.results.map(comment => (
-              <p key={comment.id}>{comment.owner} : {comment.content}</p>
+            comments.results.map((comment) => (
+              <Comment key={comment.id} {...comment} />
             ))
           ) : currentUser ? (
-            <span>It would be cool if you were the first one to comment!</span>
+            <p className="text-muted">
+              It would be great if you were the first to comment!
+            </p>
           ) : (
-            <span>No comments</span>
+            <p className="text-muted">
+              No comments yet. Be the first to comment!
+            </p>
           )}
         </Container>
       </Col>

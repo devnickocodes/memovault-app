@@ -1,0 +1,43 @@
+.CommentContainer {
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.CommentContainer:hover {
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(128, 65, 153, 0.6);
+}
+
+.CommentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.CommentOwner {
+  font-weight: 600;
+  color: #5e35b1;
+}
+
+.CommentDate {
+  font-size: 0.85rem;
+  color: #75797e;
+  font-style: italic;
+}
+
+.CommentContent {
+  color: #292727;
+  line-height: 1.5;
+}
+
+.CommentsHeading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ae4eee;
+  border-bottom: 2px solid #ae4eee;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
