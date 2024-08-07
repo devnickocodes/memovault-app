@@ -17,7 +17,7 @@ function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [loaded, setLoaded] = useState(false);
   const { pathname } = useLocation();
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState(null);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function PostsPage({ message, filter = "" }) {
         setPosts(data);
         setLoaded(true);
       } catch (err) {
-        setErrors("Sorry, an error occured. Please try again.");
+        setErrors("Sorry, an error occurred. Please try again.");
       }
     };
 
@@ -39,6 +39,14 @@ function PostsPage({ message, filter = "" }) {
       clearTimeout(timer);
     };
   }, [filter, query, pathname]);
+
+  useEffect(() => {
+    let timer;
+    if (errors) {
+      timer = setTimeout(() => setErrors(null), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errors]);
 
   return (
     <Row className="h-100">
@@ -65,15 +73,15 @@ function PostsPage({ message, filter = "" }) {
           <>
             {posts.results.length ? (
               <InfiniteScroll 
-              children={
-                posts.results.map((post) => (
-                  <Post key={post.id} {...post} setPosts={setPosts} />
-                ))
-              }
-              dataLength={posts.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!posts.next}
-              next={() => fetchMoreData(posts, setPosts)}
+                children={
+                  posts.results.map((post) => (
+                    <Post key={post.id} {...post} setPosts={setPosts} />
+                  ))
+                }
+                dataLength={posts.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!posts.next}
+                next={() => fetchMoreData(posts, setPosts)}
               />
             ) : (
               <Container className={styles.noResults}>
