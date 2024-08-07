@@ -67,7 +67,7 @@ const Post = (props) => {
             : post
         ),
       }));
-    } catch (err) {
+    } catch {
       setErrors("Failed to like the post. Please try again.");
     }
   };
@@ -87,19 +87,12 @@ const Post = (props) => {
             : post
         ),
       }));
-    } catch (err) {
+    } catch {
       setErrors("Failed to unlike the post. Please try again.");
     }
   };
 
   return ( <>
-    <div>
-    {errors && (
-        <Alert className={`mt-2 text-center ${styles.Alert}`}>
-          {errors}
-        </Alert>
-      )}
-    </div>
     <Card className={`mb-4 ${styles.Container} m-3`}>
       <Card.Header className={`p-2 ${styles.CardHeader}`}>
         <Media className="d-flex justify-content-between align-items-center">
@@ -168,6 +161,11 @@ const Post = (props) => {
             </Link>
           </OverlayTrigger>
         )}
+            {errors && (
+        <Alert className={`mt-2 text-center ${styles.Alert}`}>
+          {errors}
+        </Alert>
+      )}
       </div>
     </Card>
     </>

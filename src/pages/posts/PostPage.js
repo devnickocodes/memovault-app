@@ -22,7 +22,7 @@ function PostPage() {
           axiosReq.get(`/posts/${id}/`),
         ]);
         setPost({ results: [post] });
-      } catch (err) {
+      } catch {
         setErrors("Sorry, an error occured. Please try again.");
       }
     };
