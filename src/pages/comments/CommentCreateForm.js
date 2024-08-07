@@ -40,7 +40,7 @@ function CommentCreateForm(props) {
   };
 
   return (
-    <Form className={`${styles.CommentForm} mt-2`} onSubmit={handleSubmit}>
+    <Form className={`${styles.CommentForm} mt-2 mb-3`} onSubmit={handleSubmit}>
       <Form.Group>
         <InputGroup className={styles.InputGroup}>
           <Link to={`/profiles/${profile_id}`}>

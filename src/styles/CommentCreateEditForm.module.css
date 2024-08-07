@@ -1,0 +1,53 @@
+.CommentForm {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.InputGroup {
+  display: flex;
+  align-items: center;
+}
+
+.Avatar {
+  margin-right: 10px;
+}
+
+.TextArea {
+  flex-grow: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  resize: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.TextArea:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(128, 65, 153, 0.6);
+}
+
+.Button {
+  background: linear-gradient(45deg, #fd8181, #ffaac7);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.Button:disabled {
+  background: #aaaaaa;
+  cursor: not-allowed;
+}
+
+.Button:hover:enabled {
+  background: linear-gradient(45deg, #e1aaf7, #fa759f);
+  color: #000000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
