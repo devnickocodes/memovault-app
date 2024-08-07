@@ -122,6 +122,9 @@ const Post = (props) => {
           <i className={`fa-regular fa-comment ml-2 mr-2 ${styles.Comment}`}></i>
         </Link>
         {comments_count}
+        <Link to={`/reports/create/`}>
+        <i className={`fa-solid fa-flag ml-2 ${styles.Flag}`}></i>
+        </Link>
       </div>
       {errors && (
         <Alert className={`mt-2 text-center ${styles.Alert}`}>

@@ -72,3 +72,13 @@
 .Comment {
   font-size: 1.2rem;
 }
+
+.Flag {
+  color: #f53434;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.Flag:hover {
+  color: #d33535;
+}
