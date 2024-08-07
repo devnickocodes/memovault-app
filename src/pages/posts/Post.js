@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import styles from "../../styles/Post.module.css";
 import { Card, Media, OverlayTrigger, Tooltip, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
+import styles from "../../styles/Post.module.css";
 
 const Post = (props) => {
   const {
@@ -69,8 +69,8 @@ const Post = (props) => {
   };
 
   return (
-    <Card className={`mb-4 ${styles.Container}`}>
-      <Card.Header className="p-2">
+    <Card className={`mb-4 ${styles.Container} m-3`}>
+      <Card.Header className={`p-2 ${styles.CardHeader}`}>
         <Media className="d-flex justify-content-between align-items-center">
           <Link
             to={`/profiles/${profile_id}`}
@@ -87,13 +87,13 @@ const Post = (props) => {
         </Media>
       </Card.Header>
       <Link to={`/posts/${id}`}>
-        <Card.Img variant="top" src={image} alt={title} />
+        <Card.Img variant="top" src={image} alt={title} className={styles.CardImg} />
       </Link>
-      <Card.Body className="text-center">
-        {title && <Card.Title>{title}</Card.Title>}
-        {content && <Card.Text>{content}</Card.Text>}
+      <Card.Body className={`text-center ${styles.CardBody}`}>
+        {title && <Card.Title className={styles.CardTitle}>{title}</Card.Title>}
+        {content && <Card.Text className={styles.CardText}>{content}</Card.Text>}
       </Card.Body>
-      <div className="text-center">
+      <div className={`text-center ${styles.CardBody}`}>
         {is_owner ? (
           <OverlayTrigger
             placement="top"
@@ -119,14 +119,12 @@ const Post = (props) => {
         )}
         {post_likes_count}
         <Link to={`/posts/${id}`}>
-          <i
-            className={`fa-regular fa-comment ml-2 mr-2 ${styles.Comment}`}
-          ></i>
+          <i className={`fa-regular fa-comment ml-2 mr-2 ${styles.Comment}`}></i>
         </Link>
         {comments_count}
       </div>
       {errors && (
-        <Alert className="mt-2 text-center" variant="warning">
+        <Alert className={`mt-2 text-center ${styles.Alert}`}>
           {errors}
         </Alert>
       )}

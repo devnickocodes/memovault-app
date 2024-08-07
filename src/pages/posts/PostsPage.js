@@ -48,12 +48,12 @@ function PostsPage({ message, filter = "" }) {
             {errors}
           </Alert>
         )}
-        <div className={`mb-3 ${styles.SearchBar}`}>
+        <div className={`mb-3 p-1 ${styles.SearchBar}`}>
           <i className={`fas fa-search ${styles.SearchIcon}`}></i>
           <Form onSubmit={(event) => event.preventDefault()}>
             <Form.Control
               type="text"
-              placeholder="Type to Search..."
+              placeholder="Search for posts"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />

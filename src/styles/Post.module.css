@@ -1,22 +1,72 @@
 .Container {
-  box-shadow: rgba(155, 34, 185, 0.25) 0px 4px 8px -2px,
-    rgba(155, 34, 185, 0.08) 0px 0px 0px 1px;
+  border: 1px solid #e0d4f7;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(155, 34, 185, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
 }
 
 .avatarImage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #5e35b1;
   transition: filter 0.4s ease-in-out;
-  color: #000000;
+  text-decoration: none;
+}
+
+.avatarImage:hover{
+  color: #5e35b1;
+}
+
+.avatarImage span {
+  font-weight: bold;
 }
 
 .avatarImage:hover {
   filter: brightness(1.1);
-  color: #000000;
+}
+
+.CardHeader {
+  background-color: #f3e5f5;
+  border-bottom: none;
+}
+
+.CardBody {
+  background-color: #f8f0ff;
+  padding: 10px;
+}
+
+.CardTitle {
+  color: #6a1b9a;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.CardText {
+  color: #7b1fa2;
+  font-size: 1.1rem;
+}
+
+.CardImg {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.Alert {
+  background-color: #f3e5f5;
+  color: #6a1b9a;
 }
 
 .Heart {
   color: #b57bcc;
   font-size: 1.2rem;
   cursor: pointer;
+}
+
+.Heart:hover{
+  color: #8f34b3;
 }
 
 .Comment {
