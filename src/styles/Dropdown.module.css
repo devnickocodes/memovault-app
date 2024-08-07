@@ -1,11 +1,36 @@
 .DropdownItem {
   display: inline-block;
   max-width: 50%;
-  padding: 0px;
+  font-size: 1.2rem;
+  padding: 8px 16px;
+  font-size: 16px;
 }
 
 .Absolute {
   position: absolute;
   right: 0;
   z-index: 99;
+}
+
+.Dropdown {
+  color: #992e99;
+  cursor: pointer;
+}
+
+.DropdownItem i {
+  margin-right: 8px;
+  font-size: 18px; 
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.DropdownItem:hover i { 
+  transform: scale(1.1);
+}
+
+.Red{
+    color: #ff2a2af3;
+}
+
+.Grey{
+    color: #575656;
 }

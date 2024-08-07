@@ -5,6 +5,7 @@ import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/Post.module.css";
+import { DropdownOptions } from "../../components/DropdownOptions";
 
 const Post = (props) => {
   const {
@@ -81,8 +82,9 @@ const Post = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && postPage && <span>...</span>}
-            {is_admin && postPage && <span>...</span>}
+            {postPage && (is_owner || is_admin) && (
+              <DropdownOptions isAdmin={is_admin} />
+            )}
           </div>
         </Media>
       </Card.Header>
@@ -124,15 +126,16 @@ const Post = (props) => {
         {comments_count}
         {currentUser ? (
           <Link to={`/reports/create/${id}`}>
-          <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`}></i>
-        </Link>
+            <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`}></i>
+          </Link>
         ) : (
           <OverlayTrigger
             placement="top"
             overlay={<Tooltip>Please log in to report posts!</Tooltip>}
           >
             <Link to={"/signin"}>
-            <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`}></i></Link>
+              <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`}></i>
+            </Link>
           </OverlayTrigger>
         )}
       </div>
