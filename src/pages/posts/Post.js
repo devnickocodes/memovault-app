@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Media, OverlayTrigger, Tooltip, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
@@ -31,16 +31,24 @@ const Post = (props) => {
   const [errors, setErrors] = useState(null);
   const history = useHistory()
 
+  useEffect(() => {
+    let timer;
+    if (errors) {
+      timer = setTimeout(() => setErrors(null), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errors]);
+
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`)
   }
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/posts/${id}`)
+      await axiosRes.delete(`/pots/${id}`)
       history.goBack()
     } catch (err) {
-      console.log(err)
+      setErrors("Something went wrong while trying to delete the post. Please try again in a moment.")
     }
   }
 
@@ -84,7 +92,14 @@ const Post = (props) => {
     }
   };
 
-  return (
+  return ( <>
+    <div>
+    {errors && (
+        <Alert className={`mt-2 text-center ${styles.Alert}`}>
+          {errors}
+        </Alert>
+      )}
+    </div>
     <Card className={`mb-4 ${styles.Container} m-3`}>
       <Card.Header className={`p-2 ${styles.CardHeader}`}>
         <Media className="d-flex justify-content-between align-items-center">
@@ -154,12 +169,8 @@ const Post = (props) => {
           </OverlayTrigger>
         )}
       </div>
-      {errors && (
-        <Alert className={`mt-2 text-center ${styles.Alert}`}>
-          {errors}
-        </Alert>
-      )}
     </Card>
+    </>
   );
 };
 
