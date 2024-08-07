@@ -10,6 +10,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import Asset from "../../components/Asset";
 import { Alert } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -62,9 +63,17 @@ function PostsPage({ message, filter = "" }) {
         {loaded ? (
           <>
             {posts.results.length ? (
-              posts.results.map((post) => (
-                <Post key={post.id} {...post} setPosts={setPosts} />
-              ))
+              <InfiniteScroll 
+              children={
+                posts.results.map((post) => (
+                  <Post key={post.id} {...post} setPosts={setPosts} />
+                ))
+              }
+              dataLength={posts.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!posts.next}
+              next={() => {}}
+              />
             ) : (
               <Container className={styles.noResults}>
                 <Asset
