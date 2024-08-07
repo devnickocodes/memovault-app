@@ -5,12 +5,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
-import uploadImage from "../../assets/upload_image_placeholder.jpg";
-
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import Asset from "../../components/Asset";
 import { Alert, Image } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -31,7 +28,19 @@ function PostEditForm() {
   const history = useHistory();
   const {id} = useParams()
 
+  useEffect(() => {
+    const handleMount = async () => {
+        try {
+            const {data} = await axiosReq.get(`/posts/${id}/`)
+            const {title, content, image, is_owner} = data
+            is_owner ? setPostData({title, content, image}) : history.push('/')
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
+    handleMount()
+  }, [history, id])
 
   const handleChange = (event) => {
     setPostData({
@@ -46,13 +55,13 @@ function PostEditForm() {
 
     formData.append("title", title);
     formData.append("content", content);
-    if (inputImage.current && inputImage.current.files.length > 0) {
-      formData.append("image", inputImage.current.files[0]);
+    if (inputImage?.current?.files[0]){
+        formData.append('image', inputImage.current.files[0]);
     }
 
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
-      history.push(`/posts/${data.id}`);
+      await axiosReq.put(`/posts/${id}/`, formData);
+      history.push(`/posts/${id}`);
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
@@ -78,8 +87,6 @@ function PostEditForm() {
         <Row className="w-100 justify-content-center">
           <Col xs={12} md={8} lg={6} className="text-center">
             <Form.Group className="text-center">
-              {image ? (
-                <>
                   <figure>
                     <Image className={appStyles.Image} src={image} rounded />
                   </figure>
@@ -91,21 +98,6 @@ function PostEditForm() {
                       Change the image
                     </Form.Label>
                   </div>
-                </>
-              ) : (
-                <Form.Label
-                  className="d-flex justify-content-center mt-3"
-                  htmlFor="image-upload"
-                >
-                  <Asset
-                    src={uploadImage}
-                    message="Click or tap to upload an image"
-                    width="100%"
-                    height="auto"
-                  />
-                </Form.Label>
-              )}
-
               <Form.File
                 className={styles.hiddenFileInput}
                 id="image-upload"
@@ -159,7 +151,7 @@ function PostEditForm() {
           </Col>
         </Row>
         <Row className="w-100 justify-content-center mt-3">
-          <Col xs={12} md={8} lg={6} className="d-flex justify-content-center">
+          <Col xs={12} md={8} lg={6} className="d-flex justify-content-center m-2">
             <Button
               className={`${btnStyles.GreyButton} ${btnStyles.Button} mr-2`}
               onClick={() => history.goBack()}
@@ -167,7 +159,7 @@ function PostEditForm() {
               Cancel
             </Button>
             <Button className={btnStyles.Button} type="submit">
-              Create
+              Save
             </Button>
           </Col>
         </Row>

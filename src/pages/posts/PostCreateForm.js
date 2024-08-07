@@ -156,7 +156,7 @@ function PostCreateForm() {
           </Col>
         </Row>
         <Row className="w-100 justify-content-center mt-3">
-          <Col xs={12} md={8} lg={6} className="d-flex justify-content-center">
+          <Col xs={12} md={8} lg={6} className="d-flex justify-content-center m-2">
             <Button
               className={`${btnStyles.GreyButton} ${btnStyles.Button} mr-2`}
               onClick={() => history.goBack()}

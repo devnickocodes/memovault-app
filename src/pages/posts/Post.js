@@ -45,7 +45,7 @@ const Post = (props) => {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/pots/${id}`)
+      await axiosRes.delete(`/posts/${id}/`)
       history.goBack()
     } catch (err) {
       setErrors("Something went wrong while trying to delete the post. Please try again in a moment.")
