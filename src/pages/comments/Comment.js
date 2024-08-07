@@ -7,6 +7,8 @@ import { DropdownOptions } from "../../components/DropdownOptions";
 import { axiosRes } from "../../api/axiosDefaults";
 import { Alert } from "react-bootstrap";
 import alertStyles from "../../styles/Post.module.css";
+import CommentEditForm from "./CommentEditForm";
+
 const Comment = (props) => {
   const {
     profile_id,
@@ -22,10 +24,11 @@ const Comment = (props) => {
   } = props;
 
   const [errors, setErrors] = useState(null);
+  const [showEditForm, setShowEditForm] = useState(false);
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/commens/${id}/`);
+      await axiosRes.delete(`/comments/${id}/`);
       setPost((prevPost) => ({
         results: [
           {
@@ -40,7 +43,7 @@ const Comment = (props) => {
         results: prevComment.results.filter((comment) => comment.id !== id),
       }));
     } catch (err) {
-      setErrors("Sorry there was an error trying to delete the comment. Please try again");
+      setErrors("Sorry, there was an error trying to delete the comment. Please try again.");
     }
   };
 
@@ -60,12 +63,23 @@ const Comment = (props) => {
             <span className={styles.CommentOwner}>{owner}</span>
             <span className={styles.CommentDate}>{updated_at}</span>
           </div>
-          <p className={styles.CommentContent}>{content}</p>
+          {showEditForm ? (
+            <CommentEditForm
+            id={id}
+            profile_id={profile_id}
+            content={content}
+            profileImage={profile_image}
+            setComments={setComments}
+            setShowEditForm={setShowEditForm}
+          />
+          ) : (
+            <p className={styles.CommentContent}>{content}</p>
+          )}
         </Media.Body>
-        {(is_owner || is_admin) && (
+        {(is_owner || is_admin) && !showEditForm && (
           <DropdownOptions
             isAdmin={is_admin}
-            handleEdit={() => {}}
+            handleEdit={() => setShowEditForm(true)}
             handleDelete={handleDelete}
           />
         )}

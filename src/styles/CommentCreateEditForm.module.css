@@ -51,3 +51,19 @@
   color: #000000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+.GreyButton {
+  background-color: #b3b3b3;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.GreyButton:hover{
+    color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}
