@@ -4,6 +4,7 @@ import styles from "../../styles/PopularProfiles.module.css"
 import { Container } from 'react-bootstrap'
 import { axiosReq } from '../../api/axiosDefaults'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
+import Asset from '../../components/Asset'
 
 const PopularProfiles = () => {
 
@@ -34,9 +35,16 @@ const PopularProfiles = () => {
   return (
     <Container className={`mt-2 p-3 ${styles.Container}`}>
         <p>Popular Profiles</p>
-        {popularProfiles.results.map(profile => (
+        {popularProfiles.results.length ? (
+            <>
+            {popularProfiles.results.map(profile => (
             <p key={profile.id}>{profile.owner}</p>
-        ))}
+            ))}
+            </>
+        ) : (
+            <Asset spinner />
+        )}
+        
     </Container>
   )
 }
