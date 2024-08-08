@@ -13,6 +13,7 @@ import Asset from "../../components/Asset";
 import { Alert } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import PopularProfiles from "../profiles/PopularProfiles";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -103,7 +104,7 @@ function PostsPage({ message, filter = "" }) {
       </Col>
       <Col lg={4} className="d-flex flex-column p-0 p-lg-2">
         <div className="d-flex flex-column">
-          <div className="mb-3">Popular profiles for desktop</div>
+          <PopularProfiles />
           <div>Most Active profiles for desktop</div>
         </div>
       </Col>
