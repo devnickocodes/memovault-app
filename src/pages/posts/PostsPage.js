@@ -54,7 +54,6 @@ function PostsPage({ message, filter = "" }) {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfiles mobile />
-        <p>Profiles With The Most Posts</p>
         {errors && (
           <Alert className={`mt-2 text-center ${alertStyles.Alert}`} variant="warning">
             {errors}
@@ -105,7 +104,6 @@ function PostsPage({ message, filter = "" }) {
       <Col lg={4} className="d-flex flex-column p-0 p-lg-2">
         <div className="d-flex flex-column">
           <PopularProfiles />
-          <div>Most Active profiles for desktop</div>
         </div>
       </Col>
     </Row>
