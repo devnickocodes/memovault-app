@@ -7,6 +7,7 @@
   width: 100%;
   background-color: #9b22b9;
   transition: all 0.3s ease-in-out;
+  font-weight: 500;
 }
 
 .Button:hover {
@@ -14,6 +15,7 @@
   color: #9b22b9;
   background-color: #ffffff;
   border: 1px solid #9b22b9;
+  font-weight: 500;
 }
 
 .Button:focus {

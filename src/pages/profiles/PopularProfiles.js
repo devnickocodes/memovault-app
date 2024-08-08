@@ -6,6 +6,7 @@ import { axiosReq } from '../../api/axiosDefaults'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import Asset from '../../components/Asset'
 import Profile from './Profile'
+import navStyles from "../../styles/NavBar.module.css"
 
 const PopularProfiles = ({mobile}) => {
 
@@ -37,7 +38,7 @@ const PopularProfiles = ({mobile}) => {
     <Container className={`${styles.Container} ${mobile && 'd-lg-none text-center mb-2'}`}>
         {popularProfiles.results.length ? (
         <>
-        <p className="text-center p-2">Popular Profiles</p>
+        <p className={`text-center p-2 ${styles.Header} ${navStyles.Logo}`}>Popular <span>Profiles</span></p>
         {mobile ? (
             <div className="d-flex justify-content-around">
                 {popularProfiles.results.slice(0, 4).map(profile => (
