@@ -13,7 +13,7 @@ import Asset from "../../components/Asset";
 import { Alert } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
-import PopularProfiles from "../profiles/PopularProfiles";
+import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -53,7 +53,7 @@ function PostsPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <PopularProfiles mobile />
+        <PopularProfilesMostPosts mobile />
         {errors && (
           <Alert className={`mt-2 text-center ${alertStyles.Alert}`} variant="warning">
             {errors}
@@ -103,7 +103,7 @@ function PostsPage({ message, filter = "" }) {
       </Col>
       <Col lg={4} className="d-flex flex-column p-0 p-lg-2">
         <div className="d-flex flex-column">
-          <PopularProfiles />
+          <PopularProfilesMostPosts />
         </div>
       </Col>
     </Row>
