@@ -53,7 +53,7 @@ function PostsPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular Profiles</p>
+        <PopularProfiles mobile />
         <p>Profiles With The Most Posts</p>
         {errors && (
           <Alert className={`mt-2 text-center ${alertStyles.Alert}`} variant="warning">

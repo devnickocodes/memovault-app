@@ -6,7 +6,7 @@ import { axiosReq } from '../../api/axiosDefaults'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import Asset from '../../components/Asset'
 
-const PopularProfiles = () => {
+const PopularProfiles = ({mobile}) => {
 
     const [profileData, setProfileData] = useState({
         pageProfile: {results: []},
@@ -33,18 +33,25 @@ const PopularProfiles = () => {
     }, [currentUser])
 
   return (
-    <Container className={`mt-2 p-3 ${styles.Container}`}>
-        <p>Popular Profiles</p>
+    <Container className={`${styles.Container} ${mobile && 'd-lg-none text-center mb-2'}`}>
         {popularProfiles.results.length ? (
-            <>
-            {popularProfiles.results.map(profile => (
-            <p key={profile.id}>{profile.owner}</p>
-            ))}
+        <>
+        <p>Popular Profiles</p>
+        {mobile ? (
+            <div className="d-flex justify-content-around">
+                {popularProfiles.results.slice(0, 4).map(profile => (
+                <p key={profile.id}>{profile.owner}</p>
+                ))}
+            </div>
+        ): (
+            popularProfiles.results.slice(0, 4).map(profile => (
+                <p key={profile.id}>{profile.owner}</p>
+                ))
+        )}
             </>
         ) : (
             <Asset spinner />
         )}
-        
     </Container>
   )
 }
