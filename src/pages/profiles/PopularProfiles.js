@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap'
 import { axiosReq } from '../../api/axiosDefaults'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import Asset from '../../components/Asset'
+import Profile from './Profile'
 
 const PopularProfiles = ({mobile}) => {
 
@@ -36,16 +37,16 @@ const PopularProfiles = ({mobile}) => {
     <Container className={`${styles.Container} ${mobile && 'd-lg-none text-center mb-2'}`}>
         {popularProfiles.results.length ? (
         <>
-        <p>Popular Profiles</p>
+        <p className="text-center p-2">Popular Profiles</p>
         {mobile ? (
             <div className="d-flex justify-content-around">
                 {popularProfiles.results.slice(0, 4).map(profile => (
-                <p key={profile.id}>{profile.owner}</p>
+                <Profile key={profile.id} profile={profile} mobile />
                 ))}
             </div>
         ): (
             popularProfiles.results.slice(0, 4).map(profile => (
-                <p key={profile.id}>{profile.owner}</p>
+                <Profile key={profile.id} profile={profile} />
                 ))
         )}
             </>
