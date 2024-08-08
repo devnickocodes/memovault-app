@@ -72,6 +72,26 @@ const Comment = (props) => {
     }
   };
 
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/like/comment/${comment_like_id}`);
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) =>
+          comment.id === id
+            ? {
+                ...comment,
+                comment_likes_count: comment.comment_likes_count - 1,
+                comment_like_id: null,
+              }
+            : comment
+        ),
+      }));
+    } catch {
+      setErrors("Failed to unlike the comment. Please try again.");
+    }
+  };
+
   return (
     <div className={`${styles.CommentContainer} p-3 mb-3`}>
       {errors && (
@@ -109,7 +129,7 @@ const Comment = (props) => {
                 <i className={`fa-regular fa-heart mr-1 ${postStyles.Heart}`}></i>
               </OverlayTrigger>
             ) : comment_like_id ? (
-              <span onClick={() => {}}>
+              <span onClick={handleUnlike}>
                 <i className={`fa-solid fa-heart ${postStyles.Heart}`}></i>
               </span>
             ) : currentUser ? (
@@ -117,12 +137,14 @@ const Comment = (props) => {
                 <i className={`fa-regular fa-heart mr-1 ${postStyles.Heart}`}></i>
               </span>
             ) : (
+              <Link to="/signin">
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip>Please log in to like comments!</Tooltip>}
               >
                 <i className={`fa-regular fa-heart mr-1 ${postStyles.Heart}`}></i>
               </OverlayTrigger>
+              </Link>
             )}
             {comment_likes_count}
           </div>
