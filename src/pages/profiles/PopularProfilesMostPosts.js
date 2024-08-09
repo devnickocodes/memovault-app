@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Asset from '../../components/Asset';
 import Profile from './Profile';
 import navStyles from "../../styles/NavBar.module.css";

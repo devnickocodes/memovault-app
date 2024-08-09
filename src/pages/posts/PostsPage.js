@@ -14,6 +14,7 @@ import { Alert } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
+import PopularPosts from "./PopularPosts";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -104,6 +105,7 @@ function PostsPage({ message, filter = "" }) {
       <Col lg={4} className="d-flex flex-column p-0 p-lg-2">
         <div className="d-flex flex-column">
           <PopularProfilesMostPosts />
+          <PopularPosts />
         </div>
       </Col>
     </Row>
