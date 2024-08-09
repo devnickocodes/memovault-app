@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import NoResults from "../../assets/no-results.jpg";
 import styles from "../../styles/PostsPage.module.css";
-import alertStyles from "../../styles/Post.module.css"
+import alertStyles from "../../styles/Post.module.css";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
@@ -16,7 +16,7 @@ import { fetchMoreData } from "../../utils/utils";
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import PopularPosts from "./PopularPosts";
 
-function PostsPage({ message, filter = "" }) {
+function PostsPage({ message }) {
   const [posts, setPosts] = useState({ results: [] });
   const [loaded, setLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -26,7 +26,7 @@ function PostsPage({ message, filter = "" }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
+        const { data } = await axiosReq.get(`/posts/?search=${query}`);
         setPosts(data);
         setLoaded(true);
       } catch {
@@ -41,7 +41,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [query, pathname]);
 
   useEffect(() => {
     let timer;
@@ -102,10 +102,13 @@ function PostsPage({ message, filter = "" }) {
           </Container>
         )}
       </Col>
-      <Col lg={4} className="d-flex flex-column p-0 p-lg-2">
-        <div className="d-flex flex-column">
+      <Col lg={4} className="d-none d-lg-flex flex-column p-0 p-lg-2">
+        <div className="d-lg-none mb-3">
           <PopularProfilesMostPosts />
-          <PopularPosts mobile />
+        </div>
+        <div className="d-none d-lg-flex flex-column">
+          <PopularProfilesMostPosts />
+          <PopularPosts />
         </div>
       </Col>
     </Row>

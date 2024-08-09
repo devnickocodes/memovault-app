@@ -17,7 +17,7 @@ const Profile = (props) => {
                     <Avatar src={image} />
                 </Link>
             </div>
-            <div className={`d-flex align-items-center ${mobile ? 'mb-2' : ''}`}>
+            <div className={`d-flex align-items-center ${mobile && 'mb-2'}`}>
                 <p className="mb-0">{owner}</p>
             </div>
             {!mobile && currentUser && !is_owner && (
