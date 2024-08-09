@@ -18,6 +18,8 @@ export const PopularPostDataProvider = ({ children }) => {
       });
     
       const currentUser = useCurrentUser();
+
+      const [error, setError] = useState(null)
     
       useEffect(() => {
         const handleMount = async () => {
@@ -30,7 +32,7 @@ export const PopularPostDataProvider = ({ children }) => {
               popularPosts: data,
             }));
           } catch (err) {
-            console.log(err);
+            setError("An error occurred while loading popular posts. Please try again.")
           }
         };
     
@@ -38,7 +40,7 @@ export const PopularPostDataProvider = ({ children }) => {
       }, [currentUser]);
 
       return (
-        <PopularPostDataContext.Provider value={postData}>
+        <PopularPostDataContext.Provider value={{postData, error}}>
             <SetPopularPostDataContext.Provider value={SetPopularPostDataContext}>
                 {children}
             </SetPopularPostDataContext.Provider>

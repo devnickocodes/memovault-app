@@ -8,10 +8,12 @@ import { usePopularPostData } from "../../contexts/PopularPostDataContext";
 
 const PopularPosts = ({mobile}) => {
 
-  const {popularPosts} = usePopularPostData()
+  const { postData, error } = usePopularPostData();
+  const { popularPosts } = postData;
 
   return (
     <Container className={`mt-3 ${styles.Container} ${mobile && 'd-none d-lg-block'}`}>
+      {error &&  <p>{error}</p>}
       {popularPosts.results.length ? (
         <>
           <p className={`text-center p-2 ${styles.Header} ${navStyles.Logo}`}>
