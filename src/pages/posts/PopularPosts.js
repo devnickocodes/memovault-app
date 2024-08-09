@@ -5,6 +5,7 @@ import navStyles from "../../styles/NavBar.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Asset from "../../components/Asset";
+import PopularPost from "./PopularPost";
 
 const PopularPosts = ({mobile}) => {
   const [postData, setPostData] = useState({
@@ -40,7 +41,7 @@ const PopularPosts = ({mobile}) => {
             Popular <span>Posts</span>
           </p>
           {popularPosts.results.slice(0, 3).map((post) => (
-            <p key={post.id}>{post.owner}</p>
+            <PopularPost key={post.id} post={post} />
           ))}
         </>
       ) : (
