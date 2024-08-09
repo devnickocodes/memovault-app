@@ -13,8 +13,10 @@ const PopularPosts = ({mobile}) => {
 
   return (
     <Container className={`mt-3 ${styles.Container} ${mobile && 'd-none d-lg-block'}`}>
-      {error &&  <p>{error}</p>}
-      {popularPosts.results.length ? (
+      {error ? (
+        <p>{error}</p>
+      ) :
+      popularPosts.results.length ? (
         <>
           <p className={`text-center p-2 ${styles.Header} ${navStyles.Logo}`}>
             Popular <span>Posts</span>
