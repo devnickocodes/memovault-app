@@ -105,7 +105,7 @@ function PostsPage({ message, filter = "" }) {
       <Col lg={4} className="d-flex flex-column p-0 p-lg-2">
         <div className="d-flex flex-column">
           <PopularProfilesMostPosts />
-          <PopularPosts />
+          <PopularPosts mobile />
         </div>
       </Col>
     </Row>
