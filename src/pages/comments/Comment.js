@@ -10,6 +10,7 @@ import { Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
 import alertStyles from "../../styles/Post.module.css";
 import CommentEditForm from "./CommentEditForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import ConfirmationModal from "../../utils/ConfirmationModal";
 
 const Comment = (props) => {
   const {
@@ -30,6 +31,7 @@ const Comment = (props) => {
   const currentUser = useCurrentUser()
   const [errors, setErrors] = useState(null);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleDelete = async () => {
     try {
@@ -49,6 +51,8 @@ const Comment = (props) => {
       }));
     } catch (err) {
       setErrors("Sorry, there was an error trying to delete the comment. Please try again.");
+    } finally {
+      setShowDeleteModal(false);
     }
   };
 
@@ -91,8 +95,8 @@ const Comment = (props) => {
       setErrors("Failed to unlike the comment. Please try again.");
     }
   };
-
   return (
+    <>
     <div className={`${styles.CommentContainer} p-3 mb-3`}>
       {errors && (
         <Alert className={`mt-2 text-center ${alertStyles.Alert}`}>
@@ -153,11 +157,19 @@ const Comment = (props) => {
           <DropdownOptions
             isAdmin={is_admin}
             handleEdit={() => setShowEditForm(true)}
-            handleDelete={handleDelete}
+            handleDelete={() => setShowDeleteModal(true)}
           />
         )}
       </Media>
     </div>
+    <ConfirmationModal
+    show={showDeleteModal}
+    handleClose={() => setShowDeleteModal(false)}
+    handleConfirm={handleDelete}
+    title="Confirm Deletion"
+    message="Are you sure you want to delete this comment?"
+  />
+  </>
   );
 };
 
