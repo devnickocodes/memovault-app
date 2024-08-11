@@ -14,6 +14,8 @@ import commentStyles from "../../styles/Comment.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
+import PopularPosts from "./PopularPosts";
+import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 
 function PostPage() {
   const { id } = useParams();
@@ -50,6 +52,7 @@ function PostPage() {
   return (
     <Row className="h-100">
       <Col lg={8} className="py-2 p-0 p-lg-2">
+      <PopularProfilesMostPosts mobile />
         {errors && (
           <Alert
             className={`mt-2 text-center ${styles.Alert}`}
@@ -98,11 +101,14 @@ function PostPage() {
         </Container>
       </Col>
 
-      <Col lg={4} className="d-flex flex-column p-0 p-lg-2">
-        <div className="d-flex flex-column">
-          <div className="mb-3">Popular profiles for desktop</div>
-          <div>Most Active profiles for desktop</div>
+      <Col lg={4} className="d-none d-lg-flex flex-column p-0 p-lg-2">
+        <div className="d-lg-none mb-3">
+          <PopularProfilesMostPosts />
         </div>
+        <div className="d-none d-lg-flex flex-column">
+          <PopularProfilesMostPosts />
+          <PopularPosts />
+        </div> 
       </Col>
     </Row>
   );
