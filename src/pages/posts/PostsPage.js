@@ -15,6 +15,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import PopularPosts from "./PopularPosts";
+import ScrollToTop from "react-scroll-to-top";
 
 function PostsPage({ message }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -52,6 +53,7 @@ function PostsPage({ message }) {
   }, [errors]);
 
   return (
+    <>
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfilesMostPosts mobile />
@@ -112,6 +114,8 @@ function PostsPage({ message }) {
         </div>
       </Col>
     </Row>
+    <ScrollToTop className={styles.ScrollToTop} color="purple" smooth />
+    </>
   );
 }
 

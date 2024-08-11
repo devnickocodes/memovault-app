@@ -40,3 +40,12 @@
   background: linear-gradient(45deg, #f8acf8, #b644b6);
   box-shadow: 0 0 10px rgba(155, 34, 185, 0.5);
 }
+
+.ScrollToTop{
+  box-shadow: 0 4px 8px rgba(155, 34, 185, 0.4) !important ;
+  transition: box-shadow 0.2s ease-in-out !important;
+}
+
+.ScrollToTop:hover{
+  box-shadow: 0 4px 8px rgba(155, 34, 185, 0.2) !important;
+}
