@@ -4,13 +4,16 @@ import { Link } from 'react-router-dom';
 import Avatar from '../../components/Avatar';
 import postStyles from "../../styles/Post.module.css";
 import styles from "../../styles/PopularPost.module.css";
+import { scrollToTop } from '../../utils/scrollToTop';
 
 const PopularPost = (props) => {
   const { post } = props;
   const { id, owner, profile_id, profile_image, title, content, image, post_likes_count, updated_at } = post;
 
+  const handleScroll = () => {scrollToTop()}
+
   return (
-    <Container className="p-3">
+    <Container onClick={handleScroll} className="p-3">
       <Card className={styles.PopularPostCard}>
         <Card.Header className={styles.PopularPostHeader}>
           <Link to={`/profiles/${profile_id}/`} className={postStyles.avatarImage}>

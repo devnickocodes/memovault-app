@@ -7,6 +7,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/Post.module.css";
 import { DropdownOptions } from "../../components/DropdownOptions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { scrollToTop } from "../../utils/scrollToTop";
 
 const Post = (props) => {
   const {
@@ -94,9 +95,11 @@ const Post = (props) => {
     }
   };
 
+  const handleScroll = () => {scrollToTop()}
+
   return (
     <>
-      <Card className={`mb-4 ${styles.Container} m-3`}>
+      <Card onClick={handleScroll} className={`mb-4 ${styles.Container} m-3`}>
         <Card.Header className={`p-2 ${styles.CardHeader}`}>
           <Media className="d-flex justify-content-between align-items-center">
             <Link
