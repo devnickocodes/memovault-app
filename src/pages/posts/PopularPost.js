@@ -12,8 +12,8 @@ const PopularPost = (props) => {
   return (
     <Container className="p-3">
       <Card className={styles.PopularPostCard}>
-        <Card.Header className={`${styles.PopularPostHeader} d-flex align-items-center`}>
-          <Link to={`/profiles/${profile_id}`} className={`${postStyles.avatarImage} d-flex align-items-center`}>
+        <Card.Header className={styles.PopularPostHeader}>
+          <Link to={`/profiles/${profile_id}`} className={postStyles.avatarImage}>
             <Avatar src={profile_image} />
             <strong>{owner}</strong>
           </Link>
