@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -9,6 +9,7 @@ import {
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import ConfirmationModal from "../utils/ConfirmationModal";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -16,12 +17,16 @@ const NavBar = () => {
 
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
     } catch (err) {
       console.log(err);
+    } finally {
+      setShowDeleteModal(false);
     }
   };
 
@@ -71,7 +76,7 @@ const NavBar = () => {
         <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={32} />
       </NavLink>
 
-      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+      <NavLink className={styles.NavLink} to="/" onClick={() => setShowDeleteModal(true)}>
         <i className="fa-solid fa-arrow-right-from-bracket mr-2"></i>Sign Out
       </NavLink>
     </>
@@ -97,6 +102,7 @@ const NavBar = () => {
   );
 
   return (
+    <>
     <Navbar
       expanded={expanded}
       className={styles.navContainer}
@@ -132,7 +138,14 @@ const NavBar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <ConfirmationModal
+    show={showDeleteModal}
+    handleClose={() => setShowDeleteModal(false)}
+    handleConfirm={handleSignOut}
+    title="Sign Out?"
+    message="Are you sure you want to sign out?"
+  />
+  </>
   );
 };
-
 export default NavBar;
