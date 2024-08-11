@@ -10,10 +10,10 @@ const PopularPost = (props) => {
   const { post } = props;
   const { id, owner, profile_id, profile_image, title, content, image, post_likes_count, updated_at } = post;
 
-  const handleScroll = () => {scrollToTop()}
+  const handleScroll = () => scrollToTop()
 
   return (
-    <Container onClick={handleScroll} className="p-3">
+    <Container className="p-3">
       <Card className={styles.PopularPostCard}>
         <Card.Header className={styles.PopularPostHeader}>
           <Link to={`/profiles/${profile_id}/`} className={postStyles.avatarImage}>
@@ -24,7 +24,7 @@ const PopularPost = (props) => {
 
         <Link to={`/posts/${id}/`}>
           <div className={styles.ImageWrapper}>
-            <Card.Img variant="top" src={image} className={styles.CardImage} />
+            <Card.Img onClick={handleScroll} variant="top" src={image} className={styles.CardImage} />
           </div>
         </Link>
         <Card.Body>

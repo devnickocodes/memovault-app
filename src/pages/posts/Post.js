@@ -95,7 +95,7 @@ const Post = (props) => {
     }
   };
 
-  const handleScroll = () => {scrollToTop()}
+  const handleScroll = () => scrollToTop()
 
   return (
     <>

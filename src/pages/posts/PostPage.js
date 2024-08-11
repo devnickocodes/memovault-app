@@ -7,6 +7,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import { Alert } from "react-bootstrap";
 import styles from "../../styles/Post.module.css";
+import postsPageStyles from "../../styles/PostsPage.module.css"
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
@@ -16,6 +17,7 @@ import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularPosts from "./PopularPosts";
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
+import ScrollToTop from "react-scroll-to-top";
 
 function PostPage() {
   const { id } = useParams();
@@ -101,7 +103,7 @@ function PostPage() {
         </Container>
       </Col>
 
-      <Col lg={4} className="d-none d-lg-flex flex-column p-0 p-lg-2">
+      <Col lg={4} className="d-none d-lg-flex flex-column p-lg-2">
         <div className="d-lg-none mb-3">
           <PopularProfilesMostPosts />
         </div>
@@ -110,6 +112,7 @@ function PostPage() {
           <PopularPosts />
         </div> 
       </Col>
+    <ScrollToTop className={postsPageStyles.ScrollToTop} color="purple" smooth />
     </Row>
   );
 }
