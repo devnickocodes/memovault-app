@@ -13,18 +13,17 @@ const PopularPost = (props) => {
     <Container className="p-3">
       <Card className={styles.PopularPostCard}>
         <Card.Header className={styles.PopularPostHeader}>
-          <Link to={`/profiles/${profile_id}`} className={postStyles.avatarImage}>
+          <Link to={`/profiles/${profile_id}/`} className={postStyles.avatarImage}>
             <Avatar src={profile_image} />
             <strong>{owner}</strong>
           </Link>
         </Card.Header>
 
-        <Link to={`/posts/${id}`}>
+        <Link to={`/posts/${id}/`}>
           <div className={styles.ImageWrapper}>
             <Card.Img variant="top" src={image} className={styles.CardImage} />
           </div>
         </Link>
-
         <Card.Body>
           <Card.Title className="text-center mb-3">
           {title.length > 100 ? `${title.slice(0, 20)}...` : title}
