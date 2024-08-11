@@ -8,6 +8,7 @@ import styles from "../../styles/Post.module.css";
 import { DropdownOptions } from "../../components/DropdownOptions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { scrollToTop } from "../../utils/scrollToTop";
+import ConfirmationModal from "../../utils/ConfirmationModal";
 
 const Post = (props) => {
   const {
@@ -31,6 +32,7 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const [errors, setErrors] = useState(null);
   const history = useHistory();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
     let timer;
@@ -49,9 +51,9 @@ const Post = (props) => {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
     } catch (err) {
-      setErrors(
-        "Something went wrong while trying to delete the post. Please try again in a moment."
-      );
+      setErrors("Something went wrong while trying to delete the post. Please try again in a moment.");
+    } finally {
+      setShowDeleteModal(false);
     }
   };
 
@@ -115,7 +117,7 @@ const Post = (props) => {
                 <DropdownOptions
                   isAdmin={is_admin}
                   handleEdit={handleEdit}
-                  handleDelete={handleDelete}
+                  handleDelete={() => setShowDeleteModal(true)}
                 />
               )}
             </div>
@@ -189,6 +191,13 @@ const Post = (props) => {
           )}
         </div>
       </Card>
+      <ConfirmationModal
+        show={showDeleteModal}
+        handleClose={() => setShowDeleteModal(false)}
+        handleConfirm={handleDelete}
+        title="Confirm Deletion"
+        message="Are you sure you want to delete this post?"
+      />
     </>
   );
 };
