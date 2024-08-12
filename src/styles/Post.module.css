@@ -58,6 +58,10 @@
 .Alert {
   background-color: #e9d1ec;
   color: #6a1b9a;
+  z-index: 99;
+  position: fixed;
+  top: 70px;
+  right: 20px;
 }
 
 .Heart {

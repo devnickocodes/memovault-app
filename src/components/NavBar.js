@@ -1,34 +1,39 @@
-import React, { useState } from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Navbar, Container, Nav, Alert } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import {
-  useCurrentUser,
-  useSetCurrentUser,
-} from "../contexts/CurrentUserContext";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import ConfirmationModal from "../utils/ConfirmationModal";
+import postStyles from "../styles/Post.module.css"
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSignOut = async () => {
     try {
-      await axios.post("dj-rest-auth/logout/");
+      await axios.post("dj-rest-auth/logou/");
       setCurrentUser(null);
     } catch (err) {
-      console.log(err);
+      setError("Sorry an error occurred, please try again.");
     } finally {
       setShowDeleteModal(false);
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => setError(null), 2000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
 
   const addPostIcon = (
     <NavLink
@@ -103,49 +108,50 @@ const NavBar = () => {
 
   return (
     <>
-    <Navbar
-      expanded={expanded}
-      className={styles.navContainer}
-      expand="md"
-      fixed="top"
-    >
-      <Container>
-        <NavLink className={styles.LogoLink} to="/">
-          <Navbar.Brand className={styles.Logo}>
-            Memo<span>Vault</span>
-            <i className="fa-solid fa-icons ml-3"></i>
-          </Navbar.Brand>
-        </NavLink>
-        {currentUser && addPostIcon}
-        <Navbar.Toggle
-          ref={ref}
-          onClick={() => setExpanded(!expanded)}
-          aria-controls="basic-navbar-nav"
-        />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
-            <NavLink
-              exact
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/"
-            >
-              <i className="fa-solid fa-house mr-1"></i>Home
-            </NavLink>
-            {currentUser && dropdownAddPostIcon}
-            {currentUser ? loggedInIcons : loggedOutIcons}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    <ConfirmationModal
-    show={showDeleteModal}
-    handleClose={() => setShowDeleteModal(false)}
-    handleConfirm={handleSignOut}
-    title="Sign Out?"
-    message="Are you sure you want to sign out?"
-  />
-  </>
+      <Navbar expanded={expanded} className={styles.navContainer} expand="md" fixed="top">
+        <Container>
+          <NavLink className={styles.LogoLink} to="/">
+            <Navbar.Brand className={styles.Logo}>
+              Memo<span>Vault</span>
+              <i className="fa-solid fa-icons ml-3"></i>
+            </Navbar.Brand>
+          </NavLink>
+          {currentUser && addPostIcon}
+          <Navbar.Toggle
+            ref={ref}
+            onClick={() => setExpanded(!expanded)}
+            aria-controls="basic-navbar-nav"
+          />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <NavLink
+                exact
+                className={styles.NavLink}
+                activeClassName={styles.Active}
+                to="/"
+              >
+                <i className="fa-solid fa-house mr-1"></i>Home
+              </NavLink>
+              {currentUser && dropdownAddPostIcon}
+              {currentUser ? loggedInIcons : loggedOutIcons}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      {error && (
+        <Alert className={postStyles.Alert}>
+          {error}
+        </Alert>
+      )}
+      <ConfirmationModal
+        show={showDeleteModal}
+        handleClose={() => setShowDeleteModal(false)}
+        handleConfirm={handleSignOut}
+        title="Sign Out?"
+        message="Are you sure you want to sign out?"
+      />
+    </>
   );
 };
+
 export default NavBar;

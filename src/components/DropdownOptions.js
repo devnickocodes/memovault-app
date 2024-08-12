@@ -2,8 +2,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/Dropdown.module.css";
 
-// The forwardRef is important!!
-// Dropdown needs access to the DOM node in order to position the Menu
+
 const GearToggle = React.forwardRef(({ onClick }, ref) => (
   <i
     className="fa-solid fa-gear"
