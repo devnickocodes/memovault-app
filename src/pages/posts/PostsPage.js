@@ -110,7 +110,7 @@ function PostsPage({message, filter=""}) {
         </div>
         <div className="d-none d-lg-flex flex-column">
           <PopularProfilesMostPosts />
-          <PopularPosts />
+          <PopularPosts setPosts={setPosts} />
         </div>
       </Col>
     </Row>

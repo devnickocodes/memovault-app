@@ -34,12 +34,3 @@
   background-color: transparent;
   border-top: none;
 }
-
-.Likes {
-  color: #8f34b3;
-}
-
-.Likes:hover{
-  text-decoration: none;
-  color: #8f34b3;
-}

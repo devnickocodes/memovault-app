@@ -6,7 +6,7 @@ import Asset from "../../components/Asset";
 import PopularPost from "./PopularPost";
 import { usePopularPostData } from "../../contexts/PopularPostDataContext";
 
-const PopularPosts = ({mobile}) => {
+const PopularPosts = ({ setPosts, mobile }) => {
 
   const { postData, error } = usePopularPostData();
   const { popularPosts } = postData;
@@ -22,7 +22,7 @@ const PopularPosts = ({mobile}) => {
             Popular <span>Posts</span>
           </p>
           {popularPosts.results.slice(0, 3).map((post) => (
-            <PopularPost key={post.id} post={post} />
+            <PopularPost key={post.id} post={post} setPosts={setPosts} />
           ))}
         </>
       ) : (
