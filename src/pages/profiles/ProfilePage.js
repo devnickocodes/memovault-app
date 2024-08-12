@@ -15,6 +15,7 @@ import { Button, Card, Image } from "react-bootstrap";
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import PopularPosts from "../posts/PopularPosts";
 
 
 
@@ -66,7 +67,7 @@ function ProfilePage() {
             <Card.Subtitle className="mb-2">
               {profile?.name} Placeholder Name
             </Card.Subtitle>
-            <Row className="justify-content-center">
+            <Row className="justify-content-center mb-3">
                 <Col>
                     <div>{profile?.posts_count}</div>
                     <div>posts</div>
@@ -125,6 +126,7 @@ function ProfilePage() {
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfilesMostPosts />
+        <PopularPosts />
       </Col>
     </Row>
   );
