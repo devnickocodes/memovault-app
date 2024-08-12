@@ -9,6 +9,7 @@ import { DropdownOptions } from "../../components/DropdownOptions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { scrollToTop } from "../../utils/scrollToTop";
 import ConfirmationModal from "../../utils/ConfirmationModal";
+import { likePost, unlikePost } from "../../utils/LikeUnlikePostsActions";
 
 const Post = (props) => {
   const {
@@ -59,19 +60,7 @@ const Post = (props) => {
 
   const handleLike = async () => {
     try {
-      const { data } = await axiosRes.post("/like/post/", { post: id });
-      setPosts((prevPosts) => ({
-        ...prevPosts,
-        results: prevPosts.results.map((post) =>
-          post.id === id
-            ? {
-                ...post,
-                post_likes_count: post.post_likes_count + 1,
-                post_like_id: data.id,
-              }
-            : post
-        ),
-      }));
+      await likePost(id, setPosts)
     } catch {
       setErrors("Failed to like the post. Please try again.");
     }
@@ -79,19 +68,7 @@ const Post = (props) => {
 
   const handleUnlike = async () => {
     try {
-      await axiosRes.delete(`/like/post/${post_like_id}`);
-      setPosts((prevPosts) => ({
-        ...prevPosts,
-        results: prevPosts.results.map((post) =>
-          post.id === id
-            ? {
-                ...post,
-                post_likes_count: post.post_likes_count - 1,
-                post_like_id: null,
-              }
-            : post
-        ),
-      }));
+      await unlikePost(post_like_id, id, setPosts)
     } catch {
       setErrors("Failed to unlike the post. Please try again.");
     }

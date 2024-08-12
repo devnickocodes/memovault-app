@@ -17,7 +17,7 @@ import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import PopularPosts from "./PopularPosts";
 import ScrollToTop from "react-scroll-to-top";
 
-function PostsPage({message, filter=''}) {
+function PostsPage({message, filter=""}) {
   const [posts, setPosts] = useState({ results: [] });
   const [loaded, setLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -28,7 +28,6 @@ function PostsPage({message, filter=''}) {
     const fetchPosts = async () => {
       try {
         const {data} = await axiosReq.get(`/posts/?${filter}search=${query}`)
-        console.log("Fetched:", data);
         setPosts(data);
         setLoaded(true);
       } catch {
@@ -43,7 +42,7 @@ function PostsPage({message, filter=''}) {
     return () => {
       clearTimeout(timer);
     };
-  }, [query, pathname]);
+  }, [filter, query, pathname]);
 
   useEffect(() => {
     let timer;
@@ -59,7 +58,7 @@ function PostsPage({message, filter=''}) {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfilesMostPosts mobile />
         {errors && (
-          <Alert className={`mt-2 text-center ${alertStyles.Alert}`} variant="warning">
+          <Alert className={`mt-2 text-center ${alertStyles.Alert}`}>
             {errors}
           </Alert>
         )}
