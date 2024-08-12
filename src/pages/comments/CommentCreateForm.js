@@ -5,10 +5,15 @@ import InputGroup from "react-bootstrap/InputGroup";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import { Alert } from "react-bootstrap";
+import postStyles from "../../styles/Post.module.css";
+
 
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");
+
+  const [error, setError] = useState(null)
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -34,8 +39,8 @@ function CommentCreateForm(props) {
         ],
       }));
       setContent("");
-    } catch (err) {
-      console.log(err);
+    } catch {
+      setError("Sorry an error occurred, please try again.")
     }
   };
 
@@ -52,7 +57,7 @@ function CommentCreateForm(props) {
             value={content}
             onChange={handleChange}
             rows={2}
-            className={styles.TextArea}
+            className={`${styles.TextArea} ml-3`}
           />
         </InputGroup>
       </Form.Group>
@@ -63,6 +68,7 @@ function CommentCreateForm(props) {
       >
         Comment
       </button>
+      {error && <Alert className={`mt-2 ${postStyles.Alert}`}>{error}</Alert>}
     </Form>
   );
 }
