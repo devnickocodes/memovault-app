@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -21,7 +21,7 @@ function CommentEditForm(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosRes.put(`/comments/${id}/`, {
+      await axiosRes.put(`/coments/${id}/`, {
         content: formContent.trim(),
       });
       setComments((prevComments) => ({
@@ -41,6 +41,14 @@ function CommentEditForm(props) {
       setError("Sorry an error occurred, please try again.")
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => setError(null), 2000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
 
   return (
     <Form onSubmit={handleSubmit}>

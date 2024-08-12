@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -43,6 +43,14 @@ function CommentCreateForm(props) {
       setError("Sorry an error occurred, please try again.")
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => setError(null), 2000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
 
   return (
     <Form className={`${styles.CommentForm} mt-2 mb-3`} onSubmit={handleSubmit}>
