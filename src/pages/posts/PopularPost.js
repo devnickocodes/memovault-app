@@ -14,7 +14,7 @@ const PopularPost = (props) => {
 
   return (
     <Container className="p-3">
-      <Card className={styles.PopularPostCard}>
+      <Card className={styles.PopularPostCard} onClick={handleScroll}>
         <Card.Header className={styles.PopularPostHeader}>
           <Link to={`/profiles/${profile_id}/`} className={postStyles.avatarImage}>
             <Avatar src={profile_image} />
@@ -24,7 +24,7 @@ const PopularPost = (props) => {
 
         <Link to={`/posts/${id}/`}>
           <div className={styles.ImageWrapper}>
-            <Card.Img onClick={handleScroll} variant="top" src={image} className={styles.CardImage} />
+            <Card.Img variant="top" src={image} className={styles.CardImage} />
           </div>
         </Link>
         <Card.Body>
@@ -37,9 +37,11 @@ const PopularPost = (props) => {
         </Card.Body>
 
         <Card.Footer className={`${styles.PopularPostFooter} d-flex justify-content-between align-items-center`}>
-          <span className={styles.Likes}>
-            <i className="fa-solid fa-heart"></i> {post_likes_count}
-          </span>
+         
+            <Link className={styles.Likes} to={`/posts/${id}`}>
+              <i className="fa-solid fa-heart"></i> {post_likes_count}
+            </Link>
+         
           <small className="text-muted">{updated_at}</small>
         </Card.Footer>
       </Card>

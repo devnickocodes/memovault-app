@@ -20,7 +20,7 @@ import Post from "../posts/Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.jpg"
-
+import navStyles from "../../styles/NavBar.module.css"
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -113,7 +113,7 @@ function ProfilePage() {
   const mainProfilePosts = (
     <>
       <hr />
-      <p className="text-center">{profile?.owner}'s posts</p>
+      <p className={`text-center ${navStyles.Logo}`}>{profile?.owner}'s <span>posts</span></p>
       <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
