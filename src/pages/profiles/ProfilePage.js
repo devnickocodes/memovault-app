@@ -58,18 +58,32 @@ function ProfilePage() {
           </Col>
           <Col className="text-center" lg={8}>
             <Card.Title className="mb-2">{profile?.owner}</Card.Title>
-            <Card.Subtitle className="mb-2">
-              {profile?.name} Placeholder Name
-            </Card.Subtitle>
             <Card.Text>
               {profile?.follows_you ? "Follows you" : "Does not follow you"}
             </Card.Text>
+            <Card.Subtitle className="mb-2">
+              {profile?.name} Placeholder Name
+            </Card.Subtitle>
+            <Row className="justify-content-center">
+                <Col>
+                    <div>{profile?.posts_count}</div>
+                    <div>posts</div>
+                </Col>
+                <Col>
+                    <div>{profile?.followers_count}</div>
+                    <div>followers</div>
+                </Col>
+                <Col>
+                    <div>{profile?.following_count}</div>
+                    <div>following</div>
+                </Col>
+            </Row>
             {profile?.hobbies ? (
               <Card.Text>{profile?.hobbies}</Card.Text>
             ) : (
               <p>No Hobbies</p>
             )}
-            <Button className={btnStyles.Button}>Follow</Button>
+            <Button className={` ${btnStyles.Button}`}>Follow</Button>
           </Col>
         </Row>
         <Row className="mt-4 text-center">
