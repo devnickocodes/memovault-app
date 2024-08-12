@@ -14,6 +14,7 @@ import {
 import { Button, Card, Image } from "react-bootstrap";
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/Button.module.css";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
 
@@ -25,6 +26,7 @@ function ProfilePage() {
   const { profileData } = useProfileData();
   const pageProfile = profileData?.pageProfile;
   const profile = pageProfile?.results[0];
+  const currentUser = useCurrentUser()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,7 +85,12 @@ function ProfilePage() {
             ) : (
               <p>No Hobbies</p>
             )}
-            <Button className={` ${btnStyles.Button}`}>Follow</Button>
+            {currentUser && !profile?.is_owner && 
+            (profile?.following_id ? (
+                <Button className={btnStyles.Button}>unfollow</Button>
+            ) : (
+                <Button className={btnStyles.Button}>follow</Button>
+            ))}
           </Col>
         </Row>
         <Row className="mt-4 text-center">
