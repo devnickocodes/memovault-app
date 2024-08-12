@@ -4,7 +4,6 @@
   border-radius: 100px;
   border-color: transparent;
   padding: 7px 15px;
-  width: 100%;
   background-color: #9b22b9;
   transition: all 0.3s ease-in-out;
   font-weight: 500;
@@ -41,6 +40,8 @@
 
 .GreyButton {
   background-color: #808080;
+  border-color: transparent;
+
 }
 
 .GreyButton:hover {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import btnStyles from "../styles/Button.module.css"
 
 const ConfirmationModal = ({ show, handleClose, handleConfirm, title, message, optionalMessage }) => {
   return (
@@ -8,12 +9,12 @@ const ConfirmationModal = ({ show, handleClose, handleConfirm, title, message, o
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{message}</Modal.Body>
-      <Modal.Body>{optionalMessage}</Modal.Body>
+      <Modal.Body className='text-muted'>{optionalMessage}</Modal.Body>
       <Modal.Footer>
-        <Button onClick={handleClose}>
+        <Button className={`${btnStyles.GreyButton}`} onClick={handleClose}>
           Cancel
         </Button>
-        <Button onClick={handleConfirm}>
+        <Button className={`${btnStyles.Button}`} onClick={handleConfirm}>
           Confirm
         </Button>
       </Modal.Footer>
