@@ -17,7 +17,7 @@ import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import PopularPosts from "./PopularPosts";
 import ScrollToTop from "react-scroll-to-top";
 
-function PostsPage({ message }) {
+function PostsPage({message, filter=''}) {
   const [posts, setPosts] = useState({ results: [] });
   const [loaded, setLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -27,7 +27,8 @@ function PostsPage({ message }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?search=${query}`);
+        const {data} = await axiosReq.get(`/posts/?${filter}search=${query}`)
+        console.log("Fetched:", data);
         setPosts(data);
         setLoaded(true);
       } catch {
