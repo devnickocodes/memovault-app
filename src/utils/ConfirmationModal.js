@@ -11,7 +11,7 @@ const ConfirmationModal = ({ show, handleClose, handleConfirm, title, message, o
       <Modal.Body>{message}</Modal.Body>
       <Modal.Body className='text-muted'>{optionalMessage}</Modal.Body>
       <Modal.Footer>
-        <Button className={`${btnStyles.GreyButton}`} onClick={handleClose}>
+        <Button className={`${btnStyles.Button} ${btnStyles.GreyButton}`} onClick={handleClose}>
           Cancel
         </Button>
         <Button className={`${btnStyles.Button}`} onClick={handleConfirm}>
