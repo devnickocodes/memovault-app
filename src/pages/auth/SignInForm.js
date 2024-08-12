@@ -92,7 +92,7 @@ const SignInForm = () => {
               </Alert>
             ))}
 
-            <Button className={btnStyles.Button} type="submit">
+            <Button className={`${btnStyles.Button} ${btnStyles.Width}`} type="submit">
               Sign <span>In</span>
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
