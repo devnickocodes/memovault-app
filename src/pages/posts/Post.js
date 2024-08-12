@@ -101,7 +101,7 @@ const Post = (props) => {
 
   return (
     <>
-      <Card onClick={handleScroll} className={`mb-4 ${styles.Container} m-3`}>
+      <Card className={`mb-4 ${styles.Container} m-3`}>
         <Card.Header className={`p-2 ${styles.CardHeader}`}>
           <Media className="d-flex justify-content-between align-items-center">
             <Link
@@ -129,6 +129,7 @@ const Post = (props) => {
             src={image}
             alt={title}
             className={styles.CardImg}
+            onClick={handleScroll}
           />
         </Link>
         <Card.Body className={`text-center ${styles.CardBody}`}>

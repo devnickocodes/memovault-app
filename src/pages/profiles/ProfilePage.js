@@ -16,7 +16,10 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import PopularPosts from "../posts/PopularPosts";
-
+import Post from "../posts/Post";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
+import NoResults from "../../assets/no-results.jpg"
 
 
 function ProfilePage() {
@@ -28,15 +31,21 @@ function ProfilePage() {
   const pageProfile = profileData?.pageProfile;
   const profile = pageProfile?.results[0];
   const currentUser = useCurrentUser()
+  const [profilePosts, setProfilePosts] = useState({ results: [] });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data: profileData } = await axiosReq.get(`/profiles/${id}/`);
+        const [{ data: profileData }, { data: profilePosts }] =
+        await Promise.all([
+            axiosReq.get(`/profiles/${id}/`),
+            axiosReq.get(`/posts/?owner__profile=${id}`),
+        ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [profileData] },
         }));
+        setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -49,7 +58,7 @@ function ProfilePage() {
     <Card className={styles.ProfileCard}>
       <Card.Body>
         <Row>
-          <Col lg={4} className="text-center">
+          <Col lg={4} className="text-center mb-2">
             <Image
               src={profile?.image}
               alt={`${profile?.owner}'s profile image`}
@@ -104,8 +113,24 @@ function ProfilePage() {
   const mainProfilePosts = (
     <>
       <hr />
-      <p className="text-center">Profile owner's posts</p>
+      <p className="text-center">{profile?.owner}'s posts</p>
       <hr />
+      {profilePosts.results.length ? (
+        <InfiniteScroll
+          children={profilePosts.results.map((post) => (
+            <Post key={post.id} {...post} setPosts={setProfilePosts} />
+          ))}
+          dataLength={profilePosts.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!profilePosts.next}
+          next={() => fetchMoreData(profilePosts, setProfilePosts)}
+        />
+      ) : (
+        <Asset
+          src={NoResults}
+          message={`No results found, ${profile?.owner} hasn't posted yet.`}
+        />
+      )}
     </>
   );
 
