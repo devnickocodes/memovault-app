@@ -4,11 +4,15 @@ import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
+import postStyles from "../../styles/Post.module.css"
+import { Alert } from "react-bootstrap";
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
 
   const [formContent, setFormContent] = useState(content);
+
+  const [error, setError] = useState(null)
 
   const handleChange = (event) => {
     setFormContent(event.target.value);
@@ -34,7 +38,7 @@ function CommentEditForm(props) {
       }));
       setShowEditForm(false);
     } catch (err) {
-      console.log(err);
+      setError("Sorry an error occurred, please try again.")
     }
   };
 
@@ -65,6 +69,7 @@ function CommentEditForm(props) {
           save
         </button>
       </div>
+      { error && <Alert className={postStyles.Alert}>{error}</Alert>}
     </Form>
   );
 }
