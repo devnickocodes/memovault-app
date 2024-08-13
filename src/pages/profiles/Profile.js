@@ -4,11 +4,14 @@ import Avatar from "../../components/Avatar";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Button } from 'react-bootstrap';
 import btnStyles from "../../styles/Button.module.css"
+import { useSetProfileData } from '../../contexts/ProfileDataContext';
 
 const Profile = (props) => {
     const { profile, mobile } = props;
     const { id, following_id, image, owner, is_owner } = profile;
     const currentUser = useCurrentUser();
+
+    const {handleFollow} = useSetProfileData
     
     return (
         <div className={`d-flex ${mobile ? 'flex-column align-items-center' : 'align-items-center my-3'}`}>
@@ -25,7 +28,7 @@ const Profile = (props) => {
                     {following_id ? (
                         <Button onClick={() => {}}>unfollow</Button>
                     ) : (
-                        <Button className={btnStyles.Button} onClick={() => {}}>follow</Button>
+                        <Button className={btnStyles.Button} onClick={() => handleFollow(profile)}>follow</Button>
                     )}
                 </div>
             )}
