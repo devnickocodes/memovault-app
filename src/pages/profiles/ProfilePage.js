@@ -11,8 +11,7 @@ import {
   useProfileData,
   useSetProfileData,
 } from "../../contexts/ProfileDataContext";
-import { Button, Card, Image } from "react-bootstrap";
-import btnStyles from "../../styles/Button.module.css";
+import { Alert, Button, Card, Image } from "react-bootstrap";
 import styles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import PopularPosts from "../posts/PopularPosts";
@@ -21,6 +20,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.jpg"
 import navStyles from "../../styles/NavBar.module.css"
+import postStyles from "../../styles/Post.module.css"
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -32,6 +32,8 @@ function ProfilePage() {
   const profile = pageProfile?.results[0];
   const currentUser = useCurrentUser()
   const [profilePosts, setProfilePosts] = useState({ results: [] });
+
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,14 +50,23 @@ function ProfilePage() {
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        setError("Sorry an error occurred, please try again later")
       }
     };
     fetchData();
   }, [id, setProfileData]);
 
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => setError(null), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
+
   const mainProfile = (
     <Card className={styles.ProfileCard}>
+      {error && <Alert className={styles.Alert}>{error}</Alert>}
       <Card.Body>
         <Row>
           <Col lg={4} className="text-center mb-2">
@@ -97,9 +108,9 @@ function ProfilePage() {
             )}
             {currentUser && !profile?.is_owner && 
             (profile?.following_id ? (
-                <Button className={btnStyles.Button}>unfollow</Button>
+                <Button className={styles.Button}>unfollow</Button>
             ) : (
-                <Button className={btnStyles.Button}>follow</Button>
+                <Button className={styles.Button}>follow</Button>
             ))}
           </Col>
         </Row>
@@ -139,6 +150,7 @@ function ProfilePage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfilesMostPosts mobile />
         <Container>
+          {error && <Alert className={postStyles.Alert}>{error}</Alert>}
           {hasLoaded ? (
             <>
               {mainProfile}
