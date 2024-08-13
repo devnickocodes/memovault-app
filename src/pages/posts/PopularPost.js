@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, Container, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Card, Container, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Avatar from '../../components/Avatar';
 import postStyles from "../../styles/Post.module.css";
@@ -17,7 +17,7 @@ const PopularPost = ({ post, setPosts }) => {
   const handleLike = async () => {
     try {
       await likePost(id, setPosts);
-    } catch (error) {
+    } catch {
       setErrors("Failed to like the post. Please try again.");
     }
   };
@@ -25,13 +25,22 @@ const PopularPost = ({ post, setPosts }) => {
   const handleUnlike = async () => {
     try {
       await unlikePost(post_like_id, id, setPosts);
-    } catch (error) {
+    } catch {
       setErrors("Failed to unlike the post. Please try again.");
     }
   };
 
+  useEffect(() => {
+    let timer;
+    if (errors) {
+      timer = setTimeout(() => setErrors(null), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errors]);
+
   return (
     <Container className="p-3">
+      {errors && <Alert className={postStyles.Alert}>{errors}</Alert>}
       <Card className={styles.PopularPostCard}>
         <Card.Header className={styles.PopularPostHeader}>
           <Link to={`/profiles/${profile_id}/`} className={postStyles.avatarImage}>
