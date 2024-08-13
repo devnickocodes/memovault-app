@@ -49,7 +49,7 @@ const Post = (props) => {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/posts/${id}/`);
+      await axiosRes.delete(`/poss/${id}/`);
       history.goBack();
     } catch (err) {
       setErrors("Something went wrong while trying to delete the post. Please try again in a moment.");
@@ -163,7 +163,7 @@ const Post = (props) => {
             </OverlayTrigger>
           )}
           {errors && (
-            <Alert className={`mt-2 text-center ${styles.Alert}`}>
+            <Alert className={`mt-2 text-center ${styles.Alert} ${styles.ErrorAlert}`}>
               {errors}
             </Alert>
           )}

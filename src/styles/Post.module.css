@@ -56,12 +56,25 @@
 }
 
 .Alert {
-  background-color: #e9d1ec;
-  color: #6a1b9a;
   z-index: 99;
   position: fixed;
   top: 70px;
-  right: 20px;
+  right: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+}
+
+.SuccessAlert{
+  background-color: #d0f5d8;
+  color: #155724;
+  border-left: 8px solid #28a745;
+}
+
+.ErrorAlert{
+  background-color: #f5c6cb;
+  color: #721c24;
+  border-left: 8px solid #dc3545;
 }
 
 .Heart {
