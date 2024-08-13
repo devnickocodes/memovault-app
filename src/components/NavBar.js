@@ -18,7 +18,7 @@ const NavBar = () => {
 
   const handleSignOut = async () => {
     try {
-      await axios.post("dj-rest-auth/logou/");
+      await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
     } catch (err) {
       setError("Sorry an error occurred, please try again.");

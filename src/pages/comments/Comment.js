@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Media from "react-bootstrap/Media";
 import Avatar from "../../components/Avatar";
@@ -95,6 +95,15 @@ const Comment = (props) => {
       setErrors("Failed to unlike the comment. Please try again.");
     }
   };
+  
+  useEffect(() => {
+    let timer;
+    if (errors) {
+      timer = setTimeout(() => setErrors(null), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errors]);
+
   return (
     <>
     <div className={`${styles.CommentContainer} p-3 mb-3`}>
