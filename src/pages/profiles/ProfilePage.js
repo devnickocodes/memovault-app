@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Asset from "../../components/Asset";
 import PopularProfilesMostPosts from "./PopularProfilesMostPosts";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import {
   useProfileData,
@@ -26,28 +26,28 @@ function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   const { id } = useParams();
-  const {setProfileData, handleFollow} = useSetProfileData();
-
   const { profileData } = useProfileData();
   const pageProfile = profileData?.pageProfile;
   const profile = pageProfile?.results[0];
   const currentUser = useCurrentUser()
   const [profilePosts, setProfilePosts] = useState({ results: [] });
 
+  const {setProfileData, handleFollow} = useSetProfileData();
+
   const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: profileData }, { data: profilePosts }] =
-        await Promise.all([
-            axiosReq.get(`/profiles/${id}/`),
-            axiosReq.get(`/posts/?owner__profile=${id}`),
-        ]);
+        const [{ data: profileData }, { data: profilePosts }] = await Promise.all([
+          axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/posts/?owner__profile=${id}`),
+      ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [profileData] },
         }));
+        console.log("profileData =",profileData)
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {

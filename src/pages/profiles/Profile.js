@@ -11,7 +11,10 @@ const Profile = (props) => {
     const { id, following_id, image, owner, is_owner } = profile;
     const currentUser = useCurrentUser();
 
-    const {handleFollow} = useSetProfileData
+    const {handleFollow} = useSetProfileData()
+
+    console.log("profile =", profile)
+    console.log("following_id in profile =", profile.following_id)
     
     return (
         <div className={`d-flex ${mobile ? 'flex-column align-items-center' : 'align-items-center my-3'}`}>

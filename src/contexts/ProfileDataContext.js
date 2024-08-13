@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useCurrentUser } from "./CurrentUserContext";
-import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { axiosReq } from "../api/axiosDefaults";
 
 export const ProfileDataContext = createContext();
 export const SetProfileDataContext = createContext();
@@ -21,53 +21,11 @@ export const ProfileDataProvider = ({ children }) => {
 
     const handleFollow = async (clickedProfile) => {
         try{
-            const {data} = await axiosRes.post('followers/', {
+            const {data} = await axiosReq.post('/followers/', {
                 followed: clickedProfile.id
             })
-
-            setProfileData(prevState => ({
-                ...prevState,
-                pageProfile: {
-                    results: prevState.pageProfile.results.map(profile => {
-                        return profile.id === clickedProfile.id
-                        ?
-                        {
-                            ...profile,
-                            followers_count: profile.followers_count + 1,
-                            following_id: data.id
-                        }
-                        : profile.is_owner
-                        ?
-                        {
-                            ...profile,
-                            following_count: profile.following_count + 1
-                        }
-                        :
-                        profile
-                    })
-                },
-                popularProfiles: {
-                    ...prevState.popularProfiles,
-                    results: prevState.popularProfiles.results.map(profile => {
-                        return profile.id === clickedProfile.id
-                        ?
-                        {
-                            ...profile,
-                            followers_count: profile.followers_count + 1,
-                            following_id: data.id
-                        }
-                        : profile.is_owner
-                        ?
-                        {
-                            ...profile,
-                            following_count: profile.following_count + 1
-                        }
-                        :
-                        profile
-                    })
-                }
-            }))
-        } catch (err) {
+            console.log("Context following_id=",data.id)
+        } catch (err){
             console.log(err)
         }
     }
