@@ -16,7 +16,7 @@ export const fetchMoreData = async (resource, setResource) => {
 };
 
 export const followHelper = (profile, clickedProfile, following_id) => {
-  {
+  
     return profile.id === clickedProfile.id
     ?
     {
@@ -33,7 +33,7 @@ export const followHelper = (profile, clickedProfile, following_id) => {
     :
     profile
     
-}
+
 }
 
 export const unfollowHelper = (profile, clickedProfile) => {
