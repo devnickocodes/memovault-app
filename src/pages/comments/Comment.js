@@ -71,7 +71,7 @@ const Comment = (props) => {
             : comment
         ),
       }));
-    } catch {
+    } catch(err) {
       setErrors("Failed to like the comment. Please try again.");
     }
   };

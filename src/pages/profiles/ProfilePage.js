@@ -21,6 +21,8 @@ import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.jpg"
 import navStyles from "../../styles/NavBar.module.css"
 import postStyles from "../../styles/Post.module.css"
+import { ProfileEditDropdown } from "../../components/DropdownOptions";
+import profilePageStyles from "../../styles/ProfilePage.module.css"
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -47,7 +49,6 @@ function ProfilePage() {
           ...prevState,
           pageProfile: { results: [profileData] },
         }));
-        console.log("profileData =",profileData)
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
@@ -66,9 +67,14 @@ function ProfilePage() {
   }, [error]);
 
   const mainProfile = (
-    <Card className={styles.ProfileCard}>
+    <Card className={profilePageStyles.ProfileCard}>
       {error && <Alert className={styles.Alert}>{error}</Alert>}
-      <Card.Body>
+      <Card.Body className={profilePageStyles.PositionRelative}>
+      {profile?.is_owner && (
+          <div className={profilePageStyles.PositionDropdown}>
+            <ProfileEditDropdown id={profile?.id} />
+          </div>
+        )}
         <Row>
           <Col lg={4} className="text-center mb-2">
             <Image
@@ -82,8 +88,8 @@ function ProfilePage() {
           </Col>
           <Col className="text-center" lg={8}>
             <Card.Title className="mb-2">{profile?.owner}</Card.Title>
-            <Card.Text>
-              {profile?.follows_you ? "Follows you" : "Does not follow you"}
+            <Card.Text className="text-muted font-italic">
+              {profile?.follows_you && "follows you"}
             </Card.Text>
             <Card.Subtitle className="mb-2">
               {profile?.name} Placeholder Name
