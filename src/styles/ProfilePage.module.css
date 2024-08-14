@@ -11,6 +11,10 @@
 
 .PositionDropdown{
   position: absolute;
-  top: 7px;
+  top: 5px;
   right: 0;
+}
+
+.ProfileAvatar{
+  object-fit: cover;
 }

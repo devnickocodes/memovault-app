@@ -80,7 +80,7 @@ function ProfilePage() {
             <Image
               src={profile?.image}
               alt={`${profile?.owner}'s profile image`}
-              className={styles.ProfileImage}
+              className={profilePageStyles.ProfileAvatar}
               roundedCircle
               width={175}
               height={175}
