@@ -138,7 +138,7 @@ const ProfileEditForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Container className="d-flex flex-column align-items-center">
-        <p className={navBarStyles.Logo}>Edit <span>Profile</span></p>
+        <Form.Label className={`${navBarStyles.Logo} mb-4`}>Edit <span>Profile</span></Form.Label>
         <Row className="w-100 justify-content-center">
           <Col xs={12} md={8} lg={6} className="text-center">
             <Form.Group>

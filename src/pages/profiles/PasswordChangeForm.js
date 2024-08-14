@@ -13,6 +13,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import navBarStyles from "../../styles/NavBar.module.css"
+
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -56,7 +58,7 @@ const UserPasswordForm = () => {
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label>New password</Form.Label>
+            <Form.Label className={`${navBarStyles.Logo} mb-4`}>New <span>Password</span></Form.Label>
               <Form.Control
                 placeholder="new password"
                 type="password"
@@ -71,7 +73,7 @@ const UserPasswordForm = () => {
               </Alert>
             ))}
             <Form.Group>
-              <Form.Label>Confirm password</Form.Label>
+            <Form.Label className={`${navBarStyles.Logo} mb-4`}>Confirm <span>Password</span></Form.Label>
               <Form.Control
                 placeholder="confirm new password"
                 type="password"

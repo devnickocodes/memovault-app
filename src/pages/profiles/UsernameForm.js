@@ -15,6 +15,8 @@ import {
 } from "../../contexts/CurrentUserContext";
 
 import btnStyles from "../../styles/Button.module.css";
+import navBarStyles from "../../styles/NavBar.module.css"
+
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -56,7 +58,7 @@ const UsernameForm = () => {
         <Container>
           <Form onSubmit={handleSubmit} className="my-2">
             <Form.Group>
-              <Form.Label>Change username</Form.Label>
+            <Form.Label className={`${navBarStyles.Logo} mb-4`}>Change <span>Username</span></Form.Label>
               <Form.Control
                 placeholder="username"
                 type="text"
