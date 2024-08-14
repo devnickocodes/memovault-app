@@ -11,10 +11,11 @@ import appStyles from "../../App.module.css";
 import { Alert, Image } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
-
+  useRedirect('loggedOut')
   const [postData, setPostData] = useState({
     title: "",
     content: "",
