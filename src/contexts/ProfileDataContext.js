@@ -24,7 +24,71 @@ export const ProfileDataProvider = ({ children }) => {
             const {data} = await axiosReq.post('/followers/', {
                 followed: clickedProfile.id
             })
-            console.log("Context following_id=",data.id)
+            setProfileData(prevState => ({
+                ...prevState,
+                pageProfile: {
+                    results: prevState.pageProfile.results.map(profile => {
+                        return profile.id === clickedProfile.id
+                        ?
+                        {
+                            ...profile,
+                            followers_count: profile.followers_count + 1,
+                            following_id: data.id
+                        }
+                        : profile.is_owner
+                        ?
+                        {
+                            ...profile,
+                            following_count: profile.following_count + 1
+                        }
+                        :
+                        profile
+                        
+                    })
+                },
+                popularProfiles: {
+                    ...prevState.popularProfiles,
+                    results: prevState.popularProfiles.results.map(profile => {
+                        return profile.id === clickedProfile.id
+                        ?
+                        {
+                            ...profile,
+                            followers_count: profile.followers_count + 1,
+                            following_id: data.id
+                        }
+                        : profile.is_owner
+                        ?
+                        {
+                            ...profile,
+                            following_count: profile.following_count + 1
+                        }
+                        :
+                        profile
+                        
+                    })
+                },
+                mostPosts: {
+                    ...prevState.mostPosts,
+                    results: prevState.mostPosts.results.map(profile => {
+                        return profile.id === clickedProfile.id
+                        ?
+                        {
+                            ...profile,
+                            followers_count: profile.followers_count + 1,
+                            following_id: data.id
+                        }
+                        : profile.is_owner
+                        ?
+                        {
+                            ...profile,
+                            following_count: profile.following_count + 1
+                        }
+                        :
+                        profile
+                        
+                    })
+                }
+            }))
         } catch (err){
             console.log(err)
         }
