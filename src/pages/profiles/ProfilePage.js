@@ -23,7 +23,7 @@ import navStyles from "../../styles/NavBar.module.css"
 import postStyles from "../../styles/Post.module.css"
 import { ProfileEditDropdown } from "../../components/DropdownOptions";
 import profilePageStyles from "../../styles/ProfilePage.module.css"
-
+import avatarStyles from "../../styles/Avatar.module.css"
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -80,7 +80,7 @@ function ProfilePage() {
             <Image
               src={profile?.image}
               alt={`${profile?.owner}'s profile image`}
-              className={profilePageStyles.ProfileAvatar}
+              className={avatarStyles.Avatar}
               roundedCircle
               width={175}
               height={175}
@@ -88,12 +88,8 @@ function ProfilePage() {
           </Col>
           <Col className="text-center" lg={8}>
             <Card.Title className="mb-2">{profile?.owner}</Card.Title>
-            <Card.Text className="text-muted font-italic">
-              {profile?.follows_you && "follows you"}
-            </Card.Text>
-            <Card.Subtitle className="mb-2">
-              {profile?.name} Placeholder Name
-            </Card.Subtitle>
+            {profile?.follows_you && <Card.Text className="text-muted font-italic">follows you</Card.Text>}
+            {profile?.name && <Card.Subtitle className="my-2">{profile?.name}</Card.Subtitle>}
             <Row className="justify-content-center mb-3">
                 <Col>
                     <div>{profile?.posts_count}</div>
@@ -108,11 +104,7 @@ function ProfilePage() {
                     <div>following</div>
                 </Col>
             </Row>
-            {profile?.hobbies ? (
-              <Card.Text>{profile?.hobbies}</Card.Text>
-            ) : (
-              <p>No Hobbies</p>
-            )}
+            {profile?.hobbies && <Card.Text>{profile?.hobbies}</Card.Text>}
             {currentUser && !profile?.is_owner && 
             (profile?.following_id ? (
                 <Button className={`${styles.Button} ${styles.GreyButton}`}>unfollow</Button>
