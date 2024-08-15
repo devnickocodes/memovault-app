@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
+import { useRedirectIfNotOwner } from "../../hooks/useRedirectIfNotOwner";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const ReportForm = () => {
   const [reportData, setReportData] = useState({
@@ -12,6 +14,10 @@ const ReportForm = () => {
   const [errors, setErrors] = useState(null);
   const history = useHistory();
   const { id } = useParams();
+
+  useRedirectIfNotOwner(id);
+
+  useRedirect('loggedOut')
 
   const handleChange = (event) => {
     setReportData({
