@@ -54,7 +54,6 @@ const NavBar = () => {
       <i className="fa-solid fa-circle-plus mr-1"></i>Add Post
     </NavLink>
   );
-
   const loggedInIcons = (
     <>
       <NavLink
@@ -65,13 +64,23 @@ const NavBar = () => {
         <i className="fa-solid fa-bars-staggered mr-2"></i>Feed
       </NavLink>
 
-      <NavLink
+      {currentUser?.is_admin ? (
+        <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/reports/admin"
+      >
+        <i className="fa-solid fa-flag mr-2"></i>Reports
+      </NavLink>
+      ): (
+        <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/reports"
       >
         <i className="fa-solid fa-flag mr-2"></i>Reports
       </NavLink>
+      )}
 
       <NavLink
         className={styles.NavLink}
