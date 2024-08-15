@@ -148,20 +148,23 @@ const Post = (props) => {
             ></i>
           </Link>
           {comments_count}
-          {currentUser ? (
-            <Link to={`/reports/create/${id}`}>
-              <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`}></i>
-            </Link>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Please log in to report posts!</Tooltip>}
-            >
-              <Link to={"/signin"}>
+          {!is_owner && (
+            currentUser ? (
+              <Link to={`/reports/create/${id}`}>
                 <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`}></i>
               </Link>
-            </OverlayTrigger>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Please log in to report posts!</Tooltip>}
+              >
+                <Link to={"/signin"}>
+                  <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`}></i>
+                </Link>
+              </OverlayTrigger>
+            )
           )}
+          
           {errors && (
             <Alert className={`mt-2 text-center ${styles.Alert} ${styles.ErrorAlert}`}>
               {errors}
