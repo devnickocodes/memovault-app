@@ -9,13 +9,12 @@ import ScrollToTop from "react-scroll-to-top";
 import PopularPosts from "../posts/PopularPosts";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Alert, Button, Card } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import postStyles from "../../styles/Post.module.css"
 import navStyles from "../../styles/NavBar.module.css"
 import Asset from "../../components/Asset"
 import NoResults from "../../assets/no-results.jpg"
-import { Link } from "react-router-dom";
-import btnStyles from "../../styles/Button.module.css"
+import ReportPreview from "./ReportPreview";
 
 
 const UserReportPage = ({message}) => {
@@ -66,15 +65,7 @@ const UserReportPage = ({message}) => {
             <>
             {reports.results.length ? (
               reports.results.map((report) => (
-                <Card className={`${postStyles.Container} mb-4`}>
-                  <Card.Body>
-                    <Card.Title className={`${postStyles.CardTitle} mb-3`}>Reason for report: {report?.reason}</Card.Title>
-                    <Card.Subtitle className="mb-3"><span className={`${postStyles.CardTitle}`}>Additional Reason:</span> {report?.custom_reason.length > 10 ? `${report?.custom_reason.slice(0, 100)}...` : report?.custom_reason}</Card.Subtitle>
-                    <Card.Subtitle className="mb-3"><span className={`${postStyles.CardTitle}`}>Reported Post Title: </span> {report.post?.title.length > 100 ? `${report.post?.title.slice(0, 100)}...` : report.post?.title}</Card.Subtitle>
-                    <Card.Text><span className={`${postStyles.CardTitle}`}>Reported Post Content: </span> {report.post?.content.length > 100 ? `${report.post?.content.slice(0, 100)}...` : report.post?.content}</Card.Text>
-                    <Link to={`/reports/${report?.id}`}><Button className={btnStyles.Button}>View Full Report</Button></Link>
-                  </Card.Body>
-               </Card>
+                <ReportPreview key={report.id} report={report} />
                 
               ))
             ) : (<Asset
