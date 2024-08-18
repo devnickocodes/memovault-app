@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -7,11 +7,33 @@ import postsPageStyles from "../../styles/PostsPage.module.css"
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import ScrollToTop from "react-scroll-to-top";
 import PopularPosts from "../posts/PopularPosts";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { axiosReq } from "../../api/axiosDefaults";
+import { Alert } from "react-bootstrap";
+import postStyles from "../../styles/Post.module.css"
 
-const ReportPage = () => {
+const UserReportPage = () => {
+
+  const [reports, setReports] = useState({results: []})
+  const [error, setError] = useState(null)
+  const currentUser = useCurrentUser()
+
+  useEffect(()=> {
+    const handleMount = async () => {
+      try {
+        const { data: reportsData } = await axiosReq.get(`/reorts/`);
+        console.log(reportsData)
+      } catch{
+        setError("Sorry an error occurred. Please try again.")
+      }
+    }
+    handleMount()
+  }, [currentUser])
+
  
     return (
     <Row className="h-100">
+      {error && <Alert className={`${postStyles.Alert} ${postStyles.ErrorAlert}`}>{error}</Alert>}
       <Col lg={8} className="py-2 p-0 p-lg-2">
       <PopularProfilesMostPosts mobile />
         <Container className="mt-3">
@@ -34,4 +56,4 @@ const ReportPage = () => {
 }
 
 
-export default ReportPage
+export default UserReportPage
