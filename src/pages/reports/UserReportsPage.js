@@ -43,6 +43,14 @@ const UserReportPage = ({message}) => {
     }
     handleMount()
   }, [currentUser])
+
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => setError(null), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
  
     return (
     <Row className="h-100">
