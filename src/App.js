@@ -50,7 +50,7 @@ function App() {
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />}/>
           <Route path="/reports/create/:id" render={() => <ReportForm />} />
-          <Route path="/reports" render={() => <UserReportsPage />} />
+          <Route path="/reports" render={() => <UserReportsPage message="No results found."/>} />
           <Route render={() => <h1>Page Not Found</h1>} />
         </Switch>
       </Container>

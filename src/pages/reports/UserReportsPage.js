@@ -11,11 +11,15 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Alert } from "react-bootstrap";
 import postStyles from "../../styles/Post.module.css"
+import navStyles from "../../styles/NavBar.module.css"
+import Asset from "../../components/Asset"
+import NoResults from "../../assets/no-results.jpg"
 
-const UserReportPage = () => {
+const UserReportPage = ({message}) => {
 
   const [reports, setReports] = useState({results: []})
   const [error, setError] = useState(null)
+  const [loaded, setLoaded] = useState(false)
   const currentUser = useCurrentUser()
 
   useEffect(()=> {
@@ -32,17 +36,13 @@ const UserReportPage = () => {
           })
         )
         setReports({ results: reportsWithPostDetails });
-        console.log(reportsData)
+        setLoaded(true);
       } catch{
         setError("Sorry an error occurred. Please try again.")
       }
     }
     handleMount()
   }, [currentUser])
-
-  useEffect(() => {
-    console.log('Updated reports:', reports);
-  }, [reports]);
  
     return (
     <Row className="h-100">
@@ -50,7 +50,23 @@ const UserReportPage = () => {
       <Col lg={8} className="py-2 p-0 p-lg-2">
       <PopularProfilesMostPosts mobile />
         <Container className="mt-3">
-          <p>report</p>
+          <p className={navStyles.Logo}>My <span>Reports</span></p>
+          {loaded ? (
+            <>
+            {reports.results.length ? (
+              reports.results.map((report) => (
+                <p>{report.post?.title}</p>
+              ))
+            ) : (<Asset
+                  height={200}
+                  width={200}
+                  src={NoResults}
+                  message={message}
+                />)}
+            </>
+          ) : (
+            <Asset spinner/>
+          )}
         </Container>
       </Col>
 
