@@ -21,7 +21,14 @@ const UserReportPage = () => {
   useEffect(()=> {
     const handleMount = async () => {
       try {
-        const { data: reportsData } = await axiosReq.get(`/reorts/`);
+        const { data: reportsData } = await axiosReq.get(`/reports/`);
+        const reportsWithPostDetails = await Promise.all(
+          reportsData.results.map(async (report) => {
+            const { data: postData } = await axiosReq.get(`/posts/${report.post}/`);
+            console.log("postData", postData)
+            console.log("report", report)
+          })
+        )
         console.log(reportsData)
       } catch{
         setError("Sorry an error occurred. Please try again.")
