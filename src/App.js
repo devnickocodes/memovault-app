@@ -16,6 +16,7 @@ import UserPasswordForm from "./pages/profiles/PasswordChangeForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import ReportForm from "./pages/reports/ReportCreateForm";
 import UserReportsPage from "./pages/reports/UserReportsPage";
+import AdminReportsPage from "./pages/reports/AdminReportsPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -50,6 +51,7 @@ function App() {
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />}/>
           <Route path="/reports/create/:id" render={() => <ReportForm />} />
+          <Route path="/reports/admin" render={() => <AdminReportsPage message="No results found."/>} />
           <Route path="/reports" render={() => <UserReportsPage message="No results found."/>} />
           <Route render={() => <h1>Page Not Found</h1>} />
         </Switch>

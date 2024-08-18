@@ -17,7 +17,7 @@ import NoResults from "../../assets/no-results.jpg"
 import ReportPreview from "./ReportPreview";
 
 
-const UserReportPage = ({message}) => {
+const AdminReportsPage = ({message}) => {
 
   const [reports, setReports] = useState({results: []})
   const [error, setError] = useState(null)
@@ -27,7 +27,7 @@ const UserReportPage = ({message}) => {
   useEffect(()=> {
     const handleMount = async () => {
       try {
-        const { data: reportsData } = await axiosReq.get(`/reports/`);
+        const { data: reportsData } = await axiosReq.get(`/reports/admin`);
         const reportsWithPostDetails = await Promise.all(
           reportsData.results.map(async (report) => {
             const { data: postData } = await axiosReq.get(`/posts/${report.post}/`);
@@ -60,13 +60,12 @@ const UserReportPage = ({message}) => {
       <Col lg={8} className="py-2 p-0 p-lg-2">
       <PopularProfilesMostPosts mobile />
         <Container className="mt-3">
-        <p className={navStyles.Logo}>My <span>Reports</span></p> 
+        <p className={navStyles.Logo}>All <span>Reports</span></p> 
           {loaded ? (
             <>
             {reports.results.length ? (
               reports.results.map((report) => (
                 <ReportPreview key={report.id} report={report} />
-                
               ))
             ) : (<Asset
                   height={200}
@@ -96,4 +95,4 @@ const UserReportPage = ({message}) => {
 }
 
 
-export default UserReportPage
+export default AdminReportsPage

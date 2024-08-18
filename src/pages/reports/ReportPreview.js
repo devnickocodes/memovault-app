@@ -8,6 +8,7 @@ const ReportPreview = ({report}) => {
   return (
     <Card className={`${postStyles.Container} mb-4`}>
         <Card.Body>
+            <p>{report?.owner}</p>
             <Card.Title className={`${postStyles.CardTitle} mb-3`}>Reason for report: {report?.reason}</Card.Title>
             <Card.Subtitle className="mb-3"><span className={`${postStyles.CardTitle}`}>Additional Reason:</span> {report?.custom_reason.length > 10 ? `${report?.custom_reason.slice(0, 100)}...` : report?.custom_reason}</Card.Subtitle>
             <Card.Subtitle className="mb-3"><span className={`${postStyles.CardTitle}`}>Reported Post Title: </span> {report.post?.title.length > 100 ? `${report.post?.title.slice(0, 100)}...` : report.post?.title}</Card.Subtitle>
