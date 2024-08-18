@@ -25,10 +25,13 @@ const UserReportPage = () => {
         const reportsWithPostDetails = await Promise.all(
           reportsData.results.map(async (report) => {
             const { data: postData } = await axiosReq.get(`/posts/${report.post}/`);
-            console.log("postData", postData)
-            console.log("report", report)
+            return {
+              ...report,
+              post: postData
+            }
           })
         )
+        setReports({ results: reportsWithPostDetails });
         console.log(reportsData)
       } catch{
         setError("Sorry an error occurred. Please try again.")
@@ -37,6 +40,9 @@ const UserReportPage = () => {
     handleMount()
   }, [currentUser])
 
+  useEffect(() => {
+    console.log('Updated reports:', reports);
+  }, [reports]);
  
     return (
     <Row className="h-100">
