@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import btnStyles from "../../styles/Button.module.css";
 import { Button, Card } from 'react-bootstrap';
 import postStyles from "../../styles/Post.module.css";
+import { scrollToTop } from '../../utils/scrollToTop';
 
-const ReportPreview = ({ report }) => {
-  console.log('REPORT: ', report);
+const ReportPreview = ({ report, apiEndpoint }) => {
 
   const customReason = report?.custom_reason || '';
   const postTitle = report?.post?.title || '';
   const postContent = report?.post?.content || '';
+
+  const handleScroll = () => scrollToTop()
 
   return (
     <Card className={`${postStyles.Container} mb-4`}>
@@ -30,8 +32,8 @@ const ReportPreview = ({ report }) => {
           <span className={`${postStyles.CardTitle}`}>Reported Post Content: </span> 
           {postContent.length > 100 ? `${postContent.slice(0, 100)}...` : postContent}
         </Card.Text>
-        <Link to={`/reports/${report?.id}`}>
-          <Button className={btnStyles.Button}>View Full Report</Button>
+        <Link to={`${apiEndpoint}/${report?.id}`}>
+          <Button onClick={handleScroll} className={btnStyles.Button}>View Full Report</Button>
         </Link>
       </Card.Body>
     </Card>

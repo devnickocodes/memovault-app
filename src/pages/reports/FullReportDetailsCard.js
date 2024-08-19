@@ -10,10 +10,11 @@ import PopularPosts from '../posts/PopularPosts';
 import PopularProfilesMostPosts from '../profiles/PopularProfilesMostPosts';
 import postsPageStyles from "../../styles/PostsPage.module.css"
 import postStyles from "../../styles/Post.module.css"
+
 import ScrollToTop from 'react-scroll-to-top';
 
 
-const FullReportDetailsCard = () => {
+const FullReportDetailsCard = ({apiEndpoint}) => {
 
     const {id} = useParams()
     const [report, setReport] = useState({});
@@ -23,7 +24,7 @@ const FullReportDetailsCard = () => {
     useEffect(()=>{
         const handleMount = async () => {
             try{
-                const { data: reportData } = await axiosReq.get(`/reports/${id}`);
+                const { data: reportData } = await axiosReq.get(`${apiEndpoint}/${id}`);
                 const {data: postData} = await axiosReq.get(`/posts/${reportData.post}`)
                 setReport({ ...reportData, post: postData });
                 setLoaded(true)

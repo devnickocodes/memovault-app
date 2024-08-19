@@ -75,7 +75,7 @@ const UserReportPage = ({message}) => {
               <InfiniteScroll 
               children={
                 reports.results.map((report) => (
-                  <ReportPreview key={report.id} report={report} />
+                  <ReportPreview key={report.id} report={report} apiEndpoint="/reports"/>
                 ))
               }
               dataLength={reports.results.length}

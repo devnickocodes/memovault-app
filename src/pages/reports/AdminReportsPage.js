@@ -69,7 +69,7 @@ const AdminReportsPage = ({message}) => {
              <InfiniteScroll 
              children={
                reports.results.map((report) => (
-                 <ReportPreview key={report.id} report={report} />
+                 <ReportPreview key={report.id} report={report} apiEndpoint="/reports/admin" />
                ))
              }
              dataLength={reports.results.length}
