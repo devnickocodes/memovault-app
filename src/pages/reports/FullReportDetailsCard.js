@@ -14,6 +14,7 @@ import postStyles from "../../styles/Post.module.css"
 import ScrollToTop from 'react-scroll-to-top';
 import { scrollToTop } from '../../utils/scrollToTop';
 import { useRedirectIfNotAdmin } from '../../hooks/useRedirectIfNotAdmin';
+import { useCheckOwnership } from '../../hooks/useCheckOwnership';
 
 
 const FullReportDetailsCard = ({apiEndpoint}) => {
@@ -25,7 +26,7 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
     const handleScroll = () => scrollToTop()
 
     useRedirectIfNotAdmin(apiEndpoint, "/");
-
+    useCheckOwnership(id, apiEndpoint);
 
     useEffect(()=>{
         const handleMount = async () => {

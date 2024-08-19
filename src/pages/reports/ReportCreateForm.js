@@ -10,7 +10,6 @@ import {
 } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
-import { useRedirectIfNotOwner } from "../../hooks/useRedirectIfNotOwner";
 import { useRedirect } from "../../hooks/useRedirect";
 import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css"
@@ -26,7 +25,6 @@ const ReportForm = () => {
   const history = useHistory();
   const { id } = useParams();
 
-  useRedirectIfNotOwner(id);
 
   useRedirect("loggedOut");
 

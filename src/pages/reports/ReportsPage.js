@@ -27,7 +27,6 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
 
   useRedirectIfNotAdmin(apiEndpoint, '/');
 
-
   useEffect(() => {
     const handleMount = async () => {
       try {
