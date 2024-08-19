@@ -13,6 +13,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { useRedirectIfNotOwner } from "../../hooks/useRedirectIfNotOwner";
 import { useRedirect } from "../../hooks/useRedirect";
 import Asset from "../../components/Asset";
+import btnStyles from "../../styles/Button.module.css"
 
 const ReportForm = () => {
   const [reportData, setReportData] = useState({
@@ -149,7 +150,7 @@ const ReportForm = () => {
           </Alert>
         ))}
 
-        <Button type="submit" className="mt-3">
+        <Button type="submit" className={`mt-3 ${btnStyles.Button}`}>
           Submit Report
         </Button>
       </Form>
