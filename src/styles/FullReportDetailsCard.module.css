@@ -1,0 +1,21 @@
+
+.Card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #f3f4f6, #e3bff8);
+}
+
+.cardTitle{
+    font-size: 1.6rem;
+}
+
+.cardSubtitle {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #6c63ff;
+}
+
+.cardText {
+    font-size: 1.2rem;
+}
