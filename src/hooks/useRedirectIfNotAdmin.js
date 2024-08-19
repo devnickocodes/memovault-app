@@ -1,21 +1,18 @@
-import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-export const useRedirectIfNotAdmin = (redirectPath = "/") => {
+export const useRedirectIfNotAdmin = (apiEndpoint, redirectTo) => {
     const history = useHistory();
     const currentUser = useCurrentUser();
 
     useEffect(() => {
-
-        const checkAdminStatus = () => {
-            if (!currentUser?.is_admin) {
-                history.push(redirectPath);
+        const checkIfAdmin = () => {
+            if (apiEndpoint.includes('/admin') && (!currentUser || !currentUser.is_admin)) {
+                history.push(redirectTo);
             }
         };
 
-        if (currentUser) {
-            checkAdminStatus();
-        }
-    }, [currentUser, history, redirectPath]);
+        checkIfAdmin();
+    }, [apiEndpoint, currentUser, history, redirectTo]);
 };

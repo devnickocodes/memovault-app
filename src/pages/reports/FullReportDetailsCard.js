@@ -13,6 +13,7 @@ import postStyles from "../../styles/Post.module.css"
 
 import ScrollToTop from 'react-scroll-to-top';
 import { scrollToTop } from '../../utils/scrollToTop';
+import { useRedirectIfNotAdmin } from '../../hooks/useRedirectIfNotAdmin';
 
 
 const FullReportDetailsCard = ({apiEndpoint}) => {
@@ -21,8 +22,9 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
     const [report, setReport] = useState({});
     const [error, setError] = useState(null);
     const [loaded, setLoaded] = useState(false);
-
     const handleScroll = () => scrollToTop()
+
+    useRedirectIfNotAdmin(apiEndpoint, "/");
 
 
     useEffect(()=>{
