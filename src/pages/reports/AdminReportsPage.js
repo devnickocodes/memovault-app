@@ -17,6 +17,7 @@ import NoResults from "../../assets/no-results.jpg"
 import ReportPreview from "./ReportPreview";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import { useRedirectIfNotAdmin } from "../../hooks/useRedirectIfNotAdmin";
 
 
 const AdminReportsPage = ({message}) => {
@@ -25,6 +26,8 @@ const AdminReportsPage = ({message}) => {
   const [error, setError] = useState(null)
   const [loaded, setLoaded] = useState(false)
   const currentUser = useCurrentUser()
+
+  useRedirectIfNotAdmin('/')
 
   useEffect(()=> {
     const handleMount = async () => {

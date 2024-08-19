@@ -12,6 +12,7 @@ import postsPageStyles from "../../styles/PostsPage.module.css"
 import postStyles from "../../styles/Post.module.css"
 
 import ScrollToTop from 'react-scroll-to-top';
+import { scrollToTop } from '../../utils/scrollToTop';
 
 
 const FullReportDetailsCard = ({apiEndpoint}) => {
@@ -20,6 +21,9 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
     const [report, setReport] = useState({});
     const [error, setError] = useState(null);
     const [loaded, setLoaded] = useState(false);
+
+    const handleScroll = () => scrollToTop()
+
 
     useEffect(()=>{
         const handleMount = async () => {
@@ -59,9 +63,9 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
                        <Card.Text className={styles.cardText}>{report?.post?.title}</Card.Text>
                        <Card.Subtitle className={`${styles.cardSubtitle} mb-3`}>Reported Post Content: </Card.Subtitle>
                        <Card.Text className={styles.cardText}>{report?.post?.content}</Card.Text>
-                       <Card.Subtitle className={`text-muted mb-3`}>Reported Issued On: {report?.updated_at}</Card.Subtitle>
+                       <Card.Subtitle className={`text-muted mb-3`}>Report Issued On: {report?.updated_at}</Card.Subtitle>
                        <Link to={`/posts/${report.post?.id}`}>
-                        <Button className={btnStyles.Button}>Go To Post</Button>
+                        <Button onClick={handleScroll} className={btnStyles.Button}>Go To Post</Button>
                        </Link>
                     </>
                 )}
