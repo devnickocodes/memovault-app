@@ -15,11 +15,13 @@ import navStyles from "../../styles/NavBar.module.css"
 import Asset from "../../components/Asset"
 import NoResults from "../../assets/no-results.jpg"
 import ReportPreview from "./ReportPreview";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 
 const UserReportPage = ({message}) => {
 
-  const [reports, setReports] = useState({results: []})
+  const [reports, setReports] = useState({results: [], next:null})
   const [error, setError] = useState(null)
   const [loaded, setLoaded] = useState(false)
   const currentUser = useCurrentUser()
@@ -30,15 +32,17 @@ const UserReportPage = ({message}) => {
         const { data: reportsData } = await axiosReq.get(`/reports/`);
         const reportsWithPostDetails = await Promise.all(
           reportsData.results.map(async (report) => {
+            console.log("in promise all fn report: ",report)
             const { data: postData } = await axiosReq.get(`/posts/${report.post}/`);
             return {
               ...report,
-              post: postData
+              post: postData,
             }
           })
         )
-        setReports({ results: reportsWithPostDetails });
+        setReports({ results: reportsWithPostDetails, next: reportsData.next });
         setLoaded(true);
+        console.log("reportsData", reportsData)
       } catch{
         setError("Sorry an error occurred. Please try again.")
       }
@@ -53,6 +57,10 @@ const UserReportPage = ({message}) => {
     }
     return () => clearTimeout(timer);
   }, [error]);
+
+  useEffect(()=>{
+    console.log("REPORTS: ", reports.next)
+  }, [reports])
  
     return (
     <Row className="h-100">
@@ -64,10 +72,17 @@ const UserReportPage = ({message}) => {
           {loaded ? (
             <>
             {reports.results.length ? (
-              reports.results.map((report) => (
-                <ReportPreview key={report.id} report={report} />
-                
-              ))
+              <InfiniteScroll 
+              children={
+                reports.results.map((report) => (
+                  <ReportPreview key={report.id} report={report} />
+                ))
+              }
+              dataLength={reports.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!reports.next}
+              next={() => fetchMoreData(reports, setReports)}
+              />
             ) : (<Asset
                   height={200}
                   width={200}
