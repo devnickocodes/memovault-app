@@ -19,10 +19,11 @@ const ReportEditForm = () => {
   const [reportData, setReportData] = useState({
     reason: "",
     custom_reason: "",
-    post: null, // Include post field here
+    post: null,
   });
   const { reason, custom_reason, post } = reportData;
   const [errors, setErrors] = useState(null);
+  const [success, setSuccess] = useState(null)
   const [postDetails, setPostDetails] = useState({});
   const history = useHistory();
   const { id } = useParams();
@@ -61,7 +62,7 @@ const ReportEditForm = () => {
       await axiosRes.put(`/reports/${id}/`, {
         ...reportData,
         custom_reason: reason === "other" ? custom_reason : "",
-        post, // Ensure post field is included in the request payload
+        post,
       });
       history.push(`/reports/${id}`);
     } catch (err) {
