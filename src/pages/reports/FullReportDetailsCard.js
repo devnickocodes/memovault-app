@@ -13,28 +13,28 @@ import postStyles from "../../styles/Post.module.css"
 
 import ScrollToTop from 'react-scroll-to-top';
 import { scrollToTop } from '../../utils/scrollToTop';
-import { useRedirectIfNotAdmin } from '../../hooks/useRedirectIfNotAdmin';
 import { useCheckOwnership } from '../../hooks/useCheckOwnership';
 import { DropdownOptions } from '../../components/DropdownOptions';
+import ConfirmationModal from '../../utils/ConfirmationModal';
 
 
-const FullReportDetailsCard = ({apiEndpoint}) => {
+const FullReportDetailsCard = () => {
 
     const {id} = useParams()
     const [report, setReport] = useState({});
     const [error, setError] = useState(null);
     const [loaded, setLoaded] = useState(false);
-    const handleScroll = () => scrollToTop()
-    const history = useHistory()
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const {is_owner, is_admin} = report
+    const history = useHistory()
+    const handleScroll = () => scrollToTop()
 
-    useRedirectIfNotAdmin(apiEndpoint, "/");
-    useCheckOwnership(id, apiEndpoint);
+    useCheckOwnership(id, "/reports");
 
     useEffect(()=>{
         const handleMount = async () => {
             try{
-                const { data: reportData } = await axiosReq.get(`${apiEndpoint}/${id}`);
+                const { data: reportData } = await axiosReq.get(`/reports/${id}`);
                 const {data: postData} = await axiosReq.get(`/posts/${reportData.post}`)
                 setReport({ ...reportData, post: postData });
                 setLoaded(true)
@@ -43,19 +43,19 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
             }
         }
         handleMount()
-    }, [id, apiEndpoint])
+    }, [id])
 
     const handleDelete = async () => {
       try {
-        await axiosRes.delete(`${apiEndpoint}/${id}/`);
+        await axiosRes.delete(`/reports/${id}/`);
         history.goBack();
       } catch (err) {
         setError("Something went wrong while trying to delete the report. Please try again in a moment.");
       }
     };
 
-
     return (
+      <>
         <Row className="h-100">
         {error && <Alert className={`${postStyles.Alert} ${postStyles.ErrorAlert}`}>{error}</Alert>}
         <Col lg={8} className="py-2 p-0 p-lg-2">
@@ -65,9 +65,8 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
           {(is_owner || is_admin) && (
                 <div className='text-right p-2'>
                   <DropdownOptions
-                  isAdmin={is_admin}
                   handleEdit={() => {}}
-                  handleDelete={handleDelete}
+                  handleDelete={() => setShowDeleteModal(true)}
                 />
                 </div>
               )}
@@ -109,6 +108,15 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
         </Col>
       <ScrollToTop className={postsPageStyles.ScrollToTop} color="purple" smooth />
       </Row>
+      <ConfirmationModal
+        show={showDeleteModal}
+        handleClose={() => setShowDeleteModal(false)}
+        handleConfirm={handleDelete}
+        title="Confirm Deletion"
+        message="Are you sure you want to delete this report?"
+        optionalMessage="This cannot be undone!"
+      />
+      </>
     );
 };
 export default FullReportDetailsCard

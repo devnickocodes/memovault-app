@@ -14,7 +14,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css"
 
-const ReportForm = () => {
+const ReportCreateForm = () => {
   const [reportData, setReportData] = useState({
     reason: "",
     custom_reason: "",
@@ -38,7 +38,7 @@ const ReportForm = () => {
   };
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const handleMount = async () => {
       try {
         const { data } = await axiosRes.get(`/posts/${id}/`);
         setPost(data);
@@ -48,7 +48,7 @@ const ReportForm = () => {
       }
     };
 
-    fetchPost();
+    handleMount();
   }, [id]);
 
   const handleSubmit = async (event) => {
@@ -156,4 +156,4 @@ const ReportForm = () => {
   );
 };
 
-export default ReportForm;
+export default ReportCreateForm;
