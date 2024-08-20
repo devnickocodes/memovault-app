@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min'
-import { axiosReq } from '../../api/axiosDefaults';
+import { Link, useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { axiosReq ,axiosRes } from '../../api/axiosDefaults';
 import Asset from '../../components/Asset';
 import { Alert, Button, Card, Col, Container, Row } from 'react-bootstrap';
 import navStyles from "../../styles/NavBar.module.css"
@@ -25,7 +25,7 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
     const [error, setError] = useState(null);
     const [loaded, setLoaded] = useState(false);
     const handleScroll = () => scrollToTop()
-
+    const history = useHistory()
     const {is_owner, is_admin} = report
 
     useRedirectIfNotAdmin(apiEndpoint, "/");
@@ -45,6 +45,15 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
         handleMount()
     }, [id, apiEndpoint])
 
+    const handleDelete = async () => {
+      try {
+        await axiosRes.delete(`${apiEndpoint}/${id}/`);
+        history.goBack();
+      } catch (err) {
+        setError("Something went wrong while trying to delete the report. Please try again in a moment.");
+      }
+    };
+
 
     return (
         <Row className="h-100">
@@ -58,7 +67,7 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
                   <DropdownOptions
                   isAdmin={is_admin}
                   handleEdit={() => {}}
-                  handleDelete={() => {}}
+                  handleDelete={handleDelete}
                 />
                 </div>
               )}
