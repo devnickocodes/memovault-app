@@ -13,12 +13,13 @@ import postStyles from "../../styles/Post.module.css"
 
 import ScrollToTop from 'react-scroll-to-top';
 import { scrollToTop } from '../../utils/scrollToTop';
+import { useRedirectIfNotAdmin } from '../../hooks/useRedirectIfNotAdmin';
 import { useCheckOwnership } from '../../hooks/useCheckOwnership';
 import { DropdownOptions } from '../../components/DropdownOptions';
 import ConfirmationModal from '../../utils/ConfirmationModal';
 
 
-const FullReportDetailsCard = () => {
+const FullReportDetailsCard = ({apiEndpoint}) => {
 
     const {id} = useParams()
     const [report, setReport] = useState({});
@@ -29,12 +30,13 @@ const FullReportDetailsCard = () => {
     const history = useHistory()
     const handleScroll = () => scrollToTop()
 
-    useCheckOwnership(id, "/reports");
+    useRedirectIfNotAdmin(apiEndpoint, "/");
+    useCheckOwnership(id, apiEndpoint);
 
     useEffect(()=>{
         const handleMount = async () => {
             try{
-                const { data: reportData } = await axiosReq.get(`/reports/${id}`);
+                const { data: reportData } = await axiosReq.get(`${apiEndpoint}/${id}`);
                 const {data: postData} = await axiosReq.get(`/posts/${reportData.post}`)
                 setReport({ ...reportData, post: postData });
                 setLoaded(true)
@@ -43,16 +45,21 @@ const FullReportDetailsCard = () => {
             }
         }
         handleMount()
-    }, [id])
+    }, [id, apiEndpoint])
 
     const handleDelete = async () => {
       try {
-        await axiosRes.delete(`/reports/${id}/`);
+        await axiosRes.delete(`${apiEndpoint}/${id}/`);
         history.goBack();
       } catch (err) {
         setError("Something went wrong while trying to delete the report. Please try again in a moment.");
       }
     };
+
+    const handleEdit = () => {
+      history.push(`${apiEndpoint}/${id}/edit`);
+    };
+
 
     return (
       <>
@@ -65,7 +72,7 @@ const FullReportDetailsCard = () => {
           {(is_owner || is_admin) && (
                 <div className='text-right p-2'>
                   <DropdownOptions
-                  handleEdit={() => {}}
+                  handleEdit={handleEdit}
                   handleDelete={() => setShowDeleteModal(true)}
                 />
                 </div>
