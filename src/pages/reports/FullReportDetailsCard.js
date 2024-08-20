@@ -69,9 +69,17 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
         <PopularProfilesMostPosts mobile />
           <Container className="mt-3">
           <Card className={styles.Card}>
-          {(is_owner || is_admin) && (
+          {is_owner ? (
                 <div className='text-right p-2'>
                   <DropdownOptions
+                  handleEdit={handleEdit}
+                  handleDelete={() => setShowDeleteModal(true)}
+                />
+                </div>
+              ): (
+                <div className='text-right p-2'>
+                  <DropdownOptions
+                  isAdmin={is_admin}
                   handleEdit={handleEdit}
                   handleDelete={() => setShowDeleteModal(true)}
                 />
