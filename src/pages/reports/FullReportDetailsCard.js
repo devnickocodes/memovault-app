@@ -15,6 +15,7 @@ import ScrollToTop from 'react-scroll-to-top';
 import { scrollToTop } from '../../utils/scrollToTop';
 import { useRedirectIfNotAdmin } from '../../hooks/useRedirectIfNotAdmin';
 import { useCheckOwnership } from '../../hooks/useCheckOwnership';
+import { DropdownOptions } from '../../components/DropdownOptions';
 
 
 const FullReportDetailsCard = ({apiEndpoint}) => {
@@ -24,6 +25,8 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
     const [error, setError] = useState(null);
     const [loaded, setLoaded] = useState(false);
     const handleScroll = () => scrollToTop()
+
+    const {is_owner, is_admin} = report
 
     useRedirectIfNotAdmin(apiEndpoint, "/");
     useCheckOwnership(id, apiEndpoint);
@@ -40,7 +43,7 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
             }
         }
         handleMount()
-    }, [id])
+    }, [id, apiEndpoint])
 
 
     return (
@@ -50,6 +53,15 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
         <PopularProfilesMostPosts mobile />
           <Container className="mt-3">
           <Card className={styles.Card}>
+          {(is_owner || is_admin) && (
+                <div className='text-right p-2'>
+                  <DropdownOptions
+                  isAdmin={is_admin}
+                  handleEdit={() => {}}
+                  handleDelete={() => {}}
+                />
+                </div>
+              )}
             <Card.Body>
                 {!loaded ? (
                     <Asset spinner />
@@ -57,7 +69,7 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
                     <Alert>{error}</Alert>
                 ) : (
                     <>
-                       <Card.Title className={`${styles.cardTitle} ${navStyles.Logo} ${styles.Bold} mb-4`}>Full Report <span>Details</span></Card.Title>
+                       <Card.Title className={`${styles.cardTitle} ${navStyles.Logo} ${styles.Bold} mb-4 text-center`}>Full Report <span>Details</span></Card.Title>
                        <Card.Subtitle className={`${styles.cardSubtitle} mb-3`}>Reason for report: </Card.Subtitle>
                        <Card.Text className={styles.cardText}>{report?.reason}</Card.Text>
                        <Card.Subtitle className={`${styles.cardSubtitle} mb-3`}>Additional Reason: </Card.Subtitle>
