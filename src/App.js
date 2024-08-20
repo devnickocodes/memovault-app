@@ -17,6 +17,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import ReportCreateForm from "./pages/reports/ReportCreateForm";
 import ReportsPage from "./pages/reports/ReportsPage";
 import FullReportDetailsCard from "./pages/reports/FullReportDetailsCard";
+import ReportEditForm from "./pages/reports/ReportEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -51,6 +52,7 @@ function App() {
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />}/>
           <Route path="/reports/create/:id" render={() => <ReportCreateForm />} />
+          <Route path="/reports/:id/edit" render={() => <ReportEditForm />} />
           <Route path="/reports/admin/:id" render={() => <FullReportDetailsCard apiEndpoint="/reports/admin" />} />
           <Route path="/reports/admin" render={() => <ReportsPage apiEndpoint="/reports/admin" title="All Reports" message="No results found." adminOnly />} />
           <Route path="/reports/:id" render={() => <FullReportDetailsCard apiEndpoint="/reports" />} />

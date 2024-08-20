@@ -57,7 +57,7 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
     };
 
     const handleEdit = () => {
-      history.push(`${apiEndpoint}/${id}/edit`);
+      history.push(`/reports/${id}/edit`);
     };
 
 
