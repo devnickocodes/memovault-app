@@ -12,7 +12,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
 import { useCheckOwnership } from "../../hooks/useCheckOwnership";
-
+import postStyles from "../../styles/Post.module.css"
 
 const ReportEditForm = () => {
   const [reportData, setReportData] = useState({
@@ -48,7 +48,10 @@ const ReportEditForm = () => {
         const postResponse = await axiosRes.get(`/posts/${postId}/`);
         setPostDetails(postResponse.data);
       } catch (err) {
-        console.error(err);
+        // console.log(err)
+        if (err.response?.status === 404) {
+          history.push("/not-found");
+        } 
       }
     };
 
@@ -65,12 +68,20 @@ const ReportEditForm = () => {
       });
       history.push(`/reports/${id}`);
     } catch (err) {
+      // console.log(err)
       if (err.response?.status !== 401) {
-        console.error("Errors:", err.response?.data);
         setErrors(err.response?.data);
       }
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (errors) {
+      timer = setTimeout(() => setErrors(null), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errors]);
 
   return (
     <Container>
@@ -111,7 +122,7 @@ const ReportEditForm = () => {
         </Form.Group>
 
         {errors?.reason?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>{message}</Alert>
+          <Alert className={postStyles.ErrorAlert} key={idx}>{message}</Alert>
         ))}
 
         {reason === "other" && (
@@ -128,11 +139,11 @@ const ReportEditForm = () => {
         )}
 
         {errors?.custom_reason?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>{message}</Alert>
+          <Alert className={postStyles.ErrorAlert} key={idx}>{message}</Alert>
         ))}
 
         {errors?.non_field_errors?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>{message}</Alert>
+          <Alert className={postStyles.ErrorAlert} key={idx}>{message}</Alert>
         ))}
 
         <Button type="submit" className={`mt-3 ${btnStyles.Button}`}>

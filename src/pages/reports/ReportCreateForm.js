@@ -11,6 +11,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
+import postStyles from "../../styles/Post.module.css"
 
 
 const ReportCreateForm = () => {
@@ -42,8 +43,10 @@ const ReportCreateForm = () => {
         const { data } = await axiosRes.get(`/posts/${id}/`);
         setPost(data);
       } catch (err) {
-        console.log(err.response?.data);
-        setErrors(err.response?.data);
+        // console.log(err)
+        if (err.response?.status === 404) {
+          history.push("/not-found");
+        }
       }
     };
 
@@ -60,12 +63,20 @@ const ReportCreateForm = () => {
       });
       history.push(`/reports/${data.id}`);
     } catch (err) {
+      // console.log(err)
       if (err.response?.status !== 401) {
-        console.log("Errors:", err.response?.data);
         setErrors(err.response?.data);
       }
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (errors) {
+      timer = setTimeout(() => setErrors(null), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errors]);
 
   return (
     <Container>
@@ -118,7 +129,7 @@ const ReportCreateForm = () => {
         </Form.Group>
 
         {errors?.reason?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
+          <Alert className={postStyles.ErrorAlert} key={idx}>
             {message}
           </Alert>
         ))}
@@ -136,13 +147,13 @@ const ReportCreateForm = () => {
           </Form.Group>
         )}
         {errors?.custom_reason?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
+          <Alert className={postStyles.ErrorAlert} key={idx}>
             {message}
           </Alert>
         ))}
 
         {errors?.non_field_errors?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
+          <Alert className={postStyles.ErrorAlert} key={idx}>
             {message}
           </Alert>
         ))}
