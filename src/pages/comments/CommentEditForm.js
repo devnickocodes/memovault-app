@@ -41,7 +41,7 @@ function CommentEditForm(props) {
         }),
       }));
       setShowEditForm(false);
-      setAlert({ message: "Comment Updated!" });
+      setAlert({ message: "Comment updated!" });
     } catch (err) {
       // console.log(err)
       setError("Sorry an error occurred, please try again.")

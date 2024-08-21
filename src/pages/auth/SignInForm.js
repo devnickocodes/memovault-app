@@ -50,6 +50,7 @@ const SignInForm = () => {
       history.goBack()
       setAlert({ message: "You have successfully signed in!" });
     } catch (err) {
+      // console.log(err)
       setErrors(err.response?.data);
     }
   };
