@@ -17,6 +17,7 @@ import { fetchMoreData } from "../../utils/utils";
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import PopularPosts from "./PopularPosts";
 import ScrollToTop from "react-scroll-to-top";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
 function PostsPage({message, filter=""}) {
@@ -25,6 +26,7 @@ function PostsPage({message, filter=""}) {
   const { pathname } = useLocation();
   const [errors, setErrors] = useState(null);
   const [query, setQuery] = useState("");
+  const currentUser = useCurrentUser()
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -44,7 +46,7 @@ function PostsPage({message, filter=""}) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   useEffect(() => {
     let timer;
