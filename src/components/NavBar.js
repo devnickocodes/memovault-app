@@ -12,6 +12,7 @@ import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import ConfirmationModal from "../utils/ConfirmationModal";
 import postStyles from "../styles/Post.module.css";
 import { removeTokenTimestamp } from "../utils/utils";
+import { useSuccessAlert } from "../contexts/SuccessAlertContext";
 
 
 const NavBar = () => {
@@ -20,12 +21,14 @@ const NavBar = () => {
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [error, setError] = useState(null);
+  const { alert, setAlert } = useSuccessAlert();
 
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
       removeTokenTimestamp()
+      setAlert({ message: "You have successfully signed out!"});
     } catch (err) {
       setError("Sorry an error occurred, please try again.");
     } finally {
@@ -156,6 +159,11 @@ const NavBar = () => {
       {error && (
         <Alert className={`${postStyles.Alert} ${postStyles.Alert}`}>
           {error}
+        </Alert>
+      )}
+      {alert?.message && (
+        <Alert className={`${postStyles.Alert} ${postStyles.SuccessAlert}`}>
+          {alert.message}
         </Alert>
       )}
       <ConfirmationModal

@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { ProfileDataProvider } from "./contexts/ProfileDataContext";
 import { PopularPostDataProvider } from "./contexts/PopularPostDataContext";
+import { SuccessAlertProvider } from "./contexts/SuccessAlertContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.render(
       <CurrentUserProvider>
         <ProfileDataProvider>
           <PopularPostDataProvider>
-            <App />
+            <SuccessAlertProvider>
+              <App />
+            </SuccessAlertProvider>
           </PopularPostDataProvider>
         </ProfileDataProvider>
       </CurrentUserProvider>
