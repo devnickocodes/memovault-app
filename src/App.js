@@ -18,6 +18,7 @@ import ReportCreateForm from "./pages/reports/ReportCreateForm";
 import ReportsPage from "./pages/reports/ReportsPage";
 import FullReportDetailsCard from "./pages/reports/FullReportDetailsCard";
 import ReportEditForm from "./pages/reports/ReportEditForm";
+import NotFound from "./components/NotFound";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -57,7 +58,7 @@ function App() {
           <Route path="/reports/admin" render={() => <ReportsPage apiEndpoint="/reports/admin" title="Reports" message="No results found." adminOnly />} />
           <Route path="/reports/:id" render={() => <FullReportDetailsCard apiEndpoint="/reports" />} />
           <Route path="/reports" render={() => <ReportsPage apiEndpoint="/reports" title="Reports" message="No results found." />} />
-          <Route render={() => <h1>Page Not Found</h1>} />
+          <Route render={() => <NotFound />} />
         </Switch>
       </Container>
     </div>
