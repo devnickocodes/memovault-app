@@ -18,6 +18,7 @@ import { fetchMoreData } from "../../utils/utils";
 import PopularPosts from "./PopularPosts";
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import ScrollToTop from "react-scroll-to-top";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function PostPage() {
   const { id } = useParams();
@@ -26,6 +27,8 @@ function PostPage() {
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
+
+  const history = useHistory()
 
   useEffect(() => {
     const handleMount = async () => {
@@ -36,12 +39,16 @@ function PostPage() {
         ]);
         setPost({ results: [post] });
         setComments(comments);
-      } catch {
-        setErrors("Sorry, an error occurred. Please try again.");
+      } catch (error) {
+        if (error.response?.status === 404) {
+          history.push("/not-found");
+        } else {
+          setErrors("Sorry, an error occurred. Please try again.");
+        }
       }
     };
     handleMount();
-  }, [id]);
+  }, [id, history]);
 
   useEffect(() => {
     let timer;
