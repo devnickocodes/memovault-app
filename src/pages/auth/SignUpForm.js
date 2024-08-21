@@ -16,6 +16,7 @@ import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import postStyles from "../../styles/Post.module.css"
 
 
 const SignUpForm = () => {
@@ -25,7 +26,7 @@ const SignUpForm = () => {
     username: "",
     password1: "",
     password2: "",
-  });
+  }); 
 
   const { username, password1, password2 } = signUpData;
 
@@ -49,6 +50,7 @@ const SignUpForm = () => {
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
+      setAlert({ message: "Welcome on board!" });
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -61,6 +63,11 @@ const SignUpForm = () => {
           <h1 className={`mb-5 ${styles.Header}`}>
             Sign <span>up</span>
           </h1>
+          {alert?.message && (
+        <Alert className={`${postStyles.Alert} ${postStyles.SuccessAlert}`}>
+          {alert.message}
+        </Alert>
+      )}
 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
@@ -75,7 +82,7 @@ const SignUpForm = () => {
               />
             </Form.Group>
             {errors.username?.map((message, idx) => (
-              <Alert className="mt-2" key={idx} variant="warning">
+              <Alert className={`${postStyles.ErrorAlert} mt-2`} key={idx}>
                 {message}
               </Alert>
             ))}
@@ -92,7 +99,7 @@ const SignUpForm = () => {
               />
             </Form.Group>
             {errors.password1?.map((message, idx) => (
-              <Alert className="mt-2" key={idx} variant="warning">
+              <Alert className={`${postStyles.ErrorAlert} mt-2`} key={idx} >
                 {message}
               </Alert>
             ))}
@@ -109,7 +116,7 @@ const SignUpForm = () => {
               />
             </Form.Group>
             {errors.password2?.map((message, idx) => (
-              <Alert className="mt-2" key={idx} variant="warning">
+              <Alert className={`${postStyles.ErrorAlert} mt-2`} key={idx} >
                 {message}
               </Alert>
             ))}
@@ -118,7 +125,7 @@ const SignUpForm = () => {
               Sign <span>Up</span>
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
-              <Alert className="mt-2" key={idx} variant="warning">
+              <Alert className={`${postStyles.ErrorAlert} mt-2`} key={idx} >
                 {message}
               </Alert>
             ))}
