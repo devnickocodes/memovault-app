@@ -12,6 +12,7 @@ import appStyles from "../../App.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 import { useHistory, useParams } from "react-router-dom";
+import postStyles from "../../styles/Post.module.css"
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
@@ -111,7 +112,7 @@ function PostEditForm() {
               />
             </Form.Group>
             {errors?.image?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
+              <Alert className={postStyles.ErrorAlert} key={idx}>
                 {message}
               </Alert>
             ))}
@@ -129,7 +130,7 @@ function PostEditForm() {
               />
             </Form.Group>
             {errors?.title?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
+              <Alert className={postStyles.ErrorAlert} key={idx}>
                 {message}
               </Alert>
             ))}
@@ -148,7 +149,7 @@ function PostEditForm() {
               />
             </Form.Group>
             {errors?.content?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
+              <Alert className={postStyles.ErrorAlert} key={idx}>
                 {message}
               </Alert>
             ))}

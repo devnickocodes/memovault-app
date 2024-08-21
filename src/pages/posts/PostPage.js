@@ -23,7 +23,7 @@ import ScrollToTop from "react-scroll-to-top";
 function PostPage() {
   const { id } = useParams();
   const [post, setPost] = useState({ results: [] });
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
@@ -39,11 +39,12 @@ function PostPage() {
         ]);
         setPost({ results: [post] });
         setComments(comments);
-      } catch (error) {
-        if (error.response?.status === 404) {
+      } catch (err) {
+        console.log(err)
+        if (err.response?.status === 404) {
           history.push("/not-found");
         } else {
-          setErrors("Sorry, an error occurred. Please try again.");
+          setError("Sorry, an error occurred. Please try again.");
         }
       }
     };
@@ -52,22 +53,21 @@ function PostPage() {
 
   useEffect(() => {
     let timer;
-    if (errors) {
-      timer = setTimeout(() => setErrors(null), 3000);
+    if (error) {
+      timer = setTimeout(() => setError(null), 3000);
     }
     return () => clearTimeout(timer);
-  }, [errors]);
+  }, [error]);
 
   return (
     <Row className="h-100">
       <Col lg={8} className="py-2 p-0 p-lg-2">
       <PopularProfilesMostPosts mobile />
-        {errors && (
+        {error && (
           <Alert
-            className={`mt-2 text-center ${styles.Alert}`}
-            variant="warning"
+            className={`mt-2 text-center ${styles.Alert} ${styles.ErrorAlert}`}
           >
-            {errors}
+            {error}
           </Alert>
         )}
         <Post {...post.results[0]} setPosts={setPost} postPage />

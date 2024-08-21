@@ -7,7 +7,7 @@ import Alert from "react-bootstrap/Alert";
 
 import NoResults from "../../assets/no-results.jpg";
 import styles from "../../styles/PostsPage.module.css";
-import alertStyles from "../../styles/Post.module.css";
+import postStyles from "../../styles/Post.module.css";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
@@ -24,7 +24,7 @@ function PostsPage({message, filter=""}) {
   const [posts, setPosts] = useState({ results: [] });
   const [loaded, setLoaded] = useState(false);
   const { pathname } = useLocation();
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
   const [query, setQuery] = useState("");
   const currentUser = useCurrentUser()
 
@@ -35,7 +35,7 @@ function PostsPage({message, filter=""}) {
         setPosts(data);
         setLoaded(true);
       } catch {
-        setErrors("Sorry, an error occurred. Please try again.");
+        setError("Sorry, an error occurred. Please try again.");
       }
     };
 
@@ -50,20 +50,20 @@ function PostsPage({message, filter=""}) {
 
   useEffect(() => {
     let timer;
-    if (errors) {
-      timer = setTimeout(() => setErrors(null), 3000);
+    if (error) {
+      timer = setTimeout(() => setError(null), 3000);
     }
     return () => clearTimeout(timer);
-  }, [errors]);
+  }, [error]);
 
   return (
     <>
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfilesMostPosts mobile />
-        {errors && (
-          <Alert className={`mt-2 text-center ${alertStyles.Alert}`}>
-            {errors}
+        {error && (
+          <Alert className={`mt-2 text-center ${postStyles.Alert} ${postStyles.ErrorAlert}`}>
+            {error}
           </Alert>
         )}
         <div className={`mb-3 p-1 ${styles.SearchBar}`}>
