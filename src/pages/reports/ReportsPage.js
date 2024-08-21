@@ -2,21 +2,22 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import postsPageStyles from "../../styles/PostsPage.module.css";
-import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
+import Alert from "react-bootstrap/Alert";
+import InfiniteScroll from "react-infinite-scroll-component";
 import ScrollToTop from "react-scroll-to-top";
-import PopularPosts from "../posts/PopularPosts";
-import { axiosReq } from "../../api/axiosDefaults";
-import { Alert } from "react-bootstrap";
+import postsPageStyles from "../../styles/PostsPage.module.css";
 import postStyles from "../../styles/Post.module.css";
 import navStyles from "../../styles/NavBar.module.css";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.jpg";
+import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
+import PopularPosts from "../posts/PopularPosts";
 import ReportPreview from "./ReportPreview";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { axiosReq } from "../../api/axiosDefaults";
 import { fetchMoreData } from "../../utils/utils";
 import { useRedirectIfNotAdmin } from "../../hooks/useRedirectIfNotAdmin";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 
 const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
   const [reports, setReports] = useState({ results: [], next: null });

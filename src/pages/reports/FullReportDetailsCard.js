@@ -1,22 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
-import { axiosReq ,axiosRes } from '../../api/axiosDefaults';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import Asset from '../../components/Asset';
-import { Alert, Button, Card, Col, Container, Row } from 'react-bootstrap';
-import navStyles from "../../styles/NavBar.module.css"
-import styles from "../../styles/FullReportDetailsCard.module.css"
-import btnStyles from "../../styles/Button.module.css"
 import PopularPosts from '../posts/PopularPosts';
 import PopularProfilesMostPosts from '../profiles/PopularProfilesMostPosts';
-import postsPageStyles from "../../styles/PostsPage.module.css"
-import postStyles from "../../styles/Post.module.css"
-
+import { DropdownOptions } from '../../components/DropdownOptions';
+import ConfirmationModal from '../../utils/ConfirmationModal';
+import navStyles from '../../styles/NavBar.module.css';
+import styles from '../../styles/FullReportDetailsCard.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import postsPageStyles from '../../styles/PostsPage.module.css';
+import postStyles from '../../styles/Post.module.css';
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import ScrollToTop from 'react-scroll-to-top';
 import { scrollToTop } from '../../utils/scrollToTop';
 import { useRedirectIfNotAdmin } from '../../hooks/useRedirectIfNotAdmin';
 import { useCheckOwnership } from '../../hooks/useCheckOwnership';
-import { DropdownOptions } from '../../components/DropdownOptions';
-import ConfirmationModal from '../../utils/ConfirmationModal';
+
 
 
 const FullReportDetailsCard = ({apiEndpoint}) => {

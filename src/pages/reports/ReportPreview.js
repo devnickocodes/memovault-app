@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import btnStyles from "../../styles/Button.module.css";
-import { Button, Card } from 'react-bootstrap';
 import postStyles from "../../styles/Post.module.css";
 import { scrollToTop } from '../../utils/scrollToTop';
 
