@@ -65,7 +65,7 @@ function ProfilePage() {
       }
     };
     fetchData();
-  }, [id, setProfileData]);
+  }, [id, setProfileData, history]);
 
   useEffect(() => {
     let timer;

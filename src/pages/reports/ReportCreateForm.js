@@ -52,7 +52,7 @@ const ReportCreateForm = () => {
     };
 
     handleMount();
-  }, [id]);
+  }, [id, history]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
