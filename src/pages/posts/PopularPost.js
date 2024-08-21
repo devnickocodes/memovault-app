@@ -20,37 +20,39 @@ import { likePost, unlikePost } from '../../utils/LikeUnlikePostsActions';
 
 const PopularPost = ({ post, setPosts }) => {
   const { id, is_owner, owner, profile_id, profile_image, title, content, image, post_like_id, post_likes_count, updated_at } = post;
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
  const currentUser = useCurrentUser()
   const handleScroll = () => scrollToTop()
 
   const handleLike = async () => {
     try {
       await likePost(id, setPosts);
-    } catch {
-      setErrors("Failed to like the post. Please try again.");
+    } catch (err) {
+      // console.log(err)
+      setError("Failed to like the post. Please try again.");
     }
   };
 
   const handleUnlike = async () => {
     try {
       await unlikePost(post_like_id, id, setPosts);
-    } catch {
-      setErrors("Failed to unlike the post. Please try again.");
+    } catch (err) {
+      // console.log(err)
+      setError("Failed to unlike the post. Please try again.");
     }
   };
 
   useEffect(() => {
     let timer;
-    if (errors) {
-      timer = setTimeout(() => setErrors(null), 3000);
+    if (error) {
+      timer = setTimeout(() => setError(null), 3000);
     }
     return () => clearTimeout(timer);
-  }, [errors]);
+  }, [error]);
 
   return (
     <Container className="p-3">
-      {errors && <Alert className={postStyles.Alert}>{errors}</Alert>}
+      {error && <Alert className={`${postStyles.Alert} ${postStyles.ErrorAlert}`}>{error}</Alert>}
       <Card className={styles.PopularPostCard}>
         <Card.Header className={styles.PopularPostHeader}>
           <Link to={`/profiles/${profile_id}/`} className={postStyles.avatarImage}>

@@ -43,7 +43,8 @@ function CommentCreateForm(props) {
         ],
       }));
       setContent("");
-    } catch {
+    } catch (err) {
+      // console.log(err)
       setError("Sorry an error occurred, please try again.")
     }
   };
@@ -80,7 +81,7 @@ function CommentCreateForm(props) {
       >
         Comment
       </button>
-      {error && <Alert className={`mt-2 ${postStyles.Alert}`}>{error}</Alert>}
+      {error && <Alert className={`mt-2 ${postStyles.Alert} ${postStyles.ErrorAlert}`}>{error}</Alert>}
     </Form>
   );
 }

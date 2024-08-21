@@ -15,7 +15,8 @@ export const likePost = async (postId, setPosts) => {
           : post
       ),
     }));
-  } catch (error) {
+  } catch (err) {
+    // console.log(err)
     throw new Error("Sorry, an error occurred. Please try again.");
   }
 };
@@ -35,7 +36,8 @@ export const unlikePost = async (postLikeId, postId, setPosts) => {
           : post
       ),
     }));
-  } catch (error) {
+  } catch (err) {
+    // console.log(err)
     throw new Error("Sorry, an error occurred. Please try again.");
   }
 };

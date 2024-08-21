@@ -40,6 +40,7 @@ function CommentEditForm(props) {
       }));
       setShowEditForm(false);
     } catch (err) {
+      // console.log(err)
       setError("Sorry an error occurred, please try again.")
     }
   };
@@ -79,7 +80,7 @@ function CommentEditForm(props) {
           save
         </button>
       </div>
-      { error && <Alert className={postStyles.Alert}>{error}</Alert>}
+      { error && <Alert className={`${postStyles.Alert} ${postStyles.ErrorAlert}`}>{error}</Alert>}
     </Form>
   );
 }

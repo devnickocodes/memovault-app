@@ -39,17 +39,9 @@ const Post = (props) => {
   } = props;
 
   const currentUser = useCurrentUser();
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
   const history = useHistory();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  useEffect(() => {
-    let timer;
-    if (errors) {
-      timer = setTimeout(() => setErrors(null), 3000);
-    }
-    return () => clearTimeout(timer);
-  }, [errors]);
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -60,7 +52,8 @@ const Post = (props) => {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
     } catch (err) {
-      setErrors("Something went wrong while trying to delete the post. Please try again in a moment.");
+      // console.log(err)
+      setError("Failed to delete the post. Please try again in a moment.");
     } finally {
       setShowDeleteModal(false);
     }
@@ -69,18 +62,28 @@ const Post = (props) => {
   const handleLike = async () => {
     try {
       await likePost(id, setPosts)
-    } catch {
-      setErrors("Failed to like the post. Please try again.");
+    } catch (err) {
+      // console.log(err)
+      setError("Failed to like the post. Please try again.");
     }
   };
 
   const handleUnlike = async () => {
     try {
       await unlikePost(post_like_id, id, setPosts)
-    } catch {
-      setErrors("Failed to unlike the post. Please try again.");
+    } catch (err) {
+      // console.log(err)
+      setError("Failed to unlike the post. Please try again.");
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => setError(null), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
 
   const handleScroll = () => scrollToTop()
 
@@ -173,9 +176,9 @@ const Post = (props) => {
             )
           )}
           
-          {errors && (
+          {error && (
             <Alert className={`mt-2 text-center ${styles.Alert} ${styles.ErrorAlert}`}>
-              {errors}
+              {error}
             </Alert>
           )}
         </div>
