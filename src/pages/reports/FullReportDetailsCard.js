@@ -46,6 +46,7 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
                 setReport({ ...reportData, post: postData });
                 setLoaded(true)
             } catch(err){
+              // console.log(err)
                 setError("Sorry an error occurred. Please try again.")
             }
         }
@@ -57,6 +58,7 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
         await axiosRes.delete(`${apiEndpoint}/${id}/`);
         history.goBack();
       } catch (err) {
+        // console.log(err)
         setError("Something went wrong while trying to delete the report. Please try again in a moment.");
       }
     };
