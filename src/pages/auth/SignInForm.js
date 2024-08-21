@@ -14,10 +14,12 @@ import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
-
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import postStyles from "../../styles/Post.module.css"
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
+  const { alert, setAlert } = useSuccessAlert();
 
   useRedirect('loggedIn')
 
@@ -47,6 +49,7 @@ const SignInForm = () => {
       setCurrentUser(data.user);
       setTokenTimestamp(data)
       history.goBack()
+      setAlert({ message: "You have successfully signed in!" });
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -59,6 +62,11 @@ const SignInForm = () => {
           <h1 className={`mb-5 ${styles.Header}`}>
             Sign <span>in</span>
           </h1>
+          {alert?.message && (
+        <Alert className={`${postStyles.Alert} ${postStyles.SuccessAlert}`}>
+          {alert.message}
+        </Alert>
+      )}
 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">

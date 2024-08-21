@@ -15,6 +15,7 @@ import Alert from "react-bootstrap/Alert";
 
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 
 const SignUpForm = () => {
@@ -31,6 +32,9 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
+
+  const { alert, setAlert } = useSuccessAlert();
+
 
   const handleChange = (event) => {
     setSignUpData({
