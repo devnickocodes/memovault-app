@@ -7,7 +7,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import postStyles from "../../styles/Post.module.css";
-
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
@@ -15,6 +15,8 @@ function CommentEditForm(props) {
   const [formContent, setFormContent] = useState(content);
 
   const [error, setError] = useState(null)
+  const { alert, setAlert } = useSuccessAlert();
+
 
   const handleChange = (event) => {
     setFormContent(event.target.value);
@@ -39,6 +41,7 @@ function CommentEditForm(props) {
         }),
       }));
       setShowEditForm(false);
+      setAlert({ message: "Comment Updated!" });
     } catch (err) {
       // console.log(err)
       setError("Sorry an error occurred, please try again.")
@@ -80,6 +83,11 @@ function CommentEditForm(props) {
           save
         </button>
       </div>
+      {alert?.message && (
+        <Alert className={`${postStyles.Alert} ${postStyles.SuccessAlert}`}>
+          {alert.message}
+        </Alert>
+      )}
       { error && <Alert className={`${postStyles.Alert} ${postStyles.ErrorAlert}`}>{error}</Alert>}
     </Form>
   );
