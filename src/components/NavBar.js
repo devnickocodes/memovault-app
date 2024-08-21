@@ -8,6 +8,7 @@ import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import ConfirmationModal from "../utils/ConfirmationModal";
 import postStyles from "../styles/Post.module.css"
+import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -20,6 +21,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp()
     } catch (err) {
       setError("Sorry an error occurred, please try again.");
     } finally {
