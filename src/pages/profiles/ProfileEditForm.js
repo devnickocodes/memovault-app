@@ -11,8 +11,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import postCreateStyles from "../../styles/PostCreateEditForm.module.css"
-import navBarStyles from "../../styles/NavBar.module.css"
+import postCreateStyles from "../../styles/PostCreateEditForm.module.css";
+import navBarStyles from "../../styles/NavBar.module.css";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();

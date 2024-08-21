@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
 import Asset from "../../components/Asset";
 import PopularProfilesMostPosts from "./PopularProfilesMostPosts";
-import { useParams } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
-import {
-  useProfileData,
-  useSetProfileData,
-} from "../../contexts/ProfileDataContext";
-import { Alert, Button, Card, Image } from "react-bootstrap";
-import styles from "../../styles/Button.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import PopularPosts from "../posts/PopularPosts";
 import Post from "../posts/Post";
 import InfiniteScroll from "react-infinite-scroll-component";
+import NoResults from "../../assets/no-results.jpg";
 import { fetchMoreData } from "../../utils/utils";
-import NoResults from "../../assets/no-results.jpg"
-import navStyles from "../../styles/NavBar.module.css"
-import postStyles from "../../styles/Post.module.css"
+import { useParams } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
+import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from "../../styles/Button.module.css";
+import navStyles from "../../styles/NavBar.module.css";
+import postStyles from "../../styles/Post.module.css";
+import profilePageStyles from "../../styles/ProfilePage.module.css";
+import avatarStyles from "../../styles/Avatar.module.css";
 import { ProfileEditDropdown } from "../../components/DropdownOptions";
-import profilePageStyles from "../../styles/ProfilePage.module.css"
-import avatarStyles from "../../styles/Avatar.module.css"
+
+
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
 
