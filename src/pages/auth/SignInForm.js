@@ -15,11 +15,10 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
-import postStyles from "../../styles/Post.module.css"
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
-  const { alert, setAlert } = useSuccessAlert();
+  const { setAlert } = useSuccessAlert();
 
   useRedirect('loggedIn')
 
@@ -62,12 +61,6 @@ const SignInForm = () => {
           <h1 className={`mb-5 ${styles.Header}`}>
             Sign <span>in</span>
           </h1>
-          {alert?.message && (
-        <Alert className={`${postStyles.Alert} ${postStyles.SuccessAlert}`}>
-          {alert.message}
-        </Alert>
-      )}
-
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>

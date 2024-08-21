@@ -20,7 +20,7 @@ function CommentCreateForm(props) {
 
   const [error, setError] = useState(null)
 
-  const { alert, setAlert } = useSuccessAlert();
+  const { setAlert } = useSuccessAlert();
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -63,11 +63,6 @@ function CommentCreateForm(props) {
 
   return (
     <Form className={`${styles.CommentForm} mt-2 mb-3`} onSubmit={handleSubmit}>
-      {alert?.message && (
-        <Alert className={`${postStyles.Alert} ${postStyles.SuccessAlert}`}>
-          {alert.message}
-        </Alert>
-      )}
       <Form.Group>
         <InputGroup className={styles.InputGroup}>
           <Link to={`/profiles/${profile_id}`}>

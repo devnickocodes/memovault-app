@@ -28,7 +28,7 @@ const NavBar = () => {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
       removeTokenTimestamp()
-      setAlert({ message: "You have successfully signed out!"});
+      setAlert({ message: `Sorry to see you go ${currentUser.username}!`});
     } catch (err) {
       setError("Sorry an error occurred, please try again.");
     } finally {

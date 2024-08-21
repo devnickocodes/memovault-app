@@ -38,7 +38,7 @@ const Comment = (props) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const { alert, setAlert } = useSuccessAlert();
+  const { setAlert } = useSuccessAlert();
 
 
   const handleDelete = async () => {
@@ -124,11 +124,6 @@ const Comment = (props) => {
       {error && (
         <Alert className={`mt-2 text-center ${postStyles.Alert} ${postStyles.ErrorAlert}`}>
           {error}
-        </Alert>
-      )}
-      {alert?.message && (
-        <Alert className={`${postStyles.Alert} ${postStyles.SuccessAlert}`}>
-          {alert.message}
         </Alert>
       )}
       <Media className="align-items-start">

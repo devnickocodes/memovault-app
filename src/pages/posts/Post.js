@@ -17,6 +17,7 @@ import { useHistory } from "react-router-dom";
 import { scrollToTop } from "../../utils/scrollToTop";
 import ConfirmationModal from "../../utils/ConfirmationModal";
 import { likePost, unlikePost } from "../../utils/LikeUnlikePostsActions";
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 
 const Post = (props) => {
@@ -42,6 +43,7 @@ const Post = (props) => {
   const [error, setError] = useState(null);
   const history = useHistory();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const { alert, setAlert } = useSuccessAlert();
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -51,6 +53,7 @@ const Post = (props) => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
+      setAlert({ message: "Post Deleted!" });
     } catch (err) {
       // console.log(err)
       setError("Failed to delete the post. Please try again in a moment.");
@@ -62,6 +65,7 @@ const Post = (props) => {
   const handleLike = async () => {
     try {
       await likePost(id, setPosts)
+      setAlert({ message: "Post Liked!" });
     } catch (err) {
       // console.log(err)
       setError("Failed to like the post. Please try again.");
@@ -71,6 +75,7 @@ const Post = (props) => {
   const handleUnlike = async () => {
     try {
       await unlikePost(post_like_id, id, setPosts)
+      setAlert({ message: "Post Uniked!" });
     } catch (err) {
       // console.log(err)
       setError("Failed to unlike the post. Please try again.");

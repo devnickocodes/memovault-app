@@ -34,7 +34,7 @@ const SignUpForm = () => {
 
   const history = useHistory();
 
-  const { alert, setAlert } = useSuccessAlert();
+  const { setAlert } = useSuccessAlert();
 
 
   const handleChange = (event) => {
@@ -63,12 +63,6 @@ const SignUpForm = () => {
           <h1 className={`mb-5 ${styles.Header}`}>
             Sign <span>up</span>
           </h1>
-          {alert?.message && (
-        <Alert className={`${postStyles.Alert} ${postStyles.SuccessAlert}`}>
-          {alert.message}
-        </Alert>
-      )}
-
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>

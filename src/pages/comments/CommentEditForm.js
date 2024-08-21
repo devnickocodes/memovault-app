@@ -15,7 +15,7 @@ function CommentEditForm(props) {
   const [formContent, setFormContent] = useState(content);
 
   const [error, setError] = useState(null)
-  const { alert, setAlert } = useSuccessAlert();
+  const { setAlert } = useSuccessAlert();
 
 
   const handleChange = (event) => {
@@ -83,11 +83,6 @@ function CommentEditForm(props) {
           save
         </button>
       </div>
-      {alert?.message && (
-        <Alert className={`${postStyles.Alert} ${postStyles.SuccessAlert}`}>
-          {alert.message}
-        </Alert>
-      )}
       { error && <Alert className={`${postStyles.Alert} ${postStyles.ErrorAlert}`}>{error}</Alert>}
     </Form>
   );
