@@ -15,7 +15,7 @@ import ConfirmationModal from "../../utils/ConfirmationModal";
 import styles from "../../styles/Comment.module.css";
 import postStyles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 const Comment = (props) => {
   const {
@@ -38,6 +38,9 @@ const Comment = (props) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  const { alert, setAlert } = useSuccessAlert();
+
+
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/comments/${id}/`);
@@ -54,6 +57,7 @@ const Comment = (props) => {
         ...prevComment,
         results: prevComment.results.filter((comment) => comment.id !== id),
       }));
+      setAlert({ message: "Comment deleted!" });
     } catch (err) {
       // console.log(err)
       setError("Sorry, there was an error trying to delete the comment. Please try again.");
@@ -77,6 +81,7 @@ const Comment = (props) => {
             : comment
         ),
       }));
+      setAlert({ message: "You liked the comment!" });
     } catch(err) {
       // console.log(err)
       setError("Failed to like the comment. Please try again.");
@@ -98,6 +103,7 @@ const Comment = (props) => {
             : comment
         ),
       }));
+      setAlert({ message: "You unliked the comment!" });
     } catch (err) {
       // console.log(err)
       setError("Failed to unlike the comment. Please try again.");
@@ -118,6 +124,11 @@ const Comment = (props) => {
       {error && (
         <Alert className={`mt-2 text-center ${postStyles.Alert} ${postStyles.ErrorAlert}`}>
           {error}
+        </Alert>
+      )}
+      {alert?.message && (
+        <Alert className={`${postStyles.Alert} ${postStyles.SuccessAlert}`}>
+          {alert.message}
         </Alert>
       )}
       <Media className="align-items-start">
