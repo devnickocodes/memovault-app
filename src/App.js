@@ -54,9 +54,9 @@ function App() {
           <Route path="/reports/create/:id" render={() => <ReportCreateForm />} />
           <Route path="/reports/:id/edit" render={() => <ReportEditForm />} />
           <Route path="/reports/admin/:id" render={() => <FullReportDetailsCard apiEndpoint="/reports/admin" />} />
-          <Route path="/reports/admin" render={() => <ReportsPage apiEndpoint="/reports/admin" title="All Reports" message="No results found." adminOnly />} />
+          <Route path="/reports/admin" render={() => <ReportsPage apiEndpoint="/reports/admin" title="Reports" message="No results found." adminOnly />} />
           <Route path="/reports/:id" render={() => <FullReportDetailsCard apiEndpoint="/reports" />} />
-          <Route path="/reports" render={() => <ReportsPage apiEndpoint="/reports" title="My Reports" message="No results found." />} />
+          <Route path="/reports" render={() => <ReportsPage apiEndpoint="/reports" title="Reports" message="No results found." />} />
           <Route render={() => <h1>Page Not Found</h1>} />
         </Switch>
       </Container>

@@ -63,7 +63,11 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
       <Col lg={8} className="py-2 p-0 p-lg-2">
         <PopularProfilesMostPosts mobile />
         <Container className="mt-3">
-          <p className={navStyles.Logo}>{title}</p>
+          {adminOnly ? (
+            <p className={navStyles.Logo}>All <span>{title}</span></p>
+          ) : (
+            <p className={navStyles.Logo}>My <span>{title}</span></p>
+          )}
           {loaded ? (
             <>
               {reports.results.length ? (

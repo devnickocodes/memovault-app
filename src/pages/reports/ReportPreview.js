@@ -16,7 +16,6 @@ const ReportPreview = ({ report, apiEndpoint }) => {
   return (
     <Card className={`${postStyles.Container} mb-4`}>
       <Card.Body>
-        <p>{report?.owner}</p>
         <Card.Title className={`${postStyles.CardTitle} mb-3`}>
           Reason for report: {report?.reason}
         </Card.Title>
