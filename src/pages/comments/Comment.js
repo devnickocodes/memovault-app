@@ -14,7 +14,6 @@ import ConfirmationModal from "../../utils/ConfirmationModal";
 
 import styles from "../../styles/Comment.module.css";
 import postStyles from "../../styles/Post.module.css";
-import alertStyles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
@@ -35,7 +34,7 @@ const Comment = (props) => {
   } = props;
 
   const currentUser = useCurrentUser()
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
   const [showEditForm, setShowEditForm] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -56,7 +55,8 @@ const Comment = (props) => {
         results: prevComment.results.filter((comment) => comment.id !== id),
       }));
     } catch (err) {
-      setErrors("Sorry, there was an error trying to delete the comment. Please try again.");
+      // console.log(err)
+      setError("Sorry, there was an error trying to delete the comment. Please try again.");
     } finally {
       setShowDeleteModal(false);
     }
@@ -78,7 +78,8 @@ const Comment = (props) => {
         ),
       }));
     } catch(err) {
-      setErrors("Failed to like the comment. Please try again.");
+      // console.log(err)
+      setError("Failed to like the comment. Please try again.");
     }
   };
 
@@ -97,25 +98,26 @@ const Comment = (props) => {
             : comment
         ),
       }));
-    } catch {
-      setErrors("Failed to unlike the comment. Please try again.");
+    } catch (err) {
+      // console.log(err)
+      setError("Failed to unlike the comment. Please try again.");
     }
   };
   
   useEffect(() => {
     let timer;
-    if (errors) {
-      timer = setTimeout(() => setErrors(null), 3000);
+    if (error) {
+      timer = setTimeout(() => setError(null), 3000);
     }
     return () => clearTimeout(timer);
-  }, [errors]);
+  }, [error]);
 
   return (
     <>
     <div className={`${styles.CommentContainer} p-3 mb-3`}>
-      {errors && (
-        <Alert className={`mt-2 text-center ${alertStyles.Alert}`}>
-          {errors}
+      {error && (
+        <Alert className={`mt-2 text-center ${postStyles.Alert} ${postStyles.ErrorAlert}`}>
+          {error}
         </Alert>
       )}
       <Media className="align-items-start">
