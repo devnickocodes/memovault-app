@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import styles from "../../styles/CommentCreateEditForm.module.css";
+import Alert from "react-bootstrap/Alert";
+
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
-import { Alert } from "react-bootstrap";
+
+import styles from "../../styles/CommentCreateEditForm.module.css";
 import postStyles from "../../styles/Post.module.css";
+
 
 
 function CommentCreateForm(props) {

@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import Media from "react-bootstrap/Media";
+import Alert from "react-bootstrap/Alert";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+
 import Avatar from "../../components/Avatar";
-import styles from "../../styles/Comment.module.css";
-import postStyles from "../../styles/Post.module.css"
 import { DropdownOptions } from "../../components/DropdownOptions";
 import { axiosRes } from "../../api/axiosDefaults";
-import { Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
-import alertStyles from "../../styles/Post.module.css";
 import CommentEditForm from "./CommentEditForm";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import ConfirmationModal from "../../utils/ConfirmationModal";
+
+import styles from "../../styles/Comment.module.css";
+import postStyles from "../../styles/Post.module.css";
+import alertStyles from "../../styles/Post.module.css";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 
 const Comment = (props) => {
   const {
