@@ -15,6 +15,7 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import navBarStyles from "../../styles/NavBar.module.css"
 import postStyles from "../../styles/Post.module.css"
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 
 const UserPasswordForm = () => {
@@ -29,6 +30,8 @@ const UserPasswordForm = () => {
   const { new_password1, new_password2 } = userData;
 
   const [errors, setErrors] = useState({});
+
+  const { setAlert } = useSuccessAlert();
 
   const handleChange = (event) => {
     setUserData({
@@ -48,6 +51,7 @@ const UserPasswordForm = () => {
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       history.goBack();
+      setAlert({ message: "Password has been changed!" });
     } catch (err) {
       // console.log(err)
       setErrors(err.response?.data);

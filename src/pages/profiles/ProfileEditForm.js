@@ -14,6 +14,7 @@ import appStyles from "../../App.module.css";
 import postCreateStyles from "../../styles/PostCreateEditForm.module.css";
 import navBarStyles from "../../styles/NavBar.module.css";
 import postStyles from "../../styles/Post.module.css"
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -31,6 +32,9 @@ const ProfileEditForm = () => {
   const { name, bio, hobbies, image } = profileData;
 
   const [errors, setErrors] = useState({});
+
+  const { setAlert } = useSuccessAlert();
+
 
   useEffect(() => {
     const handleMount = async () => {
@@ -76,6 +80,7 @@ const ProfileEditForm = () => {
         profile_image: data.image,
       }));
       history.goBack();
+      setAlert({ message: "Profile has been updated!" });
     } catch (err) {
       console.log(err);
       setErrors(err.response?.data);

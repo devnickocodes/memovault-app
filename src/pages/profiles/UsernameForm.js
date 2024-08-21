@@ -11,6 +11,7 @@ import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserCon
 import btnStyles from "../../styles/Button.module.css";
 import navBarStyles from "../../styles/NavBar.module.css";
 import postStyles from "../../styles/Post.module.css"
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 
 
@@ -23,6 +24,7 @@ const UsernameForm = () => {
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const { setAlert } = useSuccessAlert();
 
   useEffect(() => {
     if (currentUser?.profile_id?.toString() === id) {
@@ -43,6 +45,7 @@ const UsernameForm = () => {
         username,
       }));
       history.goBack();
+      setAlert({ message: "Username has been updated!" });
     } catch (err) {
       // console.log(err)
       setErrors(err.response?.data);
