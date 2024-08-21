@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Card, Media, OverlayTrigger, Tooltip, Alert } from "react-bootstrap";
+
+import Card from "react-bootstrap/Card";
+import Media from "react-bootstrap/Media";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import Alert from "react-bootstrap/Alert";
+
 import { Link } from "react-router-dom";
+
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/Post.module.css";
 import { DropdownOptions } from "../../components/DropdownOptions";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import { scrollToTop } from "../../utils/scrollToTop";
 import ConfirmationModal from "../../utils/ConfirmationModal";
 import { likePost, unlikePost } from "../../utils/LikeUnlikePostsActions";
+
 
 const Post = (props) => {
   const {

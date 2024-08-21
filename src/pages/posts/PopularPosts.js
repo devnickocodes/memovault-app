@@ -1,10 +1,13 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+
 import styles from "../../styles/PopularProfiles.module.css";
 import navStyles from "../../styles/NavBar.module.css";
+
 import Asset from "../../components/Asset";
 import PopularPost from "./PopularPost";
 import { usePopularPostData } from "../../contexts/PopularPostDataContext";
+
 
 const PopularPosts = ({ setPosts, mobile }) => {
 

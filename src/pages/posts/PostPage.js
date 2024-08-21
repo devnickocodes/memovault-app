@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import { useParams } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
+import { useParams, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
-import { Alert } from "react-bootstrap";
 import styles from "../../styles/Post.module.css";
-import postsPageStyles from "../../styles/PostsPage.module.css"
+import postsPageStyles from "../../styles/PostsPage.module.css";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
@@ -18,7 +18,7 @@ import { fetchMoreData } from "../../utils/utils";
 import PopularPosts from "./PopularPosts";
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import ScrollToTop from "react-scroll-to-top";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 function PostPage() {
   const { id } = useParams();

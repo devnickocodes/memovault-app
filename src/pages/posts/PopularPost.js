@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Container, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
+
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Alert from 'react-bootstrap/Alert';
+
 import { Link } from 'react-router-dom';
+
 import Avatar from '../../components/Avatar';
+
 import postStyles from "../../styles/Post.module.css";
 import styles from "../../styles/PopularPost.module.css";
+
 import { scrollToTop } from '../../utils/scrollToTop';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { likePost, unlikePost } from '../../utils/LikeUnlikePostsActions';
+
 
 const PopularPost = ({ post, setPosts }) => {
   const { id, is_owner, owner, profile_id, profile_image, title, content, image, post_like_id, post_likes_count, updated_at } = post;

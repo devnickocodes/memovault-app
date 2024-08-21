@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+
 import NoResults from "../../assets/no-results.jpg";
 import styles from "../../styles/PostsPage.module.css";
 import alertStyles from "../../styles/Post.module.css";
@@ -10,12 +12,12 @@ import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import Asset from "../../components/Asset";
-import { Alert } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import PopularPosts from "./PopularPosts";
 import ScrollToTop from "react-scroll-to-top";
+
 
 function PostsPage({message, filter=""}) {
   const [posts, setPosts] = useState({ results: [] });
