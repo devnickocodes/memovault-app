@@ -10,6 +10,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
 import navBarStyles from "../../styles/NavBar.module.css";
+import postStyles from "../../styles/Post.module.css"
 
 
 
@@ -43,9 +44,18 @@ const UsernameForm = () => {
       }));
       history.goBack();
     } catch (err) {
+      // console.log(err)
       setErrors(err.response?.data);
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (errors) {
+      timer = setTimeout(() => setErrors({}), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errors]);
 
   return (
     <Row>
@@ -62,7 +72,7 @@ const UsernameForm = () => {
               />
             </Form.Group>
             {errors?.username?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
+              <Alert key={idx} className={postStyles.ErrorAlert}>
                 {message}
               </Alert>
             ))}

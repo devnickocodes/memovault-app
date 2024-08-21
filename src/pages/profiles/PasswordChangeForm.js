@@ -14,6 +14,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import navBarStyles from "../../styles/NavBar.module.css"
+import postStyles from "../../styles/Post.module.css"
 
 
 const UserPasswordForm = () => {
@@ -48,9 +49,18 @@ const UserPasswordForm = () => {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       history.goBack();
     } catch (err) {
+      // console.log(err)
       setErrors(err.response?.data);
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (errors) {
+      timer = setTimeout(() => setErrors({}), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errors]);
 
   return (
     <Row>
@@ -68,7 +78,7 @@ const UserPasswordForm = () => {
               />
             </Form.Group>
             {errors?.new_password1?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
+              <Alert key={idx} className={postStyles.ErrorAlert}>
                 {message}
               </Alert>
             ))}
@@ -83,7 +93,7 @@ const UserPasswordForm = () => {
               />
             </Form.Group>
             {errors?.new_password2?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
+              <Alert key={idx} className={postStyles.ErrorAlert}>
                 {message}
               </Alert>
             ))}

@@ -23,6 +23,7 @@ import postStyles from "../../styles/Post.module.css";
 import profilePageStyles from "../../styles/ProfilePage.module.css";
 import avatarStyles from "../../styles/Avatar.module.css";
 import { ProfileEditDropdown } from "../../components/DropdownOptions";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function ProfilePage() {
@@ -39,6 +40,8 @@ function ProfilePage() {
 
   const [error, setError] = useState(null)
 
+  const history = useHistory()
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,7 +56,12 @@ function ProfilePage() {
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
-        setError("Sorry an error occurred, please try again later")
+        // console.log(err)
+        if (err.response?.status === 404) {
+          history.push("/not-found");
+        } else {
+          setError("Sorry, an error occurred. Please try again.");
+        }
       }
     };
     fetchData();
@@ -69,7 +77,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <Card className={profilePageStyles.ProfileCard}>
-      {error && <Alert className={styles.Alert}>{error}</Alert>}
+      {error && <Alert className={`${postStyles.Alert} ${postStyles.ErrorAlert}`}>{error}</Alert>}
       <Card.Body className={profilePageStyles.PositionRelative}>
       {profile?.is_owner && (
           <div className={profilePageStyles.PositionDropdown}>
@@ -150,7 +158,6 @@ function ProfilePage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfilesMostPosts mobile />
         <Container>
-          {error && <Alert className={postStyles.Alert}>{error}</Alert>}
           {hasLoaded ? (
             <>
               {mainProfile}

@@ -13,6 +13,7 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import postCreateStyles from "../../styles/PostCreateEditForm.module.css";
 import navBarStyles from "../../styles/NavBar.module.css";
+import postStyles from "../../styles/Post.module.css"
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -81,6 +82,14 @@ const ProfileEditForm = () => {
     }
   };
 
+  useEffect(() => {
+    let timer;
+    if (errors) {
+      timer = setTimeout(() => setErrors({}), 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [errors]);
+
   const textFields = (
     <>
       <Form.Group controlId="name" className="mt-3 text-center">
@@ -114,11 +123,6 @@ const ProfileEditForm = () => {
         />
       </Form.Group>
 
-      {errors?.bio?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
       <Row className="w-100 justify-content-center mt-3">
         <Col xs={12} md={8} lg={6} className="d-flex justify-content-center m-2">
           <Button
@@ -171,7 +175,7 @@ const ProfileEditForm = () => {
               />
             </Form.Group>
             {errors?.image?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
+              <Alert className={postStyles.ErrorAlert} key={idx}>
                 {message}
               </Alert>
             ))}
