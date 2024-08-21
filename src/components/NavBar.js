@@ -154,7 +154,7 @@ const NavBar = () => {
         </Container>
       </Navbar>
       {error && (
-        <Alert className={postStyles.Alert}>
+        <Alert className={`${postStyles.Alert} ${postStyles.Alert}`}>
           {error}
         </Alert>
       )}

@@ -22,7 +22,6 @@ const ReportEditForm = () => {
   });
   const { reason, custom_reason, post } = reportData;
   const [errors, setErrors] = useState(null);
-  const [success, setSuccess] = useState(null)
   const [postDetails, setPostDetails] = useState({});
   const history = useHistory();
   const { id } = useParams();
