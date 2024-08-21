@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import feature_image from "../../assets/feature_image.jpg";
-import {
-  Form,
-  Button,
-  Image,
-  Col,
-  Row,
-  Container,
-  Alert,
-} from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
+
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
