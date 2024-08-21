@@ -12,6 +12,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
 import postStyles from "../../styles/Post.module.css"
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 
 const ReportCreateForm = () => {
@@ -24,7 +25,7 @@ const ReportCreateForm = () => {
   const [post, setPost] = useState({ results: [] });
   const history = useHistory();
   const { id } = useParams();
-
+  const { setAlert } = useSuccessAlert();
 
   useRedirect("loggedOut");
 
@@ -62,6 +63,7 @@ const ReportCreateForm = () => {
         custom_reason: reason === "other" ? custom_reason : "",
       });
       history.push(`/reports/${data.id}`);
+      setAlert({ message: "Report has been submitted!" });
     } catch (err) {
       // console.log(err)
       if (err.response?.status !== 401) {

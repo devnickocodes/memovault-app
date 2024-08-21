@@ -13,6 +13,7 @@ import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
 import { useCheckOwnership } from "../../hooks/useCheckOwnership";
 import postStyles from "../../styles/Post.module.css"
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 const ReportEditForm = () => {
   const [reportData, setReportData] = useState({
@@ -25,6 +26,7 @@ const ReportEditForm = () => {
   const [postDetails, setPostDetails] = useState({});
   const history = useHistory();
   const { id } = useParams();
+  const { setAlert } = useSuccessAlert(); 
 
   useRedirect("loggedOut");
   useCheckOwnership(id, "/reports");
@@ -66,6 +68,7 @@ const ReportEditForm = () => {
         post,
       });
       history.push(`/reports/${id}`);
+      setAlert({ message: "Report has been updated!" });
     } catch (err) {
       // console.log(err)
       if (err.response?.status !== 401) {
