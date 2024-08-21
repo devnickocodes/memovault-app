@@ -1,7 +1,8 @@
 import React from "react";
-import Dropdown from "react-bootstrap/Dropdown";
+import Dropdown from "react-bootstrap/Dropdown"; 
 import styles from "../styles/Dropdown.module.css";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
+
 
 const GearToggle = React.forwardRef(({ onClick }, ref) => (
   <i

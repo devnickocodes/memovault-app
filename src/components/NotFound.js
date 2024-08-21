@@ -1,11 +1,14 @@
-import React from 'react'
-import NoResults from "../assets/no-results.jpg"
-import Asset from './Asset'
-import PopularProfilesMostPosts from '../pages/profiles/PopularProfilesMostPosts'
-import { Button, Col, Container, Row } from 'react-bootstrap'
-import PopularPosts from '../pages/posts/PopularPosts'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
-import btnStyles from "../styles/Button.module.css"
+import React from 'react';
+import NoResults from "../assets/no-results.jpg";
+import Asset from './Asset';
+import PopularProfilesMostPosts from '../pages/profiles/PopularProfilesMostPosts';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import PopularPosts from '../pages/posts/PopularPosts';
+import { Link } from 'react-router-dom';
+import btnStyles from "../styles/Button.module.css";
 
 const NotFound = () => {
 

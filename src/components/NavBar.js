@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Container, Nav, Alert } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container"; 
+import Nav from "react-bootstrap/Nav";
+import Alert from "react-bootstrap/Alert";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
@@ -7,8 +10,9 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import ConfirmationModal from "../utils/ConfirmationModal";
-import postStyles from "../styles/Post.module.css"
+import postStyles from "../styles/Post.module.css";
 import { removeTokenTimestamp } from "../utils/utils";
+
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
