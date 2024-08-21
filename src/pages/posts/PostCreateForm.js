@@ -18,6 +18,7 @@ import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 import postStyles from "../../styles/Post.module.css"
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 
 function PostCreateForm() {
@@ -34,6 +35,9 @@ function PostCreateForm() {
   const inputImage = useRef(null);
 
   const history = useHistory();
+
+  const { setAlert } = useSuccessAlert();
+
 
   const handleChange = (event) => {
     setPostData({
@@ -55,6 +59,7 @@ function PostCreateForm() {
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
+      setAlert({ message: "Thank you for posting!" });
     } catch (err) {
       // console.log(err)
       if (err.response?.status !== 401) {

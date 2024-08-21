@@ -13,6 +13,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 import { useHistory, useParams } from "react-router-dom";
 import postStyles from "../../styles/Post.module.css"
+import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
@@ -29,6 +30,9 @@ function PostEditForm() {
 
   const history = useHistory();
   const {id} = useParams()
+
+  const { setAlert } = useSuccessAlert();
+
 
   useEffect(() => {
     const handleMount = async () => {
@@ -67,6 +71,7 @@ function PostEditForm() {
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
+      setAlert({ message: "Post has been updated!" });
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
