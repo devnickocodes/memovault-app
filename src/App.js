@@ -52,13 +52,13 @@ function App() {
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />}/>
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />}/>
-          <Route path="/reports/create/:id" render={() => <ReportCreateForm />} />
-          <Route path="/reports/:id/edit" render={() => <ReportEditForm />} />
-          <Route path="/reports/admin/:id" render={() => <FullReportDetailsCard apiEndpoint="/reports/admin" />} />
-          <Route path="/reports/admin" render={() => <ReportsPage apiEndpoint="/reports/admin" title="Reports" message="No results found." adminOnly />} />
-          <Route path="/reports/:id" render={() => <FullReportDetailsCard apiEndpoint="/reports" />} />
-          <Route path="/reports" render={() => <ReportsPage apiEndpoint="/reports" title="Reports" message="No results found." />} />
-          <Route render={() => <NotFound />} />
+          <Route exact path="/reports/create/:id" render={() => <ReportCreateForm />} />
+          <Route exact path="/reports/:id/edit" render={() => <ReportEditForm />} />
+          <Route exact path="/reports/admin/:id" render={() => <FullReportDetailsCard apiEndpoint="/reports/admin" />} />
+          <Route exact path="/reports/admin" render={() => <ReportsPage apiEndpoint="/reports/admin" title="Reports" message="No results found." adminOnly />} />
+          <Route exact path="/reports/:id" render={() => <FullReportDetailsCard apiEndpoint="/reports" />} />
+          <Route exact path="/reports" render={() => <ReportsPage apiEndpoint="/reports" title="Reports" message="No results found." />} />
+          <Route exact path="/not-found" render={() => <NotFound />} />
         </Switch>
       </Container>
     </div>
