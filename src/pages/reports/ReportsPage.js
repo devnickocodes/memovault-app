@@ -17,6 +17,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { fetchMoreData } from "../../utils/utils";
 import { useRedirectIfNotAdmin } from "../../hooks/useRedirectIfNotAdmin";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
@@ -27,8 +28,7 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
 
 
   useRedirectIfNotAdmin(apiEndpoint, '/');
-
-  console.log(apiEndpoint)
+  useRedirect("loggedOut")
 
   useEffect(() => {
     const handleMount = async () => {
@@ -42,7 +42,8 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
         );
         setReports({ results: reportsWithPostDetails, next: reportsData.next });
         setLoaded(true);
-      } catch {
+      } catch (err) {
+        // console.log(err)
         setError("Sorry, an error occurred. Please try again.");
       }
     };
