@@ -85,7 +85,7 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
                   next={() => fetchMoreData(reports, setReports)}
                 />
               ) : (
-                <Asset height={200} width={200} src={NoResults} message={message} />
+                <Asset message={message} src={NoResults} alt="Not Found" height={200} width={200} borderRadius="10px"/>
               )}
             </>
           ) : (

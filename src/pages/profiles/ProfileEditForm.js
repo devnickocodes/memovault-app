@@ -44,7 +44,7 @@ const ProfileEditForm = () => {
           const { name, bio, hobbies, image } = data;
           setProfileData({ name, bio, hobbies, image });
         } catch (err) {
-          console.log(err);
+          // console.log(err);
           history.push("/");
         }
       } else {
@@ -82,7 +82,7 @@ const ProfileEditForm = () => {
       history.goBack();
       setAlert({ message: "Profile has been updated!" });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setErrors(err.response?.data);
     }
   };

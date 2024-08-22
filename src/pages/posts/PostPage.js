@@ -40,7 +40,7 @@ function PostPage() {
         setPost({ results: [post] });
         setComments(comments);
       } catch (err) {
-        console.log(err)
+        // console.log(err)
         if (err.response?.status === 404) {
           history.push("/not-found");
         } else {
