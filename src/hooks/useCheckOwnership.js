@@ -14,8 +14,10 @@ export const useCheckOwnership = (resourceId, apiEndpoint) => {
                 if (data.owner !== currentUser.username && !currentUser.is_admin) {
                     history.push('/');
                 }
-            } catch {
-                history.push('/');
+            } catch (err) {
+                if (err.response?.status !== 404) {
+                    history.push('/');
+                }
             }
         };
 

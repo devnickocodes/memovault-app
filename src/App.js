@@ -59,6 +59,7 @@ function App() {
           <Route exact path="/reports/:id" render={() => <FullReportDetailsCard apiEndpoint="/reports" />} />
           <Route exact path="/reports" render={() => <ReportsPage apiEndpoint="/reports" title="Reports" message="No results found." />} />
           <Route exact path="/not-found" render={() => <NotFound />} />
+          <Route render={() => <NotFound />} />
         </Switch>
       </Container>
     </div>

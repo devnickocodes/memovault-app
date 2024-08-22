@@ -21,6 +21,7 @@ import ScrollToTop from 'react-scroll-to-top';
 import { scrollToTop } from '../../utils/scrollToTop';
 import { useRedirectIfNotAdmin } from '../../hooks/useRedirectIfNotAdmin';
 import { useCheckOwnership } from '../../hooks/useCheckOwnership';
+import { useRedirect } from '../../hooks/useRedirect';
 
 
 
@@ -37,21 +38,27 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
 
     useRedirectIfNotAdmin(apiEndpoint, "/");
     useCheckOwnership(id, apiEndpoint);
+    useRedirect("loggedOut")
 
-    useEffect(()=>{
-        const handleMount = async () => {
-            try{
-                const { data: reportData } = await axiosReq.get(`${apiEndpoint}/${id}`);
-                const {data: postData} = await axiosReq.get(`/posts/${reportData.post}`)
-                setReport({ ...reportData, post: postData });
-                setLoaded(true)
-            } catch(err){
-              // console.log(err)
-                setError("Sorry an error occurred. Please try again.")
-            }
-        }
-        handleMount()
-    }, [id, apiEndpoint])
+    useEffect(() => {
+      const handleMount = async () => {
+          try {
+              const { data: reportData } = await axiosReq.get(`${apiEndpoint}/${id}`);
+              const { data: postData } = await axiosReq.get(`/posts/${reportData.post}`);
+              setReport({ ...reportData, post: postData });
+              setLoaded(true);
+          } catch (err) {
+            // console.log(err)
+              if (err.response?.status === 404) {
+                  history.push('/not-found');
+              } else {
+                  setError("Sorry, an error occurred. Please try again.");
+              }
+          }
+      };
+
+      handleMount();
+  }, [id, apiEndpoint, history]);
 
     const handleDelete = async () => {
       try {
