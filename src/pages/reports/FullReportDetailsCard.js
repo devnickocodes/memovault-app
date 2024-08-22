@@ -22,6 +22,7 @@ import { scrollToTop } from '../../utils/scrollToTop';
 import { useRedirectIfNotAdmin } from '../../hooks/useRedirectIfNotAdmin';
 import { useCheckOwnership } from '../../hooks/useCheckOwnership';
 import { useRedirect } from '../../hooks/useRedirect';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
 
 
 
@@ -35,6 +36,7 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
     const {is_owner, is_admin} = report
     const history = useHistory()
     const handleScroll = () => scrollToTop()
+    const { setAlert } = useSuccessAlert();
 
     useRedirectIfNotAdmin(apiEndpoint, "/");
     useCheckOwnership(id, apiEndpoint);
@@ -64,6 +66,7 @@ const FullReportDetailsCard = ({apiEndpoint}) => {
       try {
         await axiosRes.delete(`${apiEndpoint}/${id}/`);
         history.goBack();
+        setAlert({ message: "Report has been deleted!" });
       } catch (err) {
         // console.log(err)
         setError("Something went wrong while trying to delete the report. Please try again in a moment.");
