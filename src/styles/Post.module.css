@@ -100,3 +100,8 @@
 .Flag:hover {
   color: #d33535;
 }
+
+.Font{
+  font-size: 1.4rem;
+  font-weight: 600;
+}

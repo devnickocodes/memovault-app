@@ -95,11 +95,11 @@ const ReportEditForm = () => {
                 <Asset src={image} alt="Post Image" height="200" width="200" />
               </Col>
               <Col xs={12} md={9} className="d-flex flex-column align-items-center align-items-md-start">
-                <Card.Title className="text-center text-md-left">{title}</Card.Title>
+                <Card.Title className="text-center text-md-left"><span className={postStyles.Font}>Title:</span> {title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted text-center text-md-left">
-                  Posted by {owner}
+                <span className={postStyles.Font}>Posted by: </span> {owner}
                 </Card.Subtitle>
-                <Card.Text className="text-center text-md-left">{content}</Card.Text>
+                <Card.Text className="text-center text-md-left"><span className={postStyles.Font}>Content: </span> {content}</Card.Text>
               </Col>
             </Row>
           </Card.Body>

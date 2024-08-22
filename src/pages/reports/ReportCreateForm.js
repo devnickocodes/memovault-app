@@ -99,13 +99,13 @@ const ReportCreateForm = () => {
                 className="d-flex flex-column align-items-center align-items-md-start"
               >
                 <Card.Title className="text-center text-md-left">
-                  {title}
+                <span className={postStyles.Font}>Title:</span> {title}
                 </Card.Title>
                 <Card.Subtitle className="mb-2 text-muted text-center text-md-left">
-                  Posted by {owner}
+                <span className={postStyles.Font}>Posted by:</span> {owner}
                 </Card.Subtitle>
                 <Card.Text className="text-center text-md-left">
-                  {content}
+                <span className={postStyles.Font}>Content:</span> {content}
                 </Card.Text>
               </Col>
             </Row>
