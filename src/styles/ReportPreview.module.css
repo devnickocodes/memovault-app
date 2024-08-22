@@ -1,0 +1,27 @@
+.Container:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.CardTitle, .CardSubtitle {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    line-height: 2;
+}
+
+.Label {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1rem;
+    letter-spacing: 1.3px;
+}
+
+.Value {
+    color: #d83f3f;
+    font-weight: 800;
+}
+
+.text-right a {
+    font-weight: bold;
+    color: #6c63ff;
+    text-decoration: none;
+}
