@@ -181,3 +181,43 @@ test("shows error messages when submission fails", async () => {
     expect(screen.getByText("An error occurred.")).toBeInTheDocument();
   });
 });
+
+test("shows custom reason field when 'Other' is selected", async () => {
+  // Mock useParams to return the correct ID
+  useParams.mockReturnValue({ id: 1 });
+
+  // Mock useSuccessAlert hook
+  useSuccessAlert.mockReturnValue({
+    setAlert: jest.fn(),
+  });
+
+  setup();
+
+  // Select 'Other' as the reason
+  userEvent.selectOptions(screen.getByLabelText(/Reason for Report/i), "Other");
+
+  // Wait for the custom reason field to be visible
+  await waitFor(() => {
+    expect(screen.getByLabelText(/Custom Reason/i)).toBeInTheDocument();
+  });
+});
+
+test("hides custom reason field when reason is not 'Other'", async () => {
+  // Mock useParams to return the correct ID
+  useParams.mockReturnValue({ id: 1 });
+
+  // Mock useSuccessAlert hook
+  useSuccessAlert.mockReturnValue({
+    setAlert: jest.fn(),
+  });
+
+  setup();
+
+  // Select 'Spam' as the reason
+  userEvent.selectOptions(screen.getByLabelText(/Reason for Report/i), "Spam");
+
+  // Wait for the custom reason field to be hidden
+  await waitFor(() => {
+    expect(screen.queryByLabelText(/Custom Reason/i)).toBeNull();
+  });
+});
