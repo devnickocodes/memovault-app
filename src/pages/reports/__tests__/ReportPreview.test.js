@@ -36,7 +36,7 @@ test("renders ReportPreview with correct content for admin", () => {
   );
 
   // Check for the presence of the report owner
-  expect(screen.getByText(/submitted by:/i)).toBeInTheDocument();
+  expect(screen.getByText(/Submitted by:/)).toBeInTheDocument();
   expect(screen.getByText(mockReportAdmin.owner)).toBeInTheDocument();
 
   // Check that the link is correct for admins
@@ -44,27 +44,27 @@ test("renders ReportPreview with correct content for admin", () => {
   expect(link).toHaveAttribute("href", `${apiEndpoint}/${mockReportAdmin.id}`);
 
   //  Check for "Reason:" label and its text
-  const reasonLabels = screen.getAllByText(/reason:/i);
+  const reasonLabels = screen.getAllByText(/Reason:/);
   expect(reasonLabels.length).toBeGreaterThan(0);
   expect(screen.getByText(mockReportAdmin.reason)).toBeInTheDocument();
 
   // Check for the "Additional Reason:" label and its text if custom_reason exists
   if (mockReportAdmin.custom_reason) {
-    const additionalReasonLabels = screen.getAllByText(/additional reason:/i);
+    const additionalReasonLabels = screen.getAllByText(/Additional Reason:/);
     expect(additionalReasonLabels.length).toBeGreaterThan(0);
     expect(screen.getByText(mockReportAdmin.custom_reason)).toBeInTheDocument();
   }
 
   // Check for post title and content
-  expect(screen.getByText(/post title:/i)).toBeInTheDocument();
+  expect(screen.getByText(/Post Title:/)).toBeInTheDocument();
   expect(screen.getByText(mockReportAdmin.post.title)).toBeInTheDocument();
 
-  expect(screen.getByText(/post content:/i)).toBeInTheDocument();
+  expect(screen.getByText(/Post Content:/)).toBeInTheDocument();
   expect(screen.getByText(mockReportAdmin.post.content)).toBeInTheDocument();
 
   // Check for the "View Full Report" button
   expect(
-    screen.getByRole("button", { name: /view full report/i })
+    screen.getByRole("button", { name: /View Full Report/ })
   ).toBeInTheDocument();
 });
 
@@ -78,7 +78,7 @@ test("renders ReportPreview with correct content for non-admin", () => {
   );
 
   // Verify that "submitted by" elements are not present if not an admin
-  expect(screen.queryByText(/submitted by:/i)).toBeNull();
+  expect(screen.queryByText(/Submitted by:/)).toBeNull();
   expect(screen.queryByText(mockReportNonAdmin.owner)).toBeNull();
 
   // Check that the link is correct for non-admins
@@ -89,13 +89,13 @@ test("renders ReportPreview with correct content for non-admin", () => {
   );
 
   //  Check for "Reason:" label and its text
-  const reasonLabels = screen.getAllByText(/reason:/i);
+  const reasonLabels = screen.getAllByText(/Reason:/);
   expect(reasonLabels.length).toBeGreaterThan(0);
   expect(screen.getByText(mockReportNonAdmin.reason)).toBeInTheDocument();
 
   // Check for the "Additional Reason:" label and its text if custom_reason exists
   if (mockReportNonAdmin.custom_reason) {
-    const additionalReasonLabels = screen.getAllByText(/additional reason:/i);
+    const additionalReasonLabels = screen.getAllByText(/Additional Reason:/);
     expect(additionalReasonLabels.length).toBeGreaterThan(0);
     expect(
       screen.getByText(mockReportNonAdmin.custom_reason)
@@ -103,14 +103,14 @@ test("renders ReportPreview with correct content for non-admin", () => {
   }
 
   // Check for post title and content
-  expect(screen.getByText(/post title:/i)).toBeInTheDocument();
+  expect(screen.getByText(/Post Title:/)).toBeInTheDocument();
   expect(screen.getByText(mockReportNonAdmin.post.title)).toBeInTheDocument();
 
-  expect(screen.getByText(/post content:/i)).toBeInTheDocument();
+  expect(screen.getByText(/Post Content:/)).toBeInTheDocument();
   expect(screen.getByText(mockReportNonAdmin.post.content)).toBeInTheDocument();
 
   // Check for the "View Full Report" button
   expect(
-    screen.getByRole("button", { name: /view full report/i })
+    screen.getByRole("button", { name: /View Full Report/ })
   ).toBeInTheDocument();
 });
