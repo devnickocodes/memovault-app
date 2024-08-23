@@ -135,3 +135,49 @@ test("successful form submission triggers API call and success message", async (
     expect(axiosRes.post).toHaveBeenCalledTimes(1);
   });
 });
+
+
+test("shows error messages when submission fails", async () => {
+  // Mock API responses
+  axiosRes.get.mockResolvedValueOnce({
+    data: {
+      owner: "John Doe",
+      image: "test-image-url",
+      title: "Test Post Title",
+      content: "Test post content.",
+    },
+  });
+
+  axiosRes.post.mockRejectedValueOnce({
+    response: {
+      data: {
+        reason: ['"" is not a valid choice.'],
+        custom_reason: ["This field is required if 'Other' is selected."],
+        non_field_errors: ["An error occurred."],
+      },
+    },
+  });
+
+  // Mock useSuccessAlert hook
+  useSuccessAlert.mockReturnValue({
+    setAlert: jest.fn(),
+  });
+
+  // Mock useParams to return the correct ID
+  useParams.mockReturnValue({ id: 1 });
+
+  setup();
+
+  // Fill out the form with invalid data
+  userEvent.selectOptions(screen.getByLabelText(/Reason for Report/i), "");
+
+  const submitButton = screen.getByRole('button', { name: /Submit Report/i });
+  userEvent.click(submitButton);
+
+  // Wait for error messages to be displayed
+  await waitFor(() => {
+    expect(screen.getByText('"" is not a valid choice.')).toBeInTheDocument();
+    expect(screen.getByText("This field is required if 'Other' is selected.")).toBeInTheDocument();
+    expect(screen.getByText("An error occurred.")).toBeInTheDocument();
+  });
+});
