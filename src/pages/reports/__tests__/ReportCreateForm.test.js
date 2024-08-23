@@ -4,6 +4,7 @@ import ReportCreateForm from "../ReportCreateForm";
 import { axiosRes } from "../../../api/axiosDefaults";
 import { useSuccessAlert } from "../../../contexts/SuccessAlertContext";
 import { useParams } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 
 // Mock the necessary modules
 jest.mock("../../../api/axiosDefaults", () => ({
@@ -46,7 +47,7 @@ test("renders ReportCreateForm and displays post information and form elements",
       setAlert: jest.fn(),
     });
   
-    // Mock useParams to return the ID
+    // Mock useParams to return ID
     useParams.mockReturnValue({ id: 1 });
   
     setup();
@@ -78,4 +79,59 @@ test("renders ReportCreateForm and displays post information and form elements",
     expect(image).toHaveAttribute('src', 'test-image-url');
   });
 
+test("successful form submission triggers API call and success message", async () => {
+  // Mock API responses
+  axiosRes.get.mockResolvedValueOnce({
+    data: {
+      owner: "John Doe",
+      image: "test-image-url",
+      title: "Test Post Title",
+      content: "Test post content.",
+    },
+  });
 
+  // Mock successful API response
+  axiosRes.post.mockResolvedValueOnce({
+    data: { id: 1 },
+  });
+
+   // Mock useSuccessAlert hook
+   const setAlert = jest.fn();
+   useSuccessAlert.mockReturnValue({ setAlert });
+ 
+
+  // Mock useParams to return ID
+  useParams.mockReturnValue({ id: 1 });
+
+
+  setup();
+
+  // Fill out the form
+  const reasonSelect = screen.getByLabelText(/Reason for Report/i);
+  userEvent.selectOptions(reasonSelect, "other");
+
+  // Ensure the custom reason textarea is visible and fill out
+  const customReasonTextarea = screen.getByLabelText(/Custom Reason/i);
+  userEvent.type(customReasonTextarea, "Inappropriate behavior");
+
+  const submitButton = screen.getByRole("button", { name: /Submit Report/i });
+
+  // Submit the form
+  userEvent.click(submitButton);
+
+  // Wait for the API call to complete and verify the submission
+  await waitFor(() => {
+    expect(axiosRes.post).toHaveBeenCalledWith("/reports/", {
+      post: 1,
+      reason: "other",
+      custom_reason: "Inappropriate behavior",
+    });
+
+    expect(setAlert).toHaveBeenCalledWith({
+        message: "Report has been submitted!",
+      });
+  
+    // Confirm that the form submission triggers only one API call
+    expect(axiosRes.post).toHaveBeenCalledTimes(1);
+  });
+});
