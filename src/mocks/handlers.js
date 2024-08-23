@@ -18,5 +18,14 @@ export const handlers = [
     }),
     rest.post(`${baseURL}dj-rest-auth/logout/`, (req, res, ctx) => {
         return res(ctx.status(200))
-    })
-]
+    }),
+    rest.post('http://localhost/dj-rest-auth/token/refresh/', (req, res, ctx) => {
+        return res(
+          ctx.status(200), 
+          ctx.json({
+            access: 'new-access-token',
+            refresh: 'new-refresh-token'
+          })
+        );
+      }),
+    ];
