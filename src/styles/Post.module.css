@@ -1,3 +1,4 @@
+/* Post container */
 .Container {
   border: 1px solid #e0d4f7;
   border-radius: 15px;
@@ -6,6 +7,7 @@
   transition: transform 0.2s ease-in-out;
 }
 
+/* Avatar image link */
 .avatarImage {
   display: flex;
   align-items: center;
@@ -15,46 +17,51 @@
   text-decoration: none;
 }
 
+/* Avatar image link on hover */
 .avatarImage:hover{
   color: #5e35b1;
   text-decoration: none;
+  filter: brightness(1.1);
 }
 
+/* Span inside avatar image */
 .avatarImage span {
   font-weight: bold;
 }
 
-.avatarImage:hover {
-  filter: brightness(1.1);
-}
-
+/* Header styling for the card */
 .CardHeader {
   background-color: #f3e5f5;
   border-bottom: none;
 }
 
+/* Body styling for card */
 .CardBody {
   background-color: #f8f0ff;
   padding: 10px;
 }
 
+/* Title styling for card */
 .CardTitle {
   color: #6a1b9a;
   margin-bottom: 15px;
   font-size: 1.5rem;
 }
 
+/* Text styling for card */
 .CardText {
   color: #7b1fa2;
   font-size: 1.1rem;
 }
 
+/* Image styling within card */
 .CardImg {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
+/* Alert box styling */
 .Alert {
   z-index: 99;
   position: fixed;
@@ -65,46 +72,55 @@
   font-weight: 600;
 }
 
+/* Success alert styling */
 .SuccessAlert{
   background-color: #d0f5d8;
   color: #155724;
   border-left: 8px solid #28a745;
 }
 
+/* Error alert styling */
 .ErrorAlert{
   background-color: #f5c6cb;
   color: #721c24;
   border-left: 8px solid #dc3545;
 }
 
+/* Heart icon styling */
 .Heart {
   color: #b57bcc;
   font-size: 1.2rem;
   cursor: pointer;
 }
 
+/* Heart icon styling on hover */
 .Heart:hover{
   color: #8f34b3;
 }
 
+/* Heart icon styling when not hovered */
 .HeartNoHover{
   color: #8f34b3;
 }
 
+/* Comment text styling */
 .Comment {
   font-size: 1.2rem;
 }
 
+/* Flag icon styling */
 .Flag {
   color: #f53434;
   font-size: 1.2rem;
   cursor: pointer;
 }
 
+/* Flag icon styling on hover */
 .Flag:hover {
   color: #d33535;
 }
 
+/* Font */
 .Font{
   font-size: 1.4rem;
   font-weight: 600;

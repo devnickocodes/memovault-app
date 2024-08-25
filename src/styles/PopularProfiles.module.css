@@ -1,3 +1,4 @@
+/* popular profiles container */
 .Container {
   background: linear-gradient(135deg, #f5f7fa, #e0d4f7);
   border-radius: 15px;
@@ -5,6 +6,7 @@
   font-weight: 500;
 }
 
+/* popular profiles header */
 .Header{
   font-size: 1.2rem;
 }
