@@ -1,3 +1,4 @@
+/* Styling of image elements for the Avatar component and the Image component in ProfilePage.js */
 .Avatar {
   border-radius: 50%;
   object-fit: cover;

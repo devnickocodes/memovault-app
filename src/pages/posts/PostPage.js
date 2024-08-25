@@ -11,13 +11,13 @@ import postsPageStyles from "../../styles/PostsPage.module.css";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
-import commentStyles from "../../styles/Comment.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularPosts from "./PopularPosts";
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import ScrollToTop from "react-scroll-to-top";
+import navbarStyles from "../../styles/NavBar.module.css"
 
 function PostPage() {
   const { id } = useParams(); // Extract post ID from URL parameters
@@ -97,12 +97,12 @@ function PostPage() {
               setPost={setPost}
               setComments={setComments}
             />
-          ) : comments.results.length ? (
-            <p className={`${commentStyles.CommentsHeading} mb-3`}>Comments</p>
           ) : null}
           
           {/* Display comments with infinite scrolling */}
           {comments.results.length ? (
+            <>
+            <p className={`${navbarStyles.Logo} mb-4`}><span>Comments</span></p>
             <InfiniteScroll
               children={comments.results.map((comment) => (
                 <Comment
@@ -117,6 +117,7 @@ function PostPage() {
               hasMore={!!comments.next}
               next={() => fetchMoreData(comments, setComments)}
             />
+            </>
           ) : currentUser ? (
             <p className="text-muted">
               It would be great if you were the first to comment!

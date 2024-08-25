@@ -1,3 +1,4 @@
+/* Button base styles */
 .Button {
   font-size: 1rem;
   align-self: center;
@@ -9,6 +10,7 @@
   font-weight: 500;
 }
 
+/* Button styles on hover */
 .Button:hover {
   border-color: transparent;
   color: #9b22b9;
@@ -17,33 +19,20 @@
   font-weight: 500;
 }
 
+/* Button styles when focused */
 .Button:focus {
   background-color: #9b22b9;
 }
 
-.Button span {
-  color: #ffffff;
-  font-weight: 900;
-  border-top: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  text-transform: uppercase;
-  transition: all 0.3s ease-in-out;
-}
 
-.Button:hover span {
-  color: #9b22b9;
-  font-weight: 900;
-  border-top: 2px solid #9b22b9;
-  border-bottom: 2px solid #9b22b9;
-  text-transform: uppercase;
-}
-
+/* Grey button base styles */
 .GreyButton {
   background-color: #808080;
   border-color: transparent;
 
 }
 
+/* Grey button styles on hover */
 .GreyButton:hover {
   border-color: transparent;
   color: black;
@@ -51,6 +40,7 @@
   border: 1px solid #808080;
 }
 
+/* Full width element */
 .Width{
   width: 100%;
 }
