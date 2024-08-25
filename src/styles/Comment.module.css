@@ -1,3 +1,5 @@
+
+/* Container for individual comments */
 .CommentContainer {
   background: #f8f9fa;
   border-radius: 8px;
@@ -5,11 +7,14 @@
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
+
+/* Changes to the comment container on hover */
 .CommentContainer:hover {
   background: #ffffff;
   box-shadow: 0 4px 8px rgba(128, 65, 153, 0.6);
 }
 
+/* Header of the comment including owner and date */
 .CommentHeader {
   display: flex;
   justify-content: space-between;
@@ -17,27 +22,21 @@
   margin-bottom: 8px;
 }
 
+/* Owner's name styling in the comment header */
 .CommentOwner {
   font-weight: 600;
   color: #5e35b1;
 }
 
+/* Date styling in the comment header */
 .CommentDate {
   font-size: 0.85rem;
   color: #75797e;
   font-style: italic;
 }
 
+/* Content of the comment */
 .CommentContent {
   color: #292727;
   line-height: 1.5;
-}
-
-.CommentsHeading {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ae4eee;
-  border-bottom: 2px solid #ae4eee;
-  display: inline-block;
-  padding-bottom: 0.5rem;
 }

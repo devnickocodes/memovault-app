@@ -44,3 +44,48 @@
 .Width{
   width: 100%;
 }
+
+/* Button base styles (specific for comments) */
+.CommentButton {
+  background: linear-gradient(45deg, #fd8181, #ffaac7);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+/* Styles for the button when disabled */
+.CommentButton:disabled {
+  background: #aaaaaa;
+  cursor: not-allowed;
+}
+
+/* Styles for the button on hover when enabled */
+.CommentButton:hover:enabled {
+  background: linear-gradient(45deg, #e1aaf7, #fa759f);
+  color: #000000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Grey button base styles (specific for the comments) */
+
+.GreyCommentButton {
+  background-color: #b3b3b3;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+/* Styles for the grey button on hover */
+
+.GreyCommentButton:hover{
+    color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}

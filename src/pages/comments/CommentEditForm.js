@@ -7,6 +7,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import postStyles from "../../styles/Post.module.css";
+import btnStyles from "../../styles/Button.module.css"
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 /**
@@ -95,7 +96,7 @@ function CommentEditForm(props) {
       <div className="text-right">
         {/* Cancel button to exit the edit form */}
         <button
-          className={`m-2 ${styles.GreyButton}`}
+          className={`m-2 ${btnStyles.GreyCommentButton}`}
           onClick={() => setShowEditForm(false)}
           type="button"
         >
@@ -103,7 +104,7 @@ function CommentEditForm(props) {
         </button>
         {/* Save button to submit the edited comment */}
         <button
-          className={styles.Button}
+          className={btnStyles.CommentButton}
           disabled={!formContent.trim()} // Disable button if form content is empty or whitespace
           type="submit"
         >

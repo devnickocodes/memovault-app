@@ -10,6 +10,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import postStyles from "../../styles/Post.module.css";
+import btnStyles from "../../styles/Button.module.css"
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 /**
@@ -104,7 +105,7 @@ function CommentCreateForm(props) {
       </Form.Group>
       {/* Submit button */}
       <button
-        className={`${styles.Button} btn d-block ml-auto`}
+        className={`${btnStyles.CommentButton} btn d-block ml-auto`}
         disabled={!content.trim()} // Disable button if input is empty or whitespace
         type="submit"
       >

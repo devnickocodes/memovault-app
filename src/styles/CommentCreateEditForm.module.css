@@ -1,3 +1,4 @@
+/* Styles for the comment form container */
 .CommentForm {
   background: #f8f9fa;
   border-radius: 10px;
@@ -7,15 +8,18 @@
   background-color: #f8f0ff;
 }
 
+/* Styles for the input group inside the comment form */
 .InputGroup {
   display: flex;
   align-items: center;
 }
 
+/* Styles for the avatar image inside the input group */
 .Avatar {
   margin-right: 10px;
 }
 
+/* Styles for the text area where users write comments */
 .TextArea {
   flex-grow: 1;
   border: none;
@@ -26,45 +30,8 @@
   transition: all 0.3s ease;
 }
 
+/* Styles for the text area when it is focused */
 .TextArea:focus {
   outline: none;
   box-shadow: 0 4px 8px rgba(128, 65, 153, 0.6);
-}
-
-.Button {
-  background: linear-gradient(45deg, #fd8181, #ffaac7);
-  border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
-}
-
-.Button:disabled {
-  background: #aaaaaa;
-  cursor: not-allowed;
-}
-
-.Button:hover:enabled {
-  background: linear-gradient(45deg, #e1aaf7, #fa759f);
-  color: #000000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.GreyButton {
-  background-color: #b3b3b3;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
-}
-
-.GreyButton:hover{
-    color: #f8f9fa;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
 }
