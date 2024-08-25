@@ -1,7 +1,9 @@
+/* Contaienr styling for no results */
 .noResults {
   box-shadow: rgba(155, 34, 185, 0.25) 0px 4px 8px -2px, rgba(155, 34, 185, 0.08) 0px 0px 0px 1px;
 }
 
+/* Search icon styling */
 .SearchIcon {
   position: absolute;
   left: 10px;
@@ -12,11 +14,13 @@
   transition: color 0.3s;
 }
 
+/* Container for the search bar */
 .SearchBar {
   position: relative;
   width: 100%;
 }
 
+/* Search bar input field */
 .SearchBar input {
   width: 100%;
   height: 50px;
@@ -29,23 +33,26 @@
   transition: background 0.3s, box-shadow 0.3s;
 }
 
+/* Placeholder text styling for the search bar input field */
 .SearchBar input::placeholder {
   color: #3d3d3d;
   font-weight: 500;
 }
 
-
+/* Styling for the search bar input field when focused */
 .SearchBar input:focus {
   outline: none;
   background: linear-gradient(45deg, #f8acf8, #b644b6);
   box-shadow: 0 0 10px rgba(155, 34, 185, 0.5);
 }
 
+/* "Scroll to Top" component */
 .ScrollToTop{
   box-shadow: 0 4px 8px rgba(155, 34, 185, 0.4) !important ;
   transition: box-shadow 0.2s ease-in-out !important;
 }
 
+/* "Scroll to Top" component on hover */
 .ScrollToTop:hover{
   box-shadow: 0 4px 8px rgba(155, 34, 185, 0.2) !important;
 }

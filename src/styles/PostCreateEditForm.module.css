@@ -1,12 +1,15 @@
+/* Container in form */
 .Container {
   min-height: 343px;
 }
 
+/* Input labels in form */
 .inputLabels {
   border-bottom: 2px solid #9b229b;
   font-size: 1.2rem;
 }
 
+/* Hidden file input */
 .hiddenFileInput {
   position: absolute;
   width: 0;

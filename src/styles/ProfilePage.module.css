@@ -1,3 +1,4 @@
+/* Profile Card */
 .ProfileCard {
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -5,10 +6,12 @@
   background-color: #fff;
 }
 
+/* Position the container in which is the toggle */
 .PositionRelative{
   position: relative;
 }
 
+/* position the toggle */
 .PositionDropdown{
   position: absolute;
   top: 5px;
