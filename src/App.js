@@ -21,8 +21,10 @@ import ReportEditForm from "./pages/reports/ReportEditForm";
 import NotFound from "./components/NotFound";
 
 function App() {
+  // Retrieve the current user's profile ID from the context
   const currentUser = useCurrentUser();
   const profile_id = currentUser?.profile_id || "";
+
   return (
     <div className={styles.App}>
       <NavBar />

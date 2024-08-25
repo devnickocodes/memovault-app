@@ -13,9 +13,13 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <CurrentUserProvider>
+        {/* CurrentUserProvider provides current user context to child elements */}
         <ProfileDataProvider>
+           {/* ProfileDataProvider provides the profile data context to its children */}
           <PopularPostDataProvider>
+            {/* PopularPostDataProvider provides popular post data context to its children */}
             <SuccessAlertProvider>
+              {/* SuccessAlertProvider provides success alert context to its children */}
               <App />
             </SuccessAlertProvider>
           </PopularPostDataProvider>
