@@ -1,17 +1,21 @@
+/* Asterisk wildcard selector to override default styles added by the browser */
+* {
+    box-sizing: border-box;
+}
+
+/* Set app font, bg-color and min height */
 .App {
     font-family: "Nunito", sans-serif;
     background-color: #ffffff;
     min-height: 100vh;
 }
 
-* {
-    box-sizing: border-box;
-}
-
+/* Main container */
 .Main{
     padding-top: 75px;
 }
 
+/* Images styling */
 .Image {
     max-height: 50vh;
     max-width: 100%;
