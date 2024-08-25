@@ -98,6 +98,7 @@ function PostsPage({message, filter=""}) {
                   width={200}
                   src={NoResults}
                   message={message}
+                  borderRadius="10px"
                 />
               </Container>
             )}

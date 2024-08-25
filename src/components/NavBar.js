@@ -129,9 +129,11 @@ const NavBar = () => {
       <Navbar expanded={expanded} className={styles.navContainer} expand="md" fixed="top">
         <Container>
           <NavLink className={styles.LogoLink} to="/">
-            <Navbar.Brand className={styles.Logo}>
+            <Navbar.Brand>
+              <h1 className={styles.Logo}>
               Memo<span>Vault</span>
               <i className="fa-solid fa-icons ml-3"></i>
+              </h1>
             </Navbar.Brand>
           </NavLink>
           {currentUser && addPostIcon}

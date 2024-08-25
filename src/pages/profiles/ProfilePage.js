@@ -15,7 +15,10 @@ import NoResults from "../../assets/no-results.jpg";
 import { fetchMoreData } from "../../utils/utils";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
+import {
+  useProfileData,
+  useSetProfileData,
+} from "../../contexts/ProfileDataContext";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Button.module.css";
 import navStyles from "../../styles/NavBar.module.css";
@@ -25,7 +28,6 @@ import avatarStyles from "../../styles/Avatar.module.css";
 import { ProfileEditDropdown } from "../../components/DropdownOptions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -33,22 +35,23 @@ function ProfilePage() {
   const { profileData } = useProfileData();
   const pageProfile = profileData?.pageProfile;
   const profile = pageProfile?.results[0];
-  const currentUser = useCurrentUser()
+  const currentUser = useCurrentUser();
   const [profilePosts, setProfilePosts] = useState({ results: [] });
 
-  const {setProfileData, handleFollow} = useSetProfileData();
+  const { setProfileData, handleFollow } = useSetProfileData();
 
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
 
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: profileData }, { data: profilePosts }] = await Promise.all([
-          axiosReq.get(`/profiles/${id}/`),
-          axiosReq.get(`/posts/?owner__profile=${id}`),
-      ]);
+        const [{ data: profileData }, { data: profilePosts }] =
+          await Promise.all([
+            axiosReq.get(`/profiles/${id}/`),
+            axiosReq.get(`/posts/?owner__profile=${id}`),
+          ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [profileData] },
@@ -77,9 +80,13 @@ function ProfilePage() {
 
   const mainProfile = (
     <Card className={profilePageStyles.ProfileCard}>
-      {error && <Alert className={`${postStyles.Alert} ${postStyles.ErrorAlert}`}>{error}</Alert>}
+      {error && (
+        <Alert className={`${postStyles.Alert} ${postStyles.ErrorAlert}`}>
+          {error}
+        </Alert>
+      )}
       <Card.Body className={profilePageStyles.PositionRelative}>
-      {profile?.is_owner && (
+        {profile?.is_owner && (
           <div className={profilePageStyles.PositionDropdown}>
             <ProfileEditDropdown id={profile?.id} />
           </div>
@@ -97,29 +104,43 @@ function ProfilePage() {
           </Col>
           <Col className="text-center" lg={8}>
             <Card.Title className="mb-2">{profile?.owner}</Card.Title>
-            {profile?.follows_you && <Card.Text className="text-muted font-italic">follows you</Card.Text>}
-            {profile?.name && <Card.Subtitle className="my-2">{profile?.name}</Card.Subtitle>}
+            {profile?.follows_you && (
+              <Card.Text className="text-muted font-italic">
+                follows you
+              </Card.Text>
+            )}
+            {profile?.name && (
+              <Card.Subtitle className="my-2">{profile?.name}</Card.Subtitle>
+            )}
             <Row className="justify-content-center mb-3">
-                <Col>
-                    <div>{profile?.posts_count}</div>
-                    <div>posts</div>
-                </Col>
-                <Col>
-                    <div>{profile?.followers_count}</div>
-                    <div>followers</div>
-                </Col>
-                <Col>
-                    <div>{profile?.following_count}</div>
-                    <div>following</div>
-                </Col>
+              <Col>
+                <div>{profile?.posts_count}</div>
+                <div>posts</div>
+              </Col>
+              <Col>
+                <div>{profile?.followers_count}</div>
+                <div>followers</div>
+              </Col>
+              <Col>
+                <div>{profile?.following_count}</div>
+                <div>following</div>
+              </Col>
             </Row>
             {profile?.hobbies && <Card.Text>{profile?.hobbies}</Card.Text>}
-            {currentUser && !profile?.is_owner && 
-            (profile?.following_id ? (
-                <Button className={`${styles.Button} ${styles.GreyButton}`}>unfollow</Button>
-            ) : (
-                <Button onClick={() => handleFollow(profile)} className={styles.Button}>follow</Button>
-            ))}
+            {currentUser &&
+              !profile?.is_owner &&
+              (profile?.following_id ? (
+                <Button className={`${styles.Button} ${styles.GreyButton}`}>
+                  unfollow
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => handleFollow(profile)}
+                  className={styles.Button}
+                >
+                  follow
+                </Button>
+              ))}
           </Col>
         </Row>
         <Row className="mt-4 text-center">
@@ -132,7 +153,9 @@ function ProfilePage() {
   const mainProfilePosts = (
     <>
       <hr />
-      <p className={`text-center ${navStyles.Logo}`}>{profile?.owner}'s <span>posts</span></p>
+      <p className={`text-center ${navStyles.Logo}`}>
+        {profile?.owner}'s <span>posts</span>
+      </p>
       <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
@@ -146,8 +169,11 @@ function ProfilePage() {
         />
       ) : (
         <Asset
+          height={250}
+          width={250}
           src={NoResults}
           message={`No results found, ${profile?.owner} hasn't posted yet.`}
+          borderRadius="10px"
         />
       )}
     </>
