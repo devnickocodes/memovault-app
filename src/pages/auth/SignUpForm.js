@@ -40,8 +40,6 @@ const SignUpForm = () => {
 
   /**
    * Handles input changes in the sign-up form.
-   * 
-   * @param {Object} event - The change event from the form input.
    */
   const handleChange = (event) => {
     setSignUpData({
