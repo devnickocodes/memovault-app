@@ -69,6 +69,7 @@ const Post = (props) => {
       history.goBack();
       setAlert({ message: "Post has been deleted!" });
     } catch (err) {
+      // console.log(err)
       setError("Failed to delete the post. Please try again in a moment.");
     } finally {
       setShowDeleteModal(false);
@@ -85,6 +86,7 @@ const Post = (props) => {
       await likePost(id, setPosts);
       setAlert({ message: "Post has been liked!" });
     } catch (err) {
+      // console.log(err)
       setError("Failed to like the post. Please try again.");
     }
   };
@@ -99,6 +101,7 @@ const Post = (props) => {
       await unlikePost(post_like_id, id, setPosts);
       setAlert({ message: "Post has been unliked!" });
     } catch (err) {
+      // console.log(err)
       setError("Failed to unlike the post. Please try again.");
     }
   };

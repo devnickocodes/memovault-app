@@ -55,6 +55,7 @@ function PostEditForm() {
         const { title, content, image, is_owner } = data;
         is_owner ? setPostData({ title, content, image }) : history.push('/');
       } catch (err) {
+        // console.log(err)
         if (err.response?.status !== 401) {
           history.push('/not-found');
         }
@@ -95,6 +96,7 @@ function PostEditForm() {
       history.push(`/posts/${id}`);
       setAlert({ message: "Post has been updated!" });
     } catch (err) {
+      // console.log(err)
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

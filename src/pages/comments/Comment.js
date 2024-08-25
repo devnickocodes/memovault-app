@@ -73,6 +73,7 @@ const Comment = (props) => {
       setAlert({ message: "Comment deleted!" });
     } catch (err) {
       // Handle error
+      // console.log(err)
       setError("Sorry, there was an error trying to delete the comment. Please try again.");
     } finally {
       // Close modal
@@ -107,6 +108,7 @@ const Comment = (props) => {
       setAlert({ message: "You liked the comment!" });
     } catch (err) {
       // Handle error
+      // console.log(err)
       setError("Failed to like the comment. Please try again.");
     }
   };
@@ -138,6 +140,7 @@ const Comment = (props) => {
       setAlert({ message: "You unliked the comment!" });
     } catch (err) {
       // Handle error
+      // console.log(err)
       setError("Failed to unlike the comment. Please try again.");
     }
   };

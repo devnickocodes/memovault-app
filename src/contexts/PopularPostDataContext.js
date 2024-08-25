@@ -49,6 +49,7 @@ export const PopularPostDataProvider = ({ children }) => {
         popularPosts: data,
       }));
     } catch (err) {
+      // console.log(err)
       setError("An error occurred while loading popular posts. Please try again.");
     }
   };

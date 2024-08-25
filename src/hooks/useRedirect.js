@@ -24,6 +24,7 @@ export const useRedirect = (userAuthStatus) => {
                     history.push('/');
                 }
             } catch (err) {
+                // console.log(err)
                 // Redirect to home if token refresh fails and user is logged out
                 if (userAuthStatus === 'loggedOut') {
                     history.push('/');

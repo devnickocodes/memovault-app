@@ -23,6 +23,7 @@ export const useCheckOwnership = (resourceId, apiEndpoint) => {
                     history.push('/');
                 }
             } catch (err) {
+                // console.log(err)
                 // Redirect if an error occurs, except for 404 (not found) errors
                 if (err.response?.status !== 404) {
                     history.push('/');

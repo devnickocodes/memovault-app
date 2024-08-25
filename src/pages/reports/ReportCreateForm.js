@@ -11,26 +11,46 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
-import postStyles from "../../styles/Post.module.css"
+import postStyles from "../../styles/Post.module.css";
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
-
+/**
+ * ReportCreateForm allows users to create a report on a specific post.
+ * The form captures the reason for the report and any custom reason if applicable.
+ * It handles form submission, error states, and redirects the user after successful submission.
+ */
 const ReportCreateForm = () => {
+  // State to hold the data of the report being created
   const [reportData, setReportData] = useState({
     reason: "",
     custom_reason: "",
   });
+
+
   const { reason, custom_reason } = reportData;
+
+  // State to manage any errors
   const [errors, setErrors] = useState(null);
+
+  // State to hold the post data
   const [post, setPost] = useState({ results: [] });
+
+  // React Router hooks for navigation and accessing URL parameters
   const history = useHistory();
   const { id } = useParams();
+
+  // Context to manage success alerts
   const { setAlert } = useSuccessAlert();
 
+  // Redirect users who are not logged in
   useRedirect("loggedOut");
 
+ 
   const { owner, image, title, content } = post;
 
+ /**
+   * Handles changes to the form input field.
+   */
   const handleChange = (event) => {
     setReportData({
       ...reportData,
@@ -38,6 +58,10 @@ const ReportCreateForm = () => {
     });
   };
 
+  /**
+   * Fetch the post data on component mount using the post ID from the URL.
+   * If the post is not found, redirect to a 404 page.
+   */
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -45,6 +69,7 @@ const ReportCreateForm = () => {
         setPost(data);
       } catch (err) {
         // console.log(err)
+        // Handle the error if the post is not found
         if (err.response?.status === 404) {
           history.push("/not-found");
         }
@@ -54,6 +79,10 @@ const ReportCreateForm = () => {
     handleMount();
   }, [id, history]);
 
+  /**
+   * handleSubmit sends the report data to the server when the form is submitted.
+   * It also handles any errors and redirects to the report detail page on success.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -66,12 +95,16 @@ const ReportCreateForm = () => {
       setAlert({ message: "Report has been submitted!" });
     } catch (err) {
       // console.log(err)
+      // Handle errors
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
     }
   };
 
+  /**
+   * Clears the error messages after 3 seconds.
+   */
   useEffect(() => {
     let timer;
     if (errors) {
@@ -82,6 +115,7 @@ const ReportCreateForm = () => {
 
   return (
     <Container>
+      {/* Display the post details at the top of the form */}
       {post && (
         <Card className="mb-4">
           <Card.Body>
@@ -99,13 +133,13 @@ const ReportCreateForm = () => {
                 className="d-flex flex-column align-items-center align-items-md-start"
               >
                 <Card.Title className="text-center text-md-left">
-                <span className={postStyles.Font}>Title:</span> {title}
+                  <span className={postStyles.Font}>Title:</span> {title}
                 </Card.Title>
                 <Card.Subtitle className="mb-2 text-muted text-center text-md-left">
-                <span className={postStyles.Font}>Posted by:</span> {owner}
+                  <span className={postStyles.Font}>Posted by:</span> {owner}
                 </Card.Subtitle>
                 <Card.Text className="text-center text-md-left">
-                <span className={postStyles.Font}>Content:</span> {content}
+                  <span className={postStyles.Font}>Content:</span> {content}
                 </Card.Text>
               </Col>
             </Row>
@@ -113,6 +147,7 @@ const ReportCreateForm = () => {
         </Card>
       )}
 
+      {/* The form for creating a report */}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="reportReason">
           <Form.Label>Reason for Report</Form.Label>
@@ -122,6 +157,7 @@ const ReportCreateForm = () => {
             value={reason}
             onChange={handleChange}
           >
+            {/* Select options for predefined report reasons */}
             <option value="">Select a reason</option>
             <option value="spam">Spam</option>
             <option value="inappropriate">Inappropriate Content</option>
@@ -130,12 +166,14 @@ const ReportCreateForm = () => {
           </Form.Control>
         </Form.Group>
 
+        {/* Display errors related to the 'reason' field */}
         {errors?.reason?.map((message, idx) => (
           <Alert className={postStyles.ErrorAlert} key={idx}>
             {message}
           </Alert>
         ))}
 
+        {/* Conditionally render a custom reason field if 'Other' is selected */}
         {reason === "other" && (
           <Form.Group controlId="customReason">
             <Form.Label>Custom Reason</Form.Label>
@@ -148,18 +186,22 @@ const ReportCreateForm = () => {
             />
           </Form.Group>
         )}
+
+        {/* Display errors related to the 'custom_reason' field */}
         {errors?.custom_reason?.map((message, idx) => (
           <Alert className={postStyles.ErrorAlert} key={idx}>
             {message}
           </Alert>
         ))}
 
+        {/* Display any non-field errors (general errors) */}
         {errors?.non_field_errors?.map((message, idx) => (
           <Alert className={postStyles.ErrorAlert} key={idx}>
             {message}
           </Alert>
         ))}
 
+        {/* Submit button for the report form */}
         <Button type="submit" className={`mt-3 ${btnStyles.Button}`}>
           Submit Report
         </Button>

@@ -80,6 +80,7 @@ function ProfilePage() {
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
+        // console.log(err)
         // Handle errors, such as profile not found
         if (err.response?.status === 404) {
           history.push("/not-found");

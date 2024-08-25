@@ -59,6 +59,7 @@ const UserPasswordForm = () => {
       setAlert({ message: "Password has been changed!" }); // Set success alert
     } catch (err) {
       // Handle errors if the request fails
+      // console.log(err)
       setErrors(err.response?.data);
     }
   };

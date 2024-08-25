@@ -39,7 +39,8 @@ function PostsPage({ message, filter = "" }) {
         const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
         setPosts(data);
         setLoaded(true);
-      } catch {
+      } catch (err) {
+        // console.log(err)
         setError("Sorry, an error occurred. Please try again.");
       }
     };

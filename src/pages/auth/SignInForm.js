@@ -67,6 +67,7 @@ const SignInForm = () => {
       history.goBack();
       setAlert({ message: "You have successfully signed in!" });
     } catch (err) {
+      // console.log(err)
       // Set errors from server response
       setErrors(err.response?.data);
     }

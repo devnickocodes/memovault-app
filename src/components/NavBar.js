@@ -39,6 +39,7 @@ const NavBar = () => {
       removeTokenTimestamp();
       setAlert({ message: `Sorry to see you go ${currentUser.username}!` });
     } catch (err) {
+      // console.log(err)
       setError("Sorry an error occurred, please try again.");
     } finally {
       setShowDeleteModal(false);

@@ -90,6 +90,7 @@ const ProfileEditForm = () => {
       history.goBack();
       setAlert({ message: "Profile has been updated!" });
     } catch (err) {
+      // console.log(err)
       // Set form errors if any
       setErrors(err.response?.data);
     }

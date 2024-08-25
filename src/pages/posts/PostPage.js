@@ -45,6 +45,7 @@ function PostPage() {
         setPost({ results: [post] });
         setComments(comments);
       } catch (err) {
+        // console.log(err)
         // Redirect to 'not-found' page if status is 404
         if (err.response?.status === 404) {
           history.push("/not-found");

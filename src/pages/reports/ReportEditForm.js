@@ -12,27 +12,47 @@ import { useRedirect } from "../../hooks/useRedirect";
 import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
 import { useCheckOwnership } from "../../hooks/useCheckOwnership";
-import postStyles from "../../styles/Post.module.css"
+import postStyles from "../../styles/Post.module.css";
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
+/**
+ * ReportEditForm allows users to edit an existing report.
+ * The form retrieves the current report data and allows the user to update the reason and custom reason.
+ * It also handles form submission, error states, and redirects the user after successful submission.
+ */
 const ReportEditForm = () => {
+  // State to hold the report data that is being edited
   const [reportData, setReportData] = useState({
     reason: "",
     custom_reason: "",
     post: null,
   });
   const { reason, custom_reason, post } = reportData;
+
+  // State to manage errors
   const [errors, setErrors] = useState(null);
+
+  // State to hold details of the post related to the report
   const [postDetails, setPostDetails] = useState({});
+
+  // React Router hooks for navigation and accessing URL parameters
   const history = useHistory();
   const { id } = useParams();
+
+  // Context to manage success alerts
   const { setAlert } = useSuccessAlert(); 
 
+  // Redirect users who are not logged in
   useRedirect("loggedOut");
+
+  // Hook to ensure the current user owns the report
   useCheckOwnership(id, "/reports");
 
   const { owner, image, title, content } = postDetails;
 
+   /**
+   * Handles changes to the form input field.
+   */
   const handleChange = (event) => {
     setReportData({
       ...reportData,
@@ -40,16 +60,26 @@ const ReportEditForm = () => {
     });
   };
 
+  /**
+   * Fetch the report data and associated post data on component mount using the report ID from the URL.
+   * If the report or post is not found, redirect to a 404 page.
+   */
   useEffect(() => {
     const fetchReport = async () => {
       try {
+        // Fetch the report data
         const { data } = await axiosRes.get(`/reports/${id}/`);
         const { reason, custom_reason, post: postId } = data;
+
+        // Set the report data in state
         setReportData({ reason, custom_reason, post: postId });
+
+        // Fetch the details of the associated post
         const postResponse = await axiosRes.get(`/posts/${postId}/`);
         setPostDetails(postResponse.data);
       } catch (err) {
         // console.log(err)
+        // Handle the error
         if (err.response?.status === 404) {
           history.push("/not-found");
         } 
@@ -59,6 +89,10 @@ const ReportEditForm = () => {
     fetchReport();
   }, [id, history]);
 
+  /**
+   * handleSubmit sends the updated report data to the server when the form is submitted.
+   * It also handles any errors and redirects to the report detail page on success.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -71,12 +105,16 @@ const ReportEditForm = () => {
       setAlert({ message: "Report has been updated!" });
     } catch (err) {
       // console.log(err)
+      // Handle errors and set them in the state
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
     }
   };
 
+  /**
+   * Clears the error messages after 3 seconds.
+   */
   useEffect(() => {
     let timer;
     if (errors) {
@@ -87,6 +125,7 @@ const ReportEditForm = () => {
 
   return (
     <Container>
+      {/* Display the post details at the top of the form */}
       {postDetails && (
         <Card className="mb-4">
           <Card.Body>
@@ -97,7 +136,7 @@ const ReportEditForm = () => {
               <Col xs={12} md={9} className="d-flex flex-column align-items-center align-items-md-start">
                 <Card.Title className="text-center text-md-left"><span className={postStyles.Font}>Title:</span> {title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted text-center text-md-left">
-                <span className={postStyles.Font}>Posted by: </span> {owner}
+                  <span className={postStyles.Font}>Posted by: </span> {owner}
                 </Card.Subtitle>
                 <Card.Text className="text-center text-md-left"><span className={postStyles.Font}>Content: </span> {content}</Card.Text>
               </Col>
@@ -106,6 +145,7 @@ const ReportEditForm = () => {
         </Card>
       )}
 
+      {/* The form for editing the report */}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="reportReason">
           <Form.Label>Reason for Report</Form.Label>
@@ -115,6 +155,7 @@ const ReportEditForm = () => {
             value={reason}
             onChange={handleChange}
           >
+            {/* Select options for predefined report reasons */}
             <option value="">Select a reason</option>
             <option value="spam">Spam</option>
             <option value="inappropriate">Inappropriate Content</option>
@@ -123,10 +164,12 @@ const ReportEditForm = () => {
           </Form.Control>
         </Form.Group>
 
+        {/* Display errors related to the 'reason' field */}
         {errors?.reason?.map((message, idx) => (
           <Alert className={postStyles.ErrorAlert} key={idx}>{message}</Alert>
         ))}
 
+        {/* Conditionally render a custom reason field if 'Other' is selected */}
         {reason === "other" && (
           <Form.Group controlId="customReason">
             <Form.Label>Custom Reason</Form.Label>
@@ -140,14 +183,17 @@ const ReportEditForm = () => {
           </Form.Group>
         )}
 
+        {/* Display errors related to the 'custom_reason' field */}
         {errors?.custom_reason?.map((message, idx) => (
           <Alert className={postStyles.ErrorAlert} key={idx}>{message}</Alert>
         ))}
 
+        {/* Display any non-field errors (general errors) */}
         {errors?.non_field_errors?.map((message, idx) => (
           <Alert className={postStyles.ErrorAlert} key={idx}>{message}</Alert>
         ))}
 
+        {/* Submit button for the report form */}
         <Button type="submit" className={`mt-3 ${btnStyles.Button}`}>
           Submit Report
         </Button>

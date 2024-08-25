@@ -62,6 +62,7 @@ function CommentEditForm(props) {
       setShowEditForm(false);
       setAlert({ message: "Comment updated!" });
     } catch (err) {
+      // console.log(err)
       // Handle any errors that occur during the comment update
       setError("Sorry an error occurred, please try again.");
     }

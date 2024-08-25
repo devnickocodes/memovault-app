@@ -66,6 +66,7 @@ function CommentCreateForm(props) {
       setAlert({ message: "Thank you for commenting!" });
     } catch (err) {
       // Handle any errors that occur during the comment posting
+      // console.log(err)
       setError("Sorry an error occurred, please try again.");
     }
   };

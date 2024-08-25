@@ -62,6 +62,7 @@ const SignUpForm = () => {
       history.push("/signin");
       setAlert({ message: "Welcome on board!" });
     } catch (err) {
+      // console.log(err)
       // Set errors from server response
       setErrors(err.response?.data);
     }
