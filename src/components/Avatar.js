@@ -1,6 +1,10 @@
 import React from "react";
 import styles from "../styles/Avatar.module.css";
 
+
+/**
+ * Renders an avatar image with optional text and adjustable height and width
+ */
 const Avatar = ({ src, height = 45, text }) => {
   return (
     <span>

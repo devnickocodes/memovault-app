@@ -2,6 +2,10 @@ import React from "react";
 import Spinner from "react-bootstrap/Spinner";
 import styles from "../styles/Asset.module.css";
 
+
+/**
+ * Renders a container that can optionally display a loading spinner, an image, and a message.
+ */
 const Asset = ({ spinner, src, message, height, width, borderRadius }) => {
   return (
     <div className={`${styles.Asset} p-4`}>
