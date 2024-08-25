@@ -16,11 +16,19 @@ import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
+/**
+ * SignInForm component for user authentication.
+ * 
+ * This component provides a sign-in form for users to log in to their account. It manages the state of the sign-in form,
+ * handles form submission, and displays error messages if any are returned from the server. Upon successful sign-in,
+ * it sets the current user and redirects to the previous page while showing a success alert.
+ */
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
   const { setAlert } = useSuccessAlert();
 
-  useRedirect('loggedIn')
+  // Redirects if the user is already logged in
+  useRedirect('loggedIn');
 
   const [signInData, setSignInData] = useState({
     username: "",
@@ -30,9 +38,11 @@ const SignInForm = () => {
   const [errors, setErrors] = useState({});
 
   const { username, password } = signInData;
-
   const history = useHistory();
 
+  /**
+   * Handles input changes in the sign-in form.
+   */
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
@@ -40,17 +50,24 @@ const SignInForm = () => {
     });
   };
 
+  /**
+   * Handles form submission for signing in.
+   * 
+   * Sends sign-in data to the server and processes the response. If the sign-in is successful,
+   * it sets the current user, updates the token timestamp, redirects to the previous page,
+   * and shows a success alert. If there are errors, they are set in the component state.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
-      setTokenTimestamp(data)
-      history.goBack()
+      setTokenTimestamp(data);
+      history.goBack();
       setAlert({ message: "You have successfully signed in!" });
     } catch (err) {
-      // console.log(err)
+      // Set errors from server response
       setErrors(err.response?.data);
     }
   };
@@ -62,6 +79,7 @@ const SignInForm = () => {
           <h1 className={`mb-5 ${styles.Header}`}>
             Sign <span>in</span>
           </h1>
+          {/* Display Sign In Form */}
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
@@ -74,6 +92,7 @@ const SignInForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display username errors */}
             {errors.username?.map((message, idx) => (
               <Alert className="mt-2" key={idx} variant="warning">
                 {message}
@@ -91,6 +110,7 @@ const SignInForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display password errors */}
             {errors.password?.map((message, idx) => (
               <Alert className="mt-2" key={idx} variant="warning">
                 {message}
@@ -100,6 +120,7 @@ const SignInForm = () => {
             <Button className={`${btnStyles.Button} ${btnStyles.Width}`} type="submit">
               Sign <span>In</span>
             </Button>
+            {/* Display non-field errors */}
             {errors.non_field_errors?.map((message, idx) => (
               <Alert className="mt-2" key={idx} variant="warning">
                 {message}
