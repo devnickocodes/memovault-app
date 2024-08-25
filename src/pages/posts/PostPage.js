@@ -19,17 +19,22 @@ import PopularPosts from "./PopularPosts";
 import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
 import ScrollToTop from "react-scroll-to-top";
 
-
 function PostPage() {
-  const { id } = useParams();
-  const [post, setPost] = useState({ results: [] });
-  const [error, setError] = useState(null);
-  const currentUser = useCurrentUser();
-  const profile_image = currentUser?.profile_image;
-  const [comments, setComments] = useState({ results: [] });
+  const { id } = useParams(); // Extract post ID from URL parameters
+  const [post, setPost] = useState({ results: [] }); // State for post data
+  const [error, setError] = useState(null); // State for error messages
+  const currentUser = useCurrentUser(); // Hook to retrieve the current user's data
+  const profile_image = currentUser?.profile_image; // Get the current user's profile image
+  const [comments, setComments] = useState({ results: [] }); // State for comments data
 
-  const history = useHistory()
+  const history = useHistory(); // Hook for navigation
 
+  /**
+   * Fetch post and comments when component mounts:
+   * - Retrieve post data and comments for the specified post ID
+   * - Set post and comments state with retrieved data
+   * - Redirect to 'not-found' page on 404 error or show a generic error message for other errors
+   */
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -40,10 +45,11 @@ function PostPage() {
         setPost({ results: [post] });
         setComments(comments);
       } catch (err) {
-        // console.log(err)
+        // Redirect to 'not-found' page if status is 404
         if (err.response?.status === 404) {
           history.push("/not-found");
         } else {
+          // Set a generic error message for other errors
           setError("Sorry, an error occurred. Please try again.");
         }
       }
@@ -51,6 +57,9 @@ function PostPage() {
     handleMount();
   }, [id, history]);
 
+  /**
+   * Clear error message after 3 seconds
+   */
   useEffect(() => {
     let timer;
     if (error) {
@@ -62,7 +71,10 @@ function PostPage() {
   return (
     <Row className="h-100">
       <Col lg={8} className="py-2 p-0 p-lg-2">
-      <PopularProfilesMostPosts mobile />
+        {/* Display popular profiles on mobile */}
+        <PopularProfilesMostPosts mobile />
+        
+        {/* Display error alert if there is an error */}
         {error && (
           <Alert
             className={`mt-2 text-center ${styles.Alert} ${styles.ErrorAlert}`}
@@ -70,8 +82,12 @@ function PostPage() {
             {error}
           </Alert>
         )}
+        
+        {/* Display post component with post details */}
         <Post {...post.results[0]} setPosts={setPost} postPage />
+        
         <Container className="mt-3">
+          {/* Display comment creation form if user is logged in */}
           {currentUser ? (
             <CommentCreateForm
               profile_id={currentUser.profile_id}
@@ -83,6 +99,8 @@ function PostPage() {
           ) : comments.results.length ? (
             <p className={`${commentStyles.CommentsHeading} mb-3`}>Comments</p>
           ) : null}
+          
+          {/* Display comments with infinite scrolling */}
           {comments.results.length ? (
             <InfiniteScroll
               children={comments.results.map((comment) => (
@@ -111,6 +129,7 @@ function PostPage() {
       </Col>
 
       <Col lg={4} className="d-none d-lg-flex flex-column p-lg-2">
+        {/* Display popular profiles and posts on larger screens */}
         <div className="d-lg-none mb-3">
           <PopularProfilesMostPosts />
         </div>
@@ -119,7 +138,9 @@ function PostPage() {
           <PopularPosts />
         </div> 
       </Col>
-    <ScrollToTop className={postsPageStyles.ScrollToTop} color="purple" smooth />
+      
+      {/* Scroll to top button */}
+      <ScrollToTop className={postsPageStyles.ScrollToTop} color="purple" smooth />
     </Row>
   );
 }

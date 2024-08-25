@@ -17,13 +17,17 @@ import Asset from "../../components/Asset";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
-import postStyles from "../../styles/Post.module.css"
+import postStyles from "../../styles/Post.module.css";
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
-
 function PostCreateForm() {
+  // State to hold form errors
   const [errors, setErrors] = useState({});
-  useRedirect('loggedOut')
+  
+  // Redirect the user if logged out
+  useRedirect('loggedOut');
+  
+  // State to hold form data
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -32,13 +36,16 @@ function PostCreateForm() {
 
   const { title, content, image } = postData;
 
+  // Ref for the file input
   const inputImage = useRef(null);
 
+  // Hook for navigation
   const history = useHistory();
 
+  // Hook to manage success alerts
   const { setAlert } = useSuccessAlert();
 
-
+  // Handle form input changes
   const handleChange = (event) => {
     setPostData({
       ...postData,
@@ -46,6 +53,14 @@ function PostCreateForm() {
     });
   };
 
+  /**
+   * Handle form submission:
+   * - Create FormData object to send as multipart/form-data
+   * - Append title, content, and image to FormData
+   * - Make API request to create the post
+   * - Redirect to the newly created post's detail page
+   * - Show success alert or handle errors
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -61,13 +76,17 @@ function PostCreateForm() {
       history.push(`/posts/${data.id}`);
       setAlert({ message: "Thank you for posting!" });
     } catch (err) {
-      // console.log(err)
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
     }
   };
 
+  /**
+   * Handle image file input change:
+   * - Revoke the old image URL if it exists
+   * - Create and set a new URL for the selected image
+   */
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
@@ -87,6 +106,7 @@ function PostCreateForm() {
           <Col xs={12} md={8} lg={6} className="text-center">
             <Form.Group className="text-center">
               {image ? (
+                // If an image URL exists, display the image and option to change it
                 <>
                   <figure>
                     <Image className={appStyles.Image} src={image} rounded />
@@ -101,6 +121,7 @@ function PostCreateForm() {
                   </div>
                 </>
               ) : (
+                // If no image URL exists, display placeholder image with upload prompt
                 <Form.Label
                   className="d-flex justify-content-center mt-3"
                   htmlFor="image-upload"
@@ -123,6 +144,7 @@ function PostCreateForm() {
               />
             </Form.Group>
             {errors?.image?.map((message, idx) => (
+              // Display image upload errors, if any
               <Alert className={postStyles.ErrorAlert} key={idx}>
                 {message}
               </Alert>
@@ -141,6 +163,7 @@ function PostCreateForm() {
               />
             </Form.Group>
             {errors?.title?.map((message, idx) => (
+              // Display title errors, if any
               <Alert className={postStyles.ErrorAlert} key={idx}>
                 {message}
               </Alert>
@@ -160,6 +183,7 @@ function PostCreateForm() {
               />
             </Form.Group>
             {errors?.content?.map((message, idx) => (
+              // Display content errors, if any
               <Alert className={postStyles.ErrorAlert} key={idx}>
                 {message}
               </Alert>

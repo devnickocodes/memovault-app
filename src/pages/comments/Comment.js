@@ -22,7 +22,6 @@ import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
  * Users can perform actions based on their permissions and the current state of the comment.
  */
 const Comment = (props) => {
-  // Destructure props
   const {
     profile_id,
     profile_image,
@@ -164,7 +163,7 @@ const Comment = (props) => {
         <Media className="align-items-start">
           {/* User avatar linked to their profile */}
           <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} />
+            <Avatar src={profile_image}/>
           </Link>
           <Media.Body className="ml-3">
             <div className={styles.CommentHeader}>
