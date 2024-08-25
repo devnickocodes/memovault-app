@@ -15,10 +15,7 @@ import NoResults from "../../assets/no-results.jpg";
 import { fetchMoreData } from "../../utils/utils";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import {
-  useProfileData,
-  useSetProfileData,
-} from "../../contexts/ProfileDataContext";
+import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Button.module.css";
 import navStyles from "../../styles/NavBar.module.css";
@@ -28,38 +25,62 @@ import avatarStyles from "../../styles/Avatar.module.css";
 import { ProfileEditDropdown } from "../../components/DropdownOptions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+/**
+ * The ProfilePage component displays a user's profile information 
+ * and their posts. It handles fetching profile and post data, 
+ * managing loading states and errors, and providing follow/unfollow functionality.
+ */
 function ProfilePage() {
+  // State to track if the data has been successfully loaded
   const [hasLoaded, setHasLoaded] = useState(false);
 
+  // State to store profile posts
+  const [profilePosts, setProfilePosts] = useState({ results: [] });
+
+  // State to manage error messages
+  const [error, setError] = useState(null);
+
+  // Get the profile ID from URL parameters
   const { id } = useParams();
+
+  // Contexts for profile data and current user
   const { profileData } = useProfileData();
   const pageProfile = profileData?.pageProfile;
   const profile = pageProfile?.results[0];
   const currentUser = useCurrentUser();
-  const [profilePosts, setProfilePosts] = useState({ results: [] });
 
+  // Functions to update profile data and handle follow actions
   const { setProfileData, handleFollow } = useSetProfileData();
 
-  const [error, setError] = useState(null);
-
+  // Hook to navigate
   const history = useHistory();
 
+  /**
+   * Fetches the profile data and posts for the given profile ID.
+   * Updates the profile data context and profile posts state.
+   * Handles errors, including redirecting to a "not found" page if the profile is not found.
+   */
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Fetch profile and posts data
         const [{ data: profileData }, { data: profilePosts }] =
           await Promise.all([
             axiosReq.get(`/profiles/${id}/`),
             axiosReq.get(`/posts/?owner__profile=${id}`),
           ]);
+
+        // Update profile data context
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [profileData] },
         }));
+
+        // Update state with profile posts
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
-        // console.log(err)
+        // Handle errors, such as profile not found
         if (err.response?.status === 404) {
           history.push("/not-found");
         } else {
@@ -70,6 +91,9 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData, history]);
 
+  /**
+   * Clears the error message after 3 seconds.
+   */
   useEffect(() => {
     let timer;
     if (error) {
@@ -78,6 +102,10 @@ function ProfilePage() {
     return () => clearTimeout(timer);
   }, [error]);
 
+  /**
+   * Renders the profile card, including profile information and
+   * a follow/unfollow button based on the user's current state.
+   */
   const mainProfile = (
     <Card className={profilePageStyles.ProfileCard}>
       {error && (
@@ -150,6 +178,11 @@ function ProfilePage() {
     </Card>
   );
 
+  /**
+   * Renders the profile's posts with infinite scroll functionality.
+   * Shows a loading spinner while fetching more posts and handles 
+   * cases where no posts are available.
+   */
   const mainProfilePosts = (
     <>
       <hr />

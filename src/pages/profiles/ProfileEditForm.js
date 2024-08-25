@@ -13,16 +13,20 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import postCreateStyles from "../../styles/PostCreateEditForm.module.css";
 import navBarStyles from "../../styles/NavBar.module.css";
-import postStyles from "../../styles/Post.module.css"
+import postStyles from "../../styles/Post.module.css";
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
 
 const ProfileEditForm = () => {
+  // Current user and function to update current user
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  
+  // Profile ID from URL parameters
   const { id } = useParams();
   const history = useHistory();
-  const imageFile = useRef();
+  const imageFile = useRef(); // Ref for file input
 
+  // State for profile data
   const [profileData, setProfileData] = useState({
     name: "",
     bio: "",
@@ -31,11 +35,12 @@ const ProfileEditForm = () => {
   });
   const { name, bio, hobbies, image } = profileData;
 
+  // State for form errors
   const [errors, setErrors] = useState({});
-
+  // Hook for handling success alerts
   const { setAlert } = useSuccessAlert();
 
-
+  // Fetch profile data on component mount
   useEffect(() => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
@@ -44,7 +49,7 @@ const ProfileEditForm = () => {
           const { name, bio, hobbies, image } = data;
           setProfileData({ name, bio, hobbies, image });
         } catch (err) {
-          // console.log(err);
+          // console.log(err)
           history.push("/");
         }
       } else {
@@ -55,6 +60,7 @@ const ProfileEditForm = () => {
     handleMount();
   }, [currentUser, history, id]);
 
+  // Handle input changes
   const handleChange = (event) => {
     setProfileData({
       ...profileData,
@@ -62,6 +68,7 @@ const ProfileEditForm = () => {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -75,6 +82,7 @@ const ProfileEditForm = () => {
 
     try {
       const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+      // Update current user profile image
       setCurrentUser((currentUser) => ({
         ...currentUser,
         profile_image: data.image,
@@ -82,11 +90,12 @@ const ProfileEditForm = () => {
       history.goBack();
       setAlert({ message: "Profile has been updated!" });
     } catch (err) {
-      // console.log(err);
+      // Set form errors if any
       setErrors(err.response?.data);
     }
   };
 
+  // Clear errors after 3 seconds
   useEffect(() => {
     let timer;
     if (errors) {
@@ -95,6 +104,7 @@ const ProfileEditForm = () => {
     return () => clearTimeout(timer);
   }, [errors]);
 
+  // Form fields for profile editing
   const textFields = (
     <>
       <Form.Group controlId="name" className="mt-3 text-center">
@@ -165,7 +175,7 @@ const ProfileEditForm = () => {
                 </Form.Label>
               </div>
               <Form.File
-              className={postCreateStyles.hiddenFileInput}
+                className={postCreateStyles.hiddenFileInput}
                 id="image-upload"
                 ref={imageFile}
                 accept="image/*"
