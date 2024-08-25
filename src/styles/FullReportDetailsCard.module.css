@@ -1,4 +1,4 @@
-
+/* Styles for full report card component */
 .Card {
     border: none;
     border-radius: 15px;
@@ -6,16 +6,21 @@
     background: linear-gradient(135deg, #f3f4f6, #e3bff8);
 }
 
+
+/* Styles for full repoort card title */
 .cardTitle{
     font-size: 1.6rem;
 }
 
+/* Styles for full repoort card subtitle */
 .cardSubtitle {
     font-size: 1.4rem;
     font-weight: bold;
     color: #6c63ff;
 }
 
+
+/* Styles for full repoort card text */
 .cardText {
     font-size: 1.2rem;
 }

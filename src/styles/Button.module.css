@@ -71,7 +71,6 @@
 }
 
 /* Grey button base styles (specific for the comments) */
-
 .GreyCommentButton {
   background-color: #b3b3b3;
   border: none;
@@ -84,7 +83,6 @@
 }
 
 /* Styles for the grey button on hover */
-
 .GreyCommentButton:hover{
     color: #f8f9fa;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)

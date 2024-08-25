@@ -1,3 +1,4 @@
+/* Container for the "Not Found" page */
 .NotFoundContainer {
   background: #f8f9fa;
   display: flex;
@@ -5,20 +6,8 @@
   align-items: center;
 }
 
-.Asset {
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-}
-
+/* Style message in "Not Found" */
 .NotFoundMessage {
   font-size: 1.25rem;
   color: #555;
-}
-
-.HomeButton {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 50px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }

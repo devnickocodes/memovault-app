@@ -1,3 +1,4 @@
+/* Styles for dropdown */
 .DropdownItem {
   display: inline-block;
   max-width: 50%;
@@ -6,31 +7,37 @@
   font-size: 16px;
 }
 
+/* Styles for dropdown with absolute positioning */
 .Absolute {
   position: absolute;
   right: 0;
   z-index: 99;
 }
 
+/* Styles for dropdown toggle */
 .Dropdown {
   color: #992e99;
   cursor: pointer;
 }
 
+/* Styles for icons inside dropdown items */
 .DropdownItem i {
   margin-right: 8px;
   font-size: 18px; 
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
+/* Hover effect for icons inside dropdown items */
 .DropdownItem:hover i { 
   transform: scale(1.1);
 }
 
+/* Styles for the red icon from fontawesome */
 .Red{
     color: #ff2a2af3;
 }
 
+/* Styles for the grey icon from fontawesome  */
 .Grey{
     color: #575656;
 }

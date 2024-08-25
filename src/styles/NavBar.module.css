@@ -1,13 +1,16 @@
+/* Styles for navigation container */
 .navContainer {
   border-bottom: 1px solid #c4c4c4;
   background-color: #ffffff;
 }
 
+/* Styles for the logo */
 .Logo {
   font-size: 1.5rem;
   letter-spacing: 0.1em;
 }
 
+/* Styles for the span inside the logo */
 .Logo span {
   color: #9b22b9;
   text-transform: uppercase;
@@ -16,20 +19,24 @@
   border-bottom: 2px solid #9b22b9;
 }
 
+/* Styles for logo link on hover */
 .LogoLink:hover {
   box-shadow: none;
 }
 
+/* Styles for icon inside the logo link on hover */
 .LogoLink:hover i {
   font-size: 1.2rem;
   color: #9b22b9;
 }
 
+/* Styles for icon inside the logo link */
 .LogoLink i {
   font-size: 1.2rem;
   transition: color 0.2s ease-in-out;
 }
 
+/* Styles for navigation link */
 .NavLink {
   padding: 5px;
   font-size: 1.2rem;
@@ -39,43 +46,50 @@
   align-items: center;
 }
 
+/* Styles for navigation link on hover */
 .NavLink:hover {
   box-shadow: 0 2px 0 0 #9b22b9;
   text-decoration: none;
   color: #000000;
 }
 
+/* Styles for icon inside navigation link on hover */
 .NavLink:hover i {
   font-size: 1.2rem;
   color: #9b22b9;
   transition: color ease-in-out 0.3s;
 }
 
+/* Styles for active navigation link icon */
 .Active i {
   font-size: 1.2rem;
   color: #9b22b9;
   transition: color ease-in-out 0.3s;
 }
 
+/* Styles for active navigation link */
 .Active {
   box-shadow: 0 2px 0 0 #9b22b9;
 }
 
-
+/* Styles for add post icon */
 .addPostIcon {
   display: flex;
 }
 
+/* Hide add post icon on smaller screens */
 @media (max-width: 768px) {
   .addPostIcon {
     display: none;
   }
 }
 
+/* Styles for dropdown add post icon */
 .dropdownAddPostIcon {
   display: none;
 }
 
+/* Show dropdown add post icon on smaller screens */
 @media (max-width: 768px) {
   .dropdownAddPostIcon {
     display: flex;
