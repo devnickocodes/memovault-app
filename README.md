@@ -105,3 +105,12 @@ The font can be found [here](https://fonts.google.com/specimen/Nunito)
 ![Typography](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/google_font.png)
 
 
+## Wireframes
+
+
+I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for the app.
+
+
+- **Home Page Wireframe (signed out)**
+
+![Home Page Wireframe (signed out)]()
