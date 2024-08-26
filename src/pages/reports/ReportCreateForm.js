@@ -13,6 +13,7 @@ import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
 import postStyles from "../../styles/Post.module.css";
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 /**
  * ReportCreateForm allows users to create a report on a specific post.
@@ -38,6 +39,8 @@ const ReportCreateForm = () => {
   // React Router hooks for navigation and accessing URL parameters
   const history = useHistory();
   const { id } = useParams();
+
+  const currentUser = useCurrentUser()
 
   // Context to manage success alerts
   const { setAlert } = useSuccessAlert();
@@ -67,9 +70,11 @@ const ReportCreateForm = () => {
       try {
         const { data } = await axiosRes.get(`/posts/${id}/`);
         setPost(data);
+        // Redirect if the current user is the owner of the post
+        if (data.owner === currentUser?.username) {
+          history.push("/");
+        }
       } catch (err) {
-        // console.log(err)
-        // Handle the error if the post is not found
         if (err.response?.status === 404) {
           history.push("/not-found");
         }
@@ -77,7 +82,7 @@ const ReportCreateForm = () => {
     };
 
     handleMount();
-  }, [id, history]);
+  }, [id, history, currentUser]);
 
   /**
    * handleSubmit sends the report data to the server when the form is submitted.
