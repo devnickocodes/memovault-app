@@ -503,42 +503,86 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
+- **Feed Page**
+
+
+    - The contents for the feed page are similar to the landing page with the difference being the loaded posts are only posts by people who are followed by the requesting user.
+
+
+![Feed Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/feed-page.png)
 
 
 
 
+- **Reports Page (User)**
+
+
+    - The contents for the reports page are similar to the landing page with the difference being that the user can see report previews only for the reports that they have created along with a button that will navigate users to the full report card of the report.
+
+
+![Reports Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/reports-page-user.png)
+
+
+- **Reports Page (Admin)**
+
+
+- **Full Report Card Page**
+
+    - On this page the user can find the full details for a specific report with a "Go To Post" button that navigates the user to the reported post.
+
+![Full Report Card Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/full-report-card-page.png)
+
+
+
+- **Full Report Card Page Options Toggle (Owner)**
+
+    - The owner of the report is provided with two options one for edit and one for delete.
+
+![Full Report Card Page Options Toggle (Owner)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/edit-delete-togle.png)
+
+
+
+- **Full Report Card Page Options Toggle (Admin)**
+
+    - The admin is provided with the option to delete any report.
+
+![Full Report Card Page Options Toggle (Admin)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/delete-togle.png)
+
+
+
+- **Delete a Report**
+
+    - When the user clicks on the delete button a modal prompts them to confirm their decision, ensuring that they don't unintentionally delete their report. 
+
+
+![Delete a Report](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/delete-report-modal.png)
+
+
+
+- **Delete a Report Success Message**
+
+    - After successful deletion, users are presented with a success message indicating the report has been deleted.
+
+
+![Delete a Report Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/report-delete-success.png)
 
 
 
 
+- **Edit a Report**
+
+    - When the user clicks on the edit button they are navigated to the report edit form page.
+
+![Edit a Report](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/edit-report-page.png)
 
 
 
+- **Edit a Report Success Message**
+
+    - After a successful edit, users are presented with a success message indicating the report has been updated.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![Edit a Report Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/report-update-success.png)
 
 
 
