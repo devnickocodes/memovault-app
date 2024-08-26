@@ -294,7 +294,7 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 - **Landing Page**
 
-    - The landing page consist of a search bar, list of uploaded posts utilising infinity scroll component, popular profiles, top creators and popular posts. 
+    - The landing page consists of a search bar, list of uploaded posts utilising infinity scroll component, popular profiles, top creators and popular posts. 
 
  ![Landing Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/homepage.png)
 
@@ -320,6 +320,146 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
     - In case nothing is found the user is met with a "No results found" message.
 
 ![Search Bar (No results)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/homepage-no-results.png)
+
+
+- **Post (Not Owner)**
+
+    - The post includes the profile picture of the owner as well as their username, both are clickable and will navigate the user to the profile page of the owner. It also includes the date when it was posted, the image, title, content, number of likes, number of comments and a report flag.
+
+![Post (Not Owner)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/landing-page-post-not-owner.png)
+
+
+- **Post (Owner)**
+
+    - The post includes all the functionality except the report flag as users cannot report their own posts.
+
+
+![Post (Owner)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/landing-page-post-owner.png)
+
+
+- **Post Options Toggle (Owner)**
+
+    - The owner of the post is provided with two options one for edit and one for delete.
+
+
+![Post Options Toggle (Owner)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/edit-delete-togle.png)
+
+
+- **Post Options Toggle (Admin)**
+
+    - The admin is provided with the option to delete the post
+
+
+![Post Options Toggle (Admin)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/delete-togle.png)
+
+
+
+- **Delete a Post**
+
+
+    - When the user clicks on the delete button a modal prompts them to confirm their decision, ensuring that they don't unintentionally delete their post. 
+
+
+
+![Delete a Post](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/delete-post-modal.png)
+
+
+
+
+- **Delete a Post Success Message**
+
+    - After successful deletion, users are presented with a success message indicating the post has been deleted.
+
+
+![Delete a Post Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/post-delete-success.png)
+
+
+- **Edit a Post**
+
+    - When the user clicks on the edit button they are navigated to the post edit form page.
+
+![Edit a Post](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/edit-post-page.png)
+
+
+
+- **Edit a Post Success Message**
+
+    - After a successful edit, users are presented with a success message indicating the post has been updated.
+
+
+![Edit a Post Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/post-update-success.png)
+
+
+
+- **Likes (Signed out)**
+
+    - The user needs to sign in, in order to like posts and an appropriate message is displayed, when the user clicks on the heart icon they are navigated to the sign in page.
+
+![Likes (Signed out)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/log-in-to-like.png)
+
+
+
+- **Likes (Signed in, owner)**
+
+    - Users cannot like their own posts and an appropriate message is displayed.
+
+![Likes (Signed in, owner)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/cant-like-own-post.png)
+
+
+
+- **Likes (Signed in / Not Active)**
+
+    - When the post hasn't been liked by the user.
+
+![Likes (Signed in / Not Active)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/like-non-active.png)
+
+
+- **Likes (Signed in / Active)**
+
+    - When the post has been liked by the user
+
+![Likes (Signed in / Active)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/like-active.png)
+
+
+
+- **Like Success Message**
+
+    - After successful like, users are presented with a success message indicating they have liked the post
+
+
+![Like Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/post-like-success.png)
+
+
+- **Unlike Success Message**
+
+    - After successful unlike, users are presented with a success message indicating they have unliked the post
+
+
+![Unlike Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/post-unlike-success.png)
+
+
+- **Comment Icon**
+
+    - When the user clicks on the comment icon they are navigated to the post's individual page.
+
+![Comment Icon](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/like-non-active.png)
+
+
+- **Report Flag Icon**
+
+    - The user can choose to report a given post by clicking the flag icon, after which the user will be navigated to the report create form page.
+
+![Report Flag Icon](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/report-create.png)
+
+
+
+
+
+
+
+
+
+
 
 
 
