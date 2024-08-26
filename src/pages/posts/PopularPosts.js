@@ -14,7 +14,7 @@ import { usePopularPostData } from "../../contexts/PopularPostDataContext";
  * up to 3 of them using the `PopularPost` component. If an error occurs,
  * it displays the error message. While data is loading, a spinner is shown.
  */
-const PopularPosts = ({ setPosts, mobile }) => {
+const PopularPosts = ({ mobile }) => {
   // Extract popular post data and error from context
   const { postData, error } = usePopularPostData();
   const { popularPosts } = postData;
@@ -33,7 +33,7 @@ const PopularPosts = ({ setPosts, mobile }) => {
           </p>
           {popularPosts.results.slice(0, 3).map((post) => (
             // Render PopularPost component for each post
-            <PopularPost key={post.id} post={post} setPosts={setPosts} />
+            <PopularPost key={post.id} post={post} />
           ))}
         </>
       ) : (
