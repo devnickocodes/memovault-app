@@ -64,7 +64,7 @@ MemoVault is a social media app built with the React library, offering a wide ra
 
 ## Agile Development 
 
-[GitHub Projects](https://github.com/users/devnickocodes/projects/9/views/1) was used as one of the main Agile tools for the development for this project. The process was tracked using a Kanban board, utilising the "To Do", "In Progress" and "Done" columns.
+[GitHub Projects](https://github.com/users/devnickocodes/projects/9/views/1) was used as one of the main Agile tools for the development of this project. The process was tracked using a Kanban board, utilising the "To Do", "In Progress" and "Done" columns.
 
 
 ![Project Board](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/project_board.png)
@@ -81,3 +81,27 @@ Another Agile tool that was used in the making of this project is GitHub Issues 
 - **Open Issues**
 
 ![Open Issues](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/open_issues.png) 
+
+
+## Color Scheme
+
+MemoVault is designed with a vibrant and cohesive color palette that enhances the overall user experience and visual appeal. The selected colors bring a modern and engaging feel to the app, ensuring a consistent and enjoyable interface across features.
+
+
+I have used [Coolors.co](https://coolors.co/9b22b9-808080-5e35b1-bfcde0-ae4eee-292727-fc3434-6c63ff-6a1b9a-d0f5d8) to create a showcase for the color scheme of the app.
+
+
+![Color Palette](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/colors.png)
+
+
+## Typography 
+
+MemoVault utilizes the Nunito font, chosen for its clean and modern appearance. This font provides a friendly and approachable aesthetic, ensuring readability while complementing the app's vibrant design.
+
+
+The font can be found [here](https://fonts.google.com/specimen/Nunito)
+
+
+![Typography](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/google_font.png)
+
+
