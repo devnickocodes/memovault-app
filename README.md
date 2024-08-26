@@ -113,80 +113,80 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 - **Home Page Wireframe (signed out)**
 
-![Home Page Wireframe (signed out)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/homepage_signed_out.png)
+![Home Page Wireframe (signed out)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/homepage_signed_out_wireframe.png)
 
 
 - **Home Page Wireframe (signed in)**
 
-![Home Page Wireframe (signed in)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/homepage_signed_in.png)
+![Home Page Wireframe (signed in)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/homepage_signed_in_wireframe.png)
 
 
 - **Sign In Page Wireframe**
 
-![Sign In Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/sign_in_page.png)
+![Sign In Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/sign_in_page_wireframe.png)
 
 
 
 - **Sign Up Page Wireframe**
 
-![Sign Up Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/sign_up_page.png)
+![Sign Up Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/sign_up_page_wireframe.png)
 
 
 - **Feed Page Wireframe**
 
-![Feed Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/feed_page.png)
+![Feed Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/feed_page_wireframe.png)
 
 
 - **Reports Page Wireframe**
 
-![Reports Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/reports_page.png)
+![Reports Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/reports_page_wireframe.png)
 
 
 - **Post Page With Comments Wireframe (includes a create / edit comments form)**
 
-![Post Page With Comments Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/post_page_with_comments_page.png)
+![Post Page With Comments Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/post_page_with_comments_page_wireframe.png)
 
 
 
 - **Profile Page Wireframe**
 
-![Profile Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/profile_page.png)
+![Profile Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/profile_page_wireframe.png)
 
 
 
 - **Post Create Form Page Wireframe**
 
-![Post Create Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/post_create_form_page.png)
+![Post Create Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/post_create_form_page_wireframe.png)
 
 
 - **Post Edit Form Page Wireframe**
 
-![Post Edit Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/post_edit_form_page.png)
+![Post Edit Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/post_edit_form_page_wireframe.png)
 
 
 
 - **Report Create / Edit Form Page Wireframe**
 
-![Report Create / Edit Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/report_create_edit_form_page.png)
+![Report Create / Edit Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/report_create_edit_form_page_wireframe.png)
 
 
 
 - **Profile Edit Form Page Wireframe**
 
-![Profile Edit Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/profile_edit_form_page.png)
+![Profile Edit Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/profile_edit_form_page_wireframe.png)
 
 
 
 
 - **Change Username Form Page Wireframe**
 
-![Change Username Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/change_username_form_page.png)
+![Change Username Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/change_username_form_page_wireframe.png)
 
 
 
 - **Change Password Form Page Wireframe**
 
-![Change UsernPasswordame Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/change_password_form_page.png)
+![Change UsernPasswordame Form Page Wireframe](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/change_password_form_page_wireframe.png)
 
 
 
