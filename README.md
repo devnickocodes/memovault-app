@@ -520,7 +520,7 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
     - The contents for the reports page are similar to the landing page with the difference being that the user can see report previews only for the reports that they have created along with a button that will navigate users to the full report card of the report.
 
 
-![Reports Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/reports-page-user.png)
+![Reports Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/report-page-user.png)
 
 
 - **Reports Page (Admin)**
@@ -587,15 +587,29 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
+- **Individual Post Page (Logged Out / No Comments)**
+
+    - The page contains the specific post clicked along with a comments section, for logged out users and when there aren't any comments there is a message saying "No comments yet. Be the first to comment!"
+
+
+![Individual Post Page (Logged Out / No Comments)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/post-page-logged-out-no-comments.png)
 
 
 
+- **Individual Post Page (Logged In / No Comments)**
+
+    - The page contains the specific post clicked along with a comments section, for logged in users and when there aren't any comments there is a message saying "It would be great if you were the first to comment!". A comment create form is also included.
+
+![Individual Post Page (Logged In / No Comments)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/post-page-logged-in-no-comments.png)
 
 
 
+- **Individual Post Page (Logged In / With Comments)**
+
+    - The page contains the specific post clicked along with a comments section. A comment create form is also included as well as all the comments for the specific post.
 
 
-
+![Individual Post Page (Logged In / With Comments)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/post-page-logged-in-with-comments.png)
 
 
 
