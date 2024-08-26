@@ -613,12 +613,77 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
+- **Comment**
+
+    - For each comment there is a link to the author's profile page when the user clicks on the profile image.
+
+![Comment](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/comment.png)
 
 
 
 
 
+- **Comment (Owner)**
 
+    - The owners of comments cannot like their own comments, an appropriate message is displayed to let the user know.
+
+
+![Comment (Owner)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/cant-like-own-comment.png)
+
+
+
+- **Comment Options Toggle (Owner)**
+
+    - The owner of the comment is provided with two options one for edit and one for delete.
+
+
+![Comment Options Toggle (Owner)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/edit-delete-togle.png)
+
+
+- **Comment Options Toggle (Admin)**
+
+    - The admin is provided with the option to delete the comment
+
+
+![Comment Options Toggle (Admin)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/delete-togle.png)
+
+
+
+- **Delete a Comment**
+
+
+    - When the user clicks on the delete button a modal prompts them to confirm their decision, ensuring that they don't unintentionally delete their comment. 
+
+
+
+![Delete a Comment](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/delete-comment-modal.png)
+
+
+- **Delete a Comment Success Message**
+
+    - After successful deletion, users are presented with a success message indicating the comment has been deleted.
+
+
+![Delete a Comment Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/comment-delete-success.png)
+
+
+
+
+- **Edit a Comment**
+
+    - When the user clicks on the edit button the space where the comment content is, turns into a comment edit form.
+
+![Edit a Comment](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/comment-edit-form.png)
+
+
+
+
+- **Edit a Comment Success Message**
+
+    - After a successful edit, users are presented with a success message indicating the comment has been updated.
+
+
+![Edit a Comment Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/comment-update-success.png)
 
 
 
