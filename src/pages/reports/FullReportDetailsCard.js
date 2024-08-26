@@ -129,8 +129,12 @@ const FullReportDetailsCard = ({ apiEndpoint }) => {
                     </Card.Title>
                     <Card.Subtitle className={`${styles.cardSubtitle} mb-3`}>Reason for report:</Card.Subtitle>
                     <Card.Text className={styles.cardText}>{report?.reason}</Card.Text>
-                    <Card.Subtitle className={`${styles.cardSubtitle} mb-3`}>Additional Reason:</Card.Subtitle>
-                    <Card.Text className={styles.cardText}>{report?.custom_reason}</Card.Text>
+                   {report?.custom_reason && (
+                      <>
+                        <Card.Subtitle className={`${styles.cardSubtitle} mb-3`}>Additional Reason:</Card.Subtitle>
+                        <Card.Text className={styles.cardText}>{report.custom_reason}</Card.Text>
+                      </>
+                    )}
                     <Card.Subtitle className={`${styles.cardSubtitle} mb-3`}>Reported Post Title:</Card.Subtitle>
                     <Card.Text className={styles.cardText}>{report?.post?.title}</Card.Text>
                     <Card.Subtitle className={`${styles.cardSubtitle} mb-3`}>Reported Post Content:</Card.Subtitle>

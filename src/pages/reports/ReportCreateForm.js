@@ -124,26 +124,25 @@ const ReportCreateForm = () => {
       {post && (
         <Card className="mb-4">
           <Card.Body>
-            <Row className="align-items-center">
+            <Row>
               <Col
                 xs={12}
                 md={3}
-                className="d-flex justify-content-center mb-3"
+                className="mb-3"
               >
                 <Asset src={image} alt="Post Image" height="200" width="200" />
               </Col>
               <Col
                 xs={12}
                 md={9}
-                className="d-flex flex-column align-items-center align-items-md-start"
               >
-                <Card.Title className="text-center text-md-left">
+                <Card.Title>
                   <span className={postStyles.Font}>Title:</span> {title}
                 </Card.Title>
-                <Card.Subtitle className="mb-2 text-muted text-center text-md-left">
+                <Card.Subtitle className="mb-2">
                   <span className={postStyles.Font}>Posted by:</span> {owner}
                 </Card.Subtitle>
-                <Card.Text className="text-center text-md-left">
+                <Card.Text>
                   <span className={postStyles.Font}>Content:</span> {content}
                 </Card.Text>
               </Col>
