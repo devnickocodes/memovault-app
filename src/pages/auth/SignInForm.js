@@ -15,6 +15,7 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import postStyles from "../../styles/Post.module.css";
 
 /**
  * SignInForm component for user authentication.
@@ -95,7 +96,7 @@ const SignInForm = () => {
             </Form.Group>
             {/* Display username errors */}
             {errors.username?.map((message, idx) => (
-              <Alert className="mt-2" key={idx} variant="warning">
+              <Alert className={`${postStyles.ErrorAlert} mt-2`} key={idx}>
                 {message}
               </Alert>
             ))}
@@ -113,7 +114,7 @@ const SignInForm = () => {
             </Form.Group>
             {/* Display password errors */}
             {errors.password?.map((message, idx) => (
-              <Alert className="mt-2" key={idx} variant="warning">
+              <Alert className={`${postStyles.ErrorAlert} mt-2`} key={idx}>
                 {message}
               </Alert>
             ))}
@@ -123,7 +124,7 @@ const SignInForm = () => {
             </Button>
             {/* Display non-field errors */}
             {errors.non_field_errors?.map((message, idx) => (
-              <Alert className="mt-2" key={idx} variant="warning">
+              <Alert className={`${postStyles.ErrorAlert} mt-2`} key={idx}>
                 {message}
               </Alert>
             ))}
