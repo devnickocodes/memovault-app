@@ -13,6 +13,7 @@ import styles from "../../styles/Comment.module.css";
 import postStyles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import { scrollToTop } from "../../utils/scrollToTop";
 
 /**
  * Comment component that displays a single comment.
@@ -45,6 +46,8 @@ const Comment = (props) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   // Hook for success alerts
   const { setAlert } = useSuccessAlert();
+
+  const handleScroll = () => scrollToTop();
 
   /**
    * Handles the deletion of the comment.
@@ -165,7 +168,7 @@ const Comment = (props) => {
         )}
         <Media className="align-items-start">
           {/* User avatar linked to their profile */}
-          <Link to={`/profiles/${profile_id}`}>
+          <Link onClick={handleScroll} to={`/profiles/${profile_id}`} >
             <Avatar src={profile_image}/>
           </Link>
           <Media.Body className="ml-3">

@@ -5,11 +5,13 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Button from 'react-bootstrap/Button';
 import btnStyles from "../../styles/Button.module.css";
 import { useSetProfileData } from '../../contexts/ProfileDataContext';
+import { scrollToTop } from '../../utils/scrollToTop';
 
 const Profile = (props) => {
     const { profile, mobile } = props;
     const { id, following_id, image, owner, is_owner } = profile;
     const currentUser = useCurrentUser();
+    const handleScroll = () => scrollToTop();
 
     // Extract handleFollow and handleUnfollow functions from ProfileDataContext
     const { handleFollow, handleUnfollow } = useSetProfileData();
@@ -18,7 +20,7 @@ const Profile = (props) => {
         <div className={`d-flex ${mobile ? 'flex-column align-items-center' : 'align-items-center my-3'}`}>
             {/* Profile image and link to profile page */}
             <div className={`d-flex align-items-center ${mobile ? 'mb-2' : 'mr-3'}`}>
-                <Link to={`/profiles/${id}/`}>
+                <Link onClick={handleScroll} to={`/profiles/${id}/`}>
                     <Avatar src={image} />
                 </Link>
             </div>
