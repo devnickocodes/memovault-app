@@ -191,4 +191,73 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
+## Features 
 
+### Existing Features
+
+
+- **NavBar (Signed Out)**
+
+    - The navbar can be seen on every page of the website it includes the logo which navigates the user to the homepage as well as links to:
+    Home - Navigates the user to the homepage.
+    Sign Up - Navigates users to a page with the sign up form 
+    Sign In - Navigates users to a page with the sign in form 
+
+
+![NavBar (Signed Out)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/navbar-signed-out.png)
+
+
+- **Sign In Page**
+
+    - The user can sign in to the app by providing their username nad password.
+
+![Sign In Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/sign-in-page.png)
+
+- **Sign In Page Link**
+
+    - The user can create an account if they haven't got one by clicking on the sign up link.
+
+![Sign In Page Link](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/sign-in-page-link.png)
+
+- **Sign In Success Message**
+
+    - After successfully signing in, users are presented with a success message indicating that they have been logged in to their account.
+
+![Sign In Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/sign-in-success.png)
+
+
+- **Sign Up Page**
+
+    - The user can sign up to the app by providing a username, a password and a confirm password after which the user is redirected to the log in page.
+
+![Sign Up Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/sign-up-page.png)
+
+
+
+- **Sign Up Page Link**
+
+    - The user can log into their account if they have got one by clicking on the sign in link.
+
+![Sign Up Page Link](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/sign-up-page-link.png)
+
+
+
+- **Sign Up Success Message**
+
+    - After successfully signing up, users are presented with a success message indicating that their account has been created.
+
+![Sign Up Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/sign-up-success.png)
+
+
+- **NavBar (Signed In)**
+
+    - The navbar can be seen on every page of the website it includes the logo which navigates the user to the homepage as well as links to: 
+    Home - Navigates the user to the homepage.  
+    Add Post - It navigates the user to post creation form page.  
+    Feed - Navigates the user to a page with posts created by users that they follow.  
+    Reports - The URL for this page changes depending on if the user is admin or not. For non admins it navigates the user to a page with report previews for reports that they have created.  
+    For admin users it navigates them to a page with report previews for all reports created. 
+    Profile - Navigates the user to their profile page.
+    Sign Out - Allows the users to sign out.
+
+![NavBar (Signed In)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/navbar-signed-in.png)
