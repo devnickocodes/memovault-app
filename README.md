@@ -261,3 +261,74 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
     Sign Out - Allows the users to sign out.
 
 ![NavBar (Signed In)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/navbar-signed-in.png)
+
+
+- **Add Post Page**
+
+    - The user can fill out the form so that the post ca be created.
+
+![Add Post Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/add-post-page.png)
+
+
+- **Add Post Page Success Message**
+
+    - After successful post creation, users are presented with a success message indicating their post has been created.
+
+![Add Post Page Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/add-post-page-success.png)
+
+
+- **Sign Out Confirmation Modal**
+
+    - When a user attempts to sign out, the modal prompts them to confirm their decision, ensuring that they don't unintentionally leave their session. 
+
+
+![Sign Out Confirmation Modal](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/sign-out-modal.png)
+
+
+- **Sign Out Success Message**
+
+    - After successfully signing out, users are presented with a success message indicating that they have been logged out of their account.
+
+![Sign Out Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/sign-out-success.png)
+
+
+- **Landing Page**
+
+    - The landing page consist of a search bar, list of uploaded posts utilising infinity scroll component, popular profiles, top creators and popular posts. 
+
+ ![Landing Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/homepage.png)
+
+
+- **Landing Page (No results)**
+
+    - If there are no posts uploaded there is a "No results found" message under the search bar
+
+![Landing Page (No results)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/homepage-no-results.png)
+
+
+- **Search Bar**
+
+    - The search bar allows the users to search for posts by title or by author's username.
+
+
+![Search Bar](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/search-bar.png)
+
+
+
+- **Search Bar (No Results)**
+
+    - In case nothing is found the user is met with a "No results found" message.
+
+![Search Bar (No results)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/homepage-no-results.png)
+
+
+
+
+
+
+
+
+
+
+
+
