@@ -24,6 +24,9 @@ import profilePageStyles from "../../styles/ProfilePage.module.css";
 import avatarStyles from "../../styles/Avatar.module.css";
 import { ProfileEditDropdown } from "../../components/DropdownOptions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import postsStyles from "../../styles/PostsPage.module.css";
+import ScrollToTop from "react-scroll-to-top";
+
 
 /**
  * The ProfilePage component displays a user's profile information 
@@ -214,6 +217,7 @@ function ProfilePage() {
   );
 
   return (
+    <>
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfilesMostPosts mobile />
@@ -233,6 +237,9 @@ function ProfilePage() {
         <PopularPosts />
       </Col>
     </Row>
+    {/* Scroll to top button */}
+    <ScrollToTop className={postsStyles.ScrollToTop} color="purple" smooth />
+    </>
   );
 }
 
