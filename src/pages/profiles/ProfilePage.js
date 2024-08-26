@@ -50,7 +50,7 @@ function ProfilePage() {
   const currentUser = useCurrentUser();
 
   // Functions to update profile data and handle follow actions
-  const { setProfileData, handleFollow } = useSetProfileData();
+  const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
 
   // Hook to navigate
   const history = useHistory();
@@ -115,7 +115,7 @@ function ProfilePage() {
         </Alert>
       )}
       <Card.Body className={profilePageStyles.PositionRelative}>
-        {profile?.is_owner && (
+        {currentUser && profile?.is_owner && (
           <div className={profilePageStyles.PositionDropdown}>
             <ProfileEditDropdown id={profile?.id} />
           </div>
@@ -159,7 +159,7 @@ function ProfilePage() {
             {currentUser &&
               !profile?.is_owner &&
               (profile?.following_id ? (
-                <Button className={`${styles.Button} ${styles.GreyButton}`}>
+                <Button onClick={() => handleUnfollow(profile)} className={`${styles.Button} ${styles.GreyButton}`}>
                   unfollow
                 </Button>
               ) : (
@@ -173,7 +173,7 @@ function ProfilePage() {
           </Col>
         </Row>
         <Row className="mt-4 text-center">
-          <Col>{profile?.bio ? <p>{profile?.bio}</p> : <p>No Bio</p>}</Col>
+          <Col>{profile?.bio && <p>{profile?.bio}</p>}</Col>
         </Row>
       </Card.Body>
     </Card>
