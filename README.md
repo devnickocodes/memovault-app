@@ -1,6 +1,6 @@
 # MemoVault
 
-
+![Mock Up Image](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/mock-up.png)
 
 
 
@@ -62,3 +62,22 @@ MemoVault is a social media app built with the React library, offering a wide ra
 - As a Site Admin I can delete a report so that I can remove reports that have already been taken care of
 
 
+## Agile Development 
+
+[GitHub Projects](https://github.com/users/devnickocodes/projects/9/views/1) was used as one of the main Agile tools for the development for this project. The process was tracked using a Kanban board, utilising the "To Do", "In Progress" and "Done" columns.
+
+
+![Project Board](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/project_board.png)
+
+
+Another Agile tool that was used in the making of this project is GitHub Issues where I used a custom made user story template to create all of the user stories.
+
+- **Closed Issues**
+
+![Closed Issues 1](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/closed_issues_1.png)
+
+![Closed Issues 2](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/closed_issues_2.png)
+
+- **Open Issues**
+
+![Open Issues](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/open_issues.png) 
