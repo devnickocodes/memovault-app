@@ -453,6 +453,109 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
+- **Report Create Form Success Message**
+
+    - After a successful completion of the form, users are presented with a success message indicating the report have been submitted and are navigated to the full report card page.
+
+
+![Report Create Form Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/report-create-success.png)
+
+
+- **Popular Profiles (Signed Out)**
+
+    - The three most followed profiles are displayed here. Clicking on the profile picture will navigate the user to the profile's page.
+
+
+![Popular Profiles (Signed Out)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/popular-profiles-logged-out.png)
+
+
+- **Top Creators (Signed Out)**
+
+    - The three profiles with the most posts are displayed here. Clicking on the profile picture will navigate the user to the profile's page.
+
+
+![Top Creators (Signed Out)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/top-creators-logged-out.png)
+
+
+- **Popular Posts**
+
+    - The three posts with most likes are displayed here. Clicking on the profile picture will navigate the user to the profile's page and clicking on the post image will navigate the user to the post's individual page.
+
+
+![Popular Posts](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/popular-posts.png)
+
+
+
+- **Popular Profiles (Signed In)**
+
+    - The three most followed profiles are displayed here. Clicking on the profile picture will navigate the user to the profile's page. Follow and Unfollow functionality is included here in the form of follow / unfollow buttons depending if the user is following the profile.
+
+
+![Popular Profiles (Signed In)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/popular-profiles-logged-in.png)
+
+
+
+- **Top Creators (Signed In)**
+
+    - The three profiles with the most posts are displayed here. Clicking on the profile picture will navigate the user to the profile's page. Follow and Unfollow functionality is included here in the form of follow / unfollow buttons depending if the user is following the profile.
+
+![Top Creators (Signed In)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/top-creators-logged-in.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
