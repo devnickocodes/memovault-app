@@ -842,18 +842,36 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
+## Frameworks, libraries and dependencies
+
+### React-Infinite-Scroll-Component
+
+- [React-Infinite-Scroll-Component](https://www.npmjs.com/package/react-infinite-scroll-component) - Enables automatic loading of more posts as users scroll, enhancing user experience with smooth, endless content flow.
+
+### React-Router-DOM
+
+- [React-Router-DOM](https://www.npmjs.com/package/react-router-dom) - Manages navigation within the app, allowing seamless transitions between pages without full reloads.
+
+### ReactDOM
+
+- [ReactDOM](https://legacy.reactjs.org/docs/react-dom.html) Manages rendering of React components to the DOM, allowing elements like modals and notifications to be displayed effectively and interact with the overall page layout.
+
+### Axios
+
+- [Axios](https://axios-http.com/docs/intro) - Used to handle all the HTTP requests (like fetching data from the server) in the app. It simplifies the process of connecting to the backend, especially when dealing with things like authentication. For instance, if a user’s session expires, axios can automatically request a new session without making the user log in again, making the experience smoother.
+
+### React Bootstrap
+
+- [React Bootstrap](https://react-bootstrap-v4.netlify.app/) - Provides pre-styled, responsive components to ensure the app looks and functions well on all devices.
+
+### JWT-Decode
+
+- [JWT-Decode](https://www.npmjs.com/package/jwt-decode?activeTab=readme) - Utilized to decode Base64URL-encoded JSON Web Tokens (JWTs).
 
 
+### React-Scroll-To-Top
 
-
-
-
-
-
-
-
-
-
+ - [React-Scroll-To-Top](https://www.npmjs.com/package/react-scroll-to-top) - Adds a button for quick navigation back to the top of the page, improving user navigation.
 
 
 
