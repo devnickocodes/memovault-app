@@ -793,6 +793,68 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
+## Reusable Components
+
+
+
+## Future Feautres
+
+### State Synchronisation 
+
+- Full state synchronisation for posts to allow users to like popular posts directly without the need for page refresh.
+
+### Notifications
+
+- In-App Notifications: Introduce a notification center where users can view likes, comments, follows, and report updates in real-time. This would enhance user engagement and ensure they don't miss any important interactions.
+
+- Push Notifications: Integrate push notifications for key activities such as new followers, likes, and comments. This feature can be expanded to include mobile notifications in a future mobile app version.
+
+
+### Search and Discovery Enhancements
+
+- Advanced Search Filters: Allow users to filter posts by date, popularity, hashtags, and user-specific tags to enhance content discovery.
+
+
+### UI/UX Refinements
+
+- Dark Mode: Implement a dark mode option to improve user experience.
+
+- Profile Customization: Enable users to customize their profile page with themes, and additional profile fields like social media links and location.
+
+
+### Security and Account Management
+
+
+- Two-Factor Authentication (2FA): Introduce an option for users to enable 2FA, adding an extra layer of security to their accounts.
+
+
+- Password Strength Indicator: When signing up or changing a password, display a strength meter that helps users create more secure passwords.
+
+
+- Implement OAuth2 integration allowing users to sign in using their credentials from third-party providers like Google, Facebook, or Microsoft.
+
+
+### Direct Messaging
+
+
+- Implement a direct messaging system where users can privately communicate with each other, including features like group chats and media sharing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
