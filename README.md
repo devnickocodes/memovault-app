@@ -687,6 +687,116 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
+- **Profile Page (Logged Out)**
+
+    - The profile page contains a profile card and list of posts created by the owner of the profile. The profile card includes, username, name (if present), number of posts, followers, following, hobbies (if present), bio (if present) and the profile image of the profile.
+
+
+![Profile Page (Logged Out)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/profile-page-logged-out.png)
+
+
+
+
+- **Profile Page (Logged In / Not Owner)**
+
+    - For the logged in user, two additional things will be showing. A button for follow / unfollow depending if the requesting user is following the profile, as well as a "follow you" tag if the owner of the profile is following the currently requesting user.
+
+
+![Profile Page (Logged In / Not Owner)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/profile-page-logged-in-not-owner.png)
+
+
+
+- **Profile Page (No Posts)**
+
+
+    - There will be a "Not Found" image and a text saying "No results found, {owner of profile's username} hasn't posted yet." if the profile hasn't uploaded any posts.
+
+
+![Profile Page (No Posts)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/profile-page-no-posts.png)
+
+
+
+- **Profile Page (Logged In / Owner)**
+
+
+    - For the owners of the profiles, they are provided with a toggle that offers different editing functionalities.
+
+
+![Profile Page (Logged In / Owner)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/profile-page-logged-in-owner.png)
+
+
+- **Profile Page (Edit Profile)**
+
+
+    - Clicking on "edit profile" will navigate the user to the profile edit page. Where they can edit any of the fields, with the fields for name, hobbies and bio being optional.
+
+
+![Profile Page (Edit Profile)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/edit-profile.png)
+
+
+
+
+- **Profile Page (Edit Profile) Success Message**
+
+
+    - After a successful edit, users are presented with a success message indicating their profile has been updated.
+
+![Profile Page (Edit Profile) Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/edit-profile-success.png)
+
+
+
+- **Profile Page (Edit Username)**
+
+
+    - Clicking on "edit username" will navigate the user to the username edit page. Where they can edit their username
+
+
+![Profile Page (Edit Username)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/edit-username.png)
+
+
+
+- **Profile Page (Edit Username) Success Message**
+
+    - After a successful edit, users are presented with a success message indicating their username has been updated.
+
+
+
+![Profile Page (Edit Username) Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/username-success.png)
+
+
+
+- **Profile Page (Edit Password)**
+
+
+    - Clicking on "edit password" will navigate the user to the username edit page. Where they can edit their password by typing the new password and confirming it.
+
+
+![Profile Page (Edit Password)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/edit-password.png)
+
+
+
+- **Profile Page (Edit Password) Success Message**
+
+
+    - After a successful edit, users are presented with a success message indicating their password has been updated.
+
+
+![Profile Page (Edit Password) Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/password-success.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
