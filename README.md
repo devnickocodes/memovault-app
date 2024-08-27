@@ -876,17 +876,28 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
+## Hooks
 
 
+- `useCurrentUser` - Provides access to the current user context, allowing components to read the current user information such as profile id, profile image and if the user is an admin.
 
+- `useSetCurrentUser` - Provides access to the function for updating the current user context, allowing components to modify the `CurrentUserContext` state.
 
+- `usePopularPostData` -  Retrieves details about popular post data, including the fetched posts and any error messages related to the data retrieval.
 
+- `useProfileData` - Retrieves the profile data, including popular profiles and profiles with the most posts, along with any related error messages.
 
+- `useSetProfileData` - Provides functions to update profile data, and handle follow and unfollow actions.
 
+- `useSuccessAlert` - Provides access to the success alert state and function to set the alert message. This hook allows components to use and update the success alert context.
 
+- `useCheckOwnership` - Verifies whether the current user owns a specific resource or is an admin. If the user does not own the resource and is not an admin, it redirects them to the home page.
 
+- `useClickOutsideToggle` - Manages the state of the navbar menu, including toggling its expansion and automatically closing the menu when a click occurs outside of it, on small screens.
 
+- `useRedirect` - Redirect based on user authentication status. It attempts to refresh the authentication token and redirects to the home page if the user is logged in or if the token refresh fails when the user is logged out.
 
+- `useRedirectIfNotAdmin.js` - Custom hook to redirect non-admin users away from admin pages. It checks if the current user is an admin when accessing an admin route and redirects them to a specified URL if they are not an admin or not logged in.
 
 
 
