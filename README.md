@@ -526,6 +526,13 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 - **Reports Page (Admin)**
 
 
+    - For admins the design is the same as the users' report page except the report previews are of all reports that are submitted as well as who the yare submitted by.
+
+
+![Reports Page (Admin)](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/report-page-admin.png)
+
+
+
 - **Full Report Card Page**
 
     - On this page the user can find the full details for a specific report with a "Go To Post" button that navigates the user to the reported post.
