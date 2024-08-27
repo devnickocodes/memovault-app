@@ -10,7 +10,6 @@ import { PopularPostDataProvider } from "./contexts/PopularPostDataContext";
 import { SuccessAlertProvider } from "./contexts/SuccessAlertContext";
 
 ReactDOM.render(
-  <React.StrictMode>
     <Router>
       <CurrentUserProvider>
         {/* CurrentUserProvider provides current user context to child elements */}
@@ -25,8 +24,7 @@ ReactDOM.render(
           </PopularPostDataProvider>
         </ProfileDataProvider>
       </CurrentUserProvider>
-    </Router>
-  </React.StrictMode>,
+    </Router>,
   document.getElementById("root")
 );
 
