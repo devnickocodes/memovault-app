@@ -1,25 +1,26 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import styles from "../../styles/SignInUpForm.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import feature_image from "../../assets/feature_image.jpg";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import axios from "axios";
-import { useRedirect } from "../../hooks/useRedirect";
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
-import postStyles from "../../styles/Post.module.css";
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import axios from 'axios';
+import featureImage from '../../assets/feature_image.jpg';
+import btnStyles from '../../styles/Button.module.css';
+import styles from '../../styles/SignInUpForm.module.css';
+import { useRedirect } from '../../hooks/useRedirect';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
+import postStyles from '../../styles/Post.module.css';
 
 /**
  * SignUpForm component for user registration.
- * 
- * This component provides a sign-up form for new users to create an account. It manages the state of the sign-up form,
- * handles form submission, and displays error messages if any are returned from the server. Upon successful sign-up,
+ *
+ * This component provides a sign-up form for new users to create an account.
+ * It manages the state of the sign-up form, handles form submission, and displays
+ * error messages if any are returned from the server. Upon successful sign-up,
  * it redirects the user to the sign-in page and shows a success alert.
  */
 const SignUpForm = () => {
@@ -27,9 +28,9 @@ const SignUpForm = () => {
   useRedirect('loggedIn');
 
   const [signUpData, setSignUpData] = useState({
-    username: "",
-    password1: "",
-    password2: "",
+    username: '',
+    password1: '',
+    password2: '',
   });
 
   const { username, password1, password2 } = signUpData;
@@ -50,17 +51,18 @@ const SignUpForm = () => {
 
   /**
    * Handles form submission for signing up.
-   * 
+   *
    * Sends sign-up data to the server and processes the response. If the sign-up is successful,
-   * it redirects to the sign-in page and shows a success alert. If there are errors, they are set in the component state.
+   * it redirects to the sign-in page and shows a success alert.
+   * If there are errors, they are set in the component state.
    */
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/signin");
-      setAlert({ message: "Welcome on board!" });
+      await axios.post('/dj-rest-auth/registration/', signUpData);
+      history.push('/signin');
+      setAlert({ message: 'Welcome on board!' });
     } catch (err) {
       // console.log(err)
       // Set errors from server response
@@ -73,7 +75,9 @@ const SignUpForm = () => {
       <Col className="my-auto py-2 p-md-2" md={6}>
         <Container className="p-4">
           <h1 className={`mb-5 ${styles.Header}`}>
-            Sign <span>up</span>
+            Sign
+            {' '}
+            <span>up</span>
           </h1>
           {/* Display Sign Up Form */}
           <Form onSubmit={handleSubmit}>
@@ -132,7 +136,9 @@ const SignUpForm = () => {
             ))}
 
             <Button className={`${btnStyles.Button} ${btnStyles.Width}`} type="submit">
-              Sign <span>Up</span>
+              Sign
+              {' '}
+              <span>Up</span>
             </Button>
             {/* Display non-field errors */}
             {errors.non_field_errors?.map((message, idx) => (
@@ -144,12 +150,14 @@ const SignUpForm = () => {
         </Container>
         <Container className={`mt-3 ${styles.Content}`}>
           <Link className={styles.SignInLink} to="/signin">
-            Already have an account? Sign <span>in</span>
+            Already have an account? Sign
+            {' '}
+            <span>in</span>
           </Link>
         </Container>
       </Col>
       <Col md={6} className="my-auto d-none d-md-block p-2">
-        <Image className={styles.FeatureImage} src={feature_image} />
+        <Image className={styles.FeatureImage} src={featureImage} />
       </Col>
     </Row>
   );
