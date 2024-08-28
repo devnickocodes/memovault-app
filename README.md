@@ -793,7 +793,162 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
-## Reusable Components
+## Re-use of Components
+
+### `Asset.js` 
+
+-  Component that displays a loading spinner, an image, and a message, based on the provided props. It's used in situations where content is loading or unavailable or to display images with text.
+
+- **Props**
+
+    - `spinner` - A boolean that, if true, displays a loading spinner.
+    - `src` - A string representing the image source URL to be displayed.
+    - `message` -  A string containing the text message to be displayed.
+    - `height` -  A number or string that defines the height of the image.
+    - `width` - A number or string that defines the width of the image.
+    - `borderRadius` - A number or string that sets the border radius of the image for rounded corners.
+
+### `Avatar.js` 
+
+- Component that displays an avatar image with optional text. It is used to represent users in various parts of the application, such as profile sections, post sections, comments, or profile lists.
+
+- **Props**
+
+    - `src` - A string representing the image source URL to be displayed.
+    - `height` -  A number or string that defines the height (and width). The default value is 45.
+    - `text` -  A string containing the text message to be displayed.
+
+
+
+### `DropdownOptions.js` 
+
+
+#### GearToggle
+
+- Component that renders a gear icon used to toggle a dropdown menu. It uses `React.forwardRef` to forward the `ref` to the icon element.
+
+#### `DropdownOptions`
+
+- Component that renders a dropdown menu with options for editing and deleting content.
+
+- **Props**
+
+    - `isAdmin` -  A boolean that determines whether the edit option should be displayed. If `false`, the edit option is shown; if `true`, only the delete option is displayed.
+    - `handleEdit` -  A function that is called when the edit option is selected.
+    - `handleDelete` - A function that is called when the delete option is selected.
+
+#### `ProfileEditDropdown`
+
+- Component that provides a dropdown menu with options for editing different parts of a user's profile, such as the profile information, username, and password.
+
+- **Props**
+
+    - `id` - Represents the user's profile ID, used to construct the navigation paths for editing various profile aspects.
+
+
+### `NotFound.js`
+
+- Component that is displayed when a user navigates to a page that cannot be found.
+
+### `Comment.js`
+
+- Component that is responsible for displaying a single comment within the comment section under a post. It provides the ability for users to view, like, unlike, edit, and delete comments.
+
+
+- **Props**
+
+    - `profile_id`- The ID of the profile that owns the comment.
+    - `profile_image`- The URL of the profile image of the comment's owner.
+    - `owner`- The username of the comment's owner.
+    - `updated_at`- The timestamp when the comment was last updated.
+    - `content`- The text content of the comment.
+    - `is_owner`- A boolean indicating if the current user is the owner of the comment.
+    - `is_admin`- A boolean indicating if the current user has admin privileges.
+    - `id`- The ID of the comment.
+    - `setPost`- A function to update the state of the parent post.
+    - `setComments`- A function to update the list of comments.
+    - `comment_likes_count`- The number of likes the comment has received.
+    - `comment_like_id`- The ID of the like if the current user has liked the comment.
+
+
+
+### `PopularPosts.js` 
+
+- The component uses the `usePopularPostData` hook to fetch and manage popular post data from context. It conditionally renders content based on the mobile prop to adjust visibility on different screen sizes. It passes the post object to the `PopularPost` component and shows up to three popular posts or a loading spinner if no data is available.
+
+
+### `PopularPost.js`
+
+- Displays a card with details of a popular post, including the post's owner, profile picture, title, content, and number of likes. The card features links to both the individual post page and the owner's profile, and includes an image with a scroll-to-top feature.
+
+- **Props**
+
+
+    - `id`- The ID for the post.
+    - `owner`- The name of the post's owner.
+    - `profile_id`- The ID of the post owner's profile.
+    - `profile_image`- The URL of the post owner's profile picture.
+    - `title`- The title of the post.
+    - `content`- The content of the post.
+    - `image`- The URL of the post's image.
+    - `post_likes_count`- The number of likes the post has received.
+    - `updated_at`- The date and time when the post was last updated.
+
+
+
+### `PostPage.js`
+
+- Component that fetches and displays a specific post along with its comments. (Individual Post Page)
+
+### `Post.js`
+
+- Component displays a detailed view of a post with owners profile picture and username link that leads to their profile and date, also including options for liking, unliking, editing, deleting, and reporting. It shows the post's title and content, likes count, comments count, and provides feedback through success and error alerts. It also handles user interactions like scrolling to the top of the page and manages a confirmation modal for post deletion.
+
+
+- **Props**
+
+
+    - `id` - The ID of the post.
+    - `owner` - The name of the post's owner.
+    - `is_owner`- Boolean indicating if the current user is the owner of the post.
+    - `is_admin`- Boolean indicating if the current user is an admin.
+    - `profile_id`- The ID of the post owner's profile.
+    - `profile_image`- The URL of the post owner's profile image.
+    - `comments_count`- The number of comments on the post.
+    - `post_likes_count`- The number of likes on the post.
+    - `post_like_id`- The ID of the like relationship if the user has liked the post.
+    - `title`- The title of the post.
+    - `content`- The content of the post.
+    - `image`- The URL of the post's image.
+    - `updated_at`- The date and time when the post was last updated.
+    - `postPage`- Boolean indicating if the component is rendered on a post page.
+    - `setPosts`- Function to update the state of posts in the parent component.
+
+
+### `PopularProfilesMostPosts.js`
+
+- Component displays two sections: "Popular Profiles" and "Top Creators." It fetches and displays profiles based on their popularity and the number of posts they have. It provides different views for mobile and desktop screens.
+
+- **Props**
+
+    - `mobile` - Boolean indicating whether to render the component for mobile view. It adjusts the layout and styling based on this value.
+
+
+
+### `Profile.js`
+
+
+- Component that displays a profile's avatar and name, and conditionally shows follow/unfollow buttons based on the current user's relationship with the profile, screen size and authentication status.
+
+
+- **Props**
+
+    - `id`- The ID of the profile.
+    - `following_id`- The ID of the follow relationship.
+    - `image` - The URL of the profile image.
+    - `owner` - The name of the profile's owner.
+    - `is_owner`- Boolean indicating if the current user is the owner of the profile.
+
 
 
 
