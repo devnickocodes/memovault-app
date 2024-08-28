@@ -1,32 +1,32 @@
-import React, { useEffect, useRef, useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import Image from "react-bootstrap/Image";
-import styles from "../../styles/PostCreateEditForm.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
-import { axiosReq } from "../../api/axiosDefaults";
-import { useRedirect } from "../../hooks/useRedirect";
-import { useHistory, useParams } from "react-router-dom";
-import postStyles from "../../styles/Post.module.css";
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import React, { useEffect, useRef, useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import Image from 'react-bootstrap/Image';
+import { useHistory, useParams } from 'react-router-dom';
+import styles from '../../styles/PostCreateEditForm.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import appStyles from '../../App.module.css';
+import { axiosReq } from '../../api/axiosDefaults';
+import { useRedirect } from '../../hooks/useRedirect';
+import postStyles from '../../styles/Post.module.css';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
 
 function PostEditForm() {
   // State to hold form errors
   const [errors, setErrors] = useState({});
-  
+
   // Redirect the user if logged out
   useRedirect('loggedOut');
-  
+
   // State to hold form data
   const [postData, setPostData] = useState({
-    title: "",
-    content: "",
-    image: "",
+    title: '',
+    content: '',
+    image: '',
   });
 
   const { title, content, image } = postData;
@@ -52,8 +52,14 @@ function PostEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
-        const { title, content, image, is_owner } = data;
-        is_owner ? setPostData({ title, content, image }) : history.push('/');
+        const {
+          title, content, image, is_owner,
+        } = data;
+        if (is_owner) {
+          setPostData({ title, content, image });
+        } else {
+          history.push('/');
+        }
       } catch (err) {
         // console.log(err)
         if (err.response?.status !== 401) {
@@ -85,8 +91,8 @@ function PostEditForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append("title", title);
-    formData.append("content", content);
+    formData.append('title', title);
+    formData.append('content', content);
     if (inputImage?.current?.files[0]) {
       formData.append('image', inputImage.current.files[0]);
     }
@@ -94,7 +100,7 @@ function PostEditForm() {
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
-      setAlert({ message: "Post has been updated!" });
+      setAlert({ message: 'Post has been updated!' });
     } catch (err) {
       // console.log(err)
       if (err.response?.status !== 401) {

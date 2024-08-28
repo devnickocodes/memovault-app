@@ -31,7 +31,11 @@ module.exports = {
     "react/no-unescaped-entities": "off",
     "react/no-array-index-key": "off",
     "no-nested-ternary": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-shadow": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-children-prop": "off",
+    // "react/jsx-no-useless-fragment": "off"
   },
   settings: {
     react: {

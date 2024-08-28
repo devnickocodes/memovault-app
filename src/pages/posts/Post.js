@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import Card from "react-bootstrap/Card";
-import Media from "react-bootstrap/Media";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
-import Alert from "react-bootstrap/Alert";
-import { Link, useHistory } from "react-router-dom";
-import Avatar from "../../components/Avatar";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosRes } from "../../api/axiosDefaults";
-import styles from "../../styles/Post.module.css";
-import { DropdownOptions } from "../../components/DropdownOptions";
-import { scrollToTop } from "../../utils/scrollToTop";
-import ConfirmationModal from "../../utils/ConfirmationModal";
-import { likePost, unlikePost } from "../../utils/LikeUnlikePostsActions";
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import React, { useEffect, useState } from 'react';
+import Card from 'react-bootstrap/Card';
+import Media from 'react-bootstrap/Media';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Alert from 'react-bootstrap/Alert';
+import { Link, useHistory } from 'react-router-dom';
+import Avatar from '../../components/Avatar';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { axiosRes } from '../../api/axiosDefaults';
+import styles from '../../styles/Post.module.css';
+import { DropdownOptions } from '../../components/DropdownOptions';
+import { scrollToTop } from '../../utils/scrollToTop';
+import ConfirmationModal from '../../utils/ConfirmationModal';
+import { likePost, unlikePost } from '../../utils/LikeUnlikePostsActions';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
 
 const Post = (props) => {
   const {
@@ -67,10 +67,10 @@ const Post = (props) => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
-      setAlert({ message: "Post has been deleted!" });
+      setAlert({ message: 'Post has been deleted!' });
     } catch (err) {
       // console.log(err)
-      setError("Failed to delete the post. Please try again in a moment.");
+      setError('Failed to delete the post. Please try again in a moment.');
     } finally {
       setShowDeleteModal(false);
     }
@@ -84,10 +84,10 @@ const Post = (props) => {
   const handleLike = async () => {
     try {
       await likePost(id, setPosts);
-      setAlert({ message: "Post has been liked!" });
+      setAlert({ message: 'Post has been liked!' });
     } catch (err) {
       // console.log(err)
-      setError("Failed to like the post. Please try again.");
+      setError('Failed to like the post. Please try again.');
     }
   };
 
@@ -99,10 +99,10 @@ const Post = (props) => {
   const handleUnlike = async () => {
     try {
       await unlikePost(post_like_id, id, setPosts);
-      setAlert({ message: "Post has been unliked!" });
+      setAlert({ message: 'Post has been unliked!' });
     } catch (err) {
       // console.log(err)
-      setError("Failed to unlike the post. Please try again.");
+      setError('Failed to unlike the post. Please try again.');
     }
   };
 
@@ -115,8 +115,6 @@ const Post = (props) => {
     return () => clearTimeout(timer);
   }, [error]);
 
-
-  
   // Scroll to the top of the page smoothly.
   const handleScroll = () => scrollToTop();
 
@@ -138,7 +136,8 @@ const Post = (props) => {
             <div className="d-flex align-items-center">
               <span>{updated_at}</span>
               {postPage && (is_owner || is_admin) && (
-                // Show edit and delete options if the user is the owner or admin, and on the post page
+                // Show edit and delete options if the user is the owner
+                // or admin, and on the post page
                 <DropdownOptions
                   isAdmin={is_admin}
                   handleEdit={handleEdit}
@@ -177,17 +176,17 @@ const Post = (props) => {
               placement="top"
               overlay={<Tooltip>You can't like your own post!</Tooltip>}
             >
-              <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
+              <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`} />
             </OverlayTrigger>
           ) : post_like_id ? (
             // Show clickable heart icon to unlike if the user has already liked the post
             <span onClick={handleUnlike}>
-              <i className={`fa-solid fa-heart ${styles.Heart}`}></i>
+              <i className={`fa-solid fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
             // Show clickable heart icon to like if the user is logged in but has not liked the post
             <span onClick={handleLike}>
-              <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
+              <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`} />
             </span>
           ) : (
             // Show a link to login page with a tooltip for non-logged-in users
@@ -195,8 +194,8 @@ const Post = (props) => {
               placement="top"
               overlay={<Tooltip>Please log in to like posts!</Tooltip>}
             >
-              <Link to={"/signin"}>
-              <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`}></i>
+              <Link to="/signin">
+                <i className={`fa-regular fa-heart mr-1 ${styles.Heart}`} />
               </Link>
             </OverlayTrigger>
           )}
@@ -206,7 +205,7 @@ const Post = (props) => {
           <Link to={`/posts/${id}`}>
             <i
               className={`fa-regular fa-comment ml-2 mr-2 ${styles.Comment}`}
-            ></i>
+            />
           </Link>
           {comments_count}
 
@@ -215,7 +214,7 @@ const Post = (props) => {
             currentUser ? (
               // Show report button if the user is logged in and not the owner
               <Link to={`/reports/create/${id}`}>
-                <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`}></i>
+                <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`} />
               </Link>
             ) : (
               // Show a link to login page with a tooltip for non-logged-in users
@@ -223,8 +222,8 @@ const Post = (props) => {
                 placement="top"
                 overlay={<Tooltip>Please log in to report posts!</Tooltip>}
               >
-                <Link to={"/signin"}>
-                  <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`}></i>
+                <Link to="/signin">
+                  <i className={`fa-solid fa-flag ml-2 mr-2 ${styles.Flag}`} />
                 </Link>
               </OverlayTrigger>
             )

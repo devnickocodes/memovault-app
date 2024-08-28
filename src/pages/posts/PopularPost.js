@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 import Avatar from '../../components/Avatar';
 
-import postStyles from "../../styles/Post.module.css";
-import styles from "../../styles/PopularPost.module.css";
+import postStyles from '../../styles/Post.module.css';
+import styles from '../../styles/PopularPost.module.css';
 
 import { scrollToTop } from '../../utils/scrollToTop';
 
@@ -18,7 +18,17 @@ import { scrollToTop } from '../../utils/scrollToTop';
  * The card also features a link to the full post and a link to the owner's profile.
  */
 const PopularPost = ({ post }) => {
-  const { id, owner, profile_id, profile_image, title, content, image, post_likes_count, updated_at } = post;
+  const {
+    id,
+    owner,
+    profile_id,
+    profile_image,
+    title,
+    content,
+    image,
+    post_likes_count,
+    updated_at,
+  } = post;
 
   // Scroll to the top of the page when the post image is clicked
   const handleScroll = () => scrollToTop();
@@ -28,7 +38,10 @@ const PopularPost = ({ post }) => {
       <Card className={styles.PopularPostCard}>
         <Card.Header className={styles.PopularPostHeader}>
           {/* Link to the owner's profile */}
-          <Link to={`/profiles/${profile_id}/`} className={postStyles.avatarImage}>
+          <Link
+            to={`/profiles/${profile_id}/`}
+            className={postStyles.avatarImage}
+          >
             <Avatar src={profile_image} />
             <strong>{owner}</strong>
           </Link>
@@ -38,11 +51,11 @@ const PopularPost = ({ post }) => {
         <Link to={`/posts/${id}/`}>
           <div className={styles.ImageWrapper}>
             {/* Image of the post with a scroll-to-top feature */}
-            <Card.Img 
-              onClick={handleScroll} 
-              variant="top" 
-              src={image} 
-              className={styles.CardImage} 
+            <Card.Img
+              onClick={handleScroll}
+              variant="top"
+              src={image}
+              className={styles.CardImage}
             />
           </div>
         </Link>
@@ -58,10 +71,14 @@ const PopularPost = ({ post }) => {
           </Card.Text>
         </Card.Body>
 
-        <Card.Footer className={`${styles.PopularPostFooter} d-flex justify-content-between align-items-center`}>
+        <Card.Footer
+          className={`${styles.PopularPostFooter} d-flex justify-content-between align-items-center`}
+        >
           <div>
             {/* Display the number of likes for the post */}
-            <i className={`fa-solid fa-heart mr-1 ${postStyles.HeartNoHover}`}></i>
+            <i
+              className={`fa-solid fa-heart mr-1 ${postStyles.HeartNoHover}`}
+            />
             {post_likes_count}
           </div>
           {/* Display the last updated date of the post */}

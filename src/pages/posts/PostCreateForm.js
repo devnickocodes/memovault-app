@@ -1,37 +1,37 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import Image from "react-bootstrap/Image";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import Image from 'react-bootstrap/Image';
 
-import uploadImage from "../../assets/upload_image_placeholder.jpg";
+import { useHistory } from 'react-router-dom';
+import uploadImage from '../../assets/upload_image_placeholder.jpg';
 
-import styles from "../../styles/PostCreateEditForm.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
-import Asset from "../../components/Asset";
-import { useHistory } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
-import { useRedirect } from "../../hooks/useRedirect";
-import postStyles from "../../styles/Post.module.css";
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import styles from '../../styles/PostCreateEditForm.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import appStyles from '../../App.module.css';
+import Asset from '../../components/Asset';
+import { axiosReq } from '../../api/axiosDefaults';
+import { useRedirect } from '../../hooks/useRedirect';
+import postStyles from '../../styles/Post.module.css';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
 
 function PostCreateForm() {
   // State to hold form errors
   const [errors, setErrors] = useState({});
-  
+
   // Redirect the user if logged out
   useRedirect('loggedOut');
-  
+
   // State to hold form data
   const [postData, setPostData] = useState({
-    title: "",
-    content: "",
-    image: "",
+    title: '',
+    content: '',
+    image: '',
   });
 
   const { title, content, image } = postData;
@@ -65,16 +65,16 @@ function PostCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append("title", title);
-    formData.append("content", content);
+    formData.append('title', title);
+    formData.append('content', content);
     if (inputImage.current && inputImage.current.files.length > 0) {
-      formData.append("image", inputImage.current.files[0]);
+      formData.append('image', inputImage.current.files[0]);
     }
 
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
+      const { data } = await axiosReq.post('/posts/', formData);
       history.push(`/posts/${data.id}`);
-      setAlert({ message: "Thank you for posting!" });
+      setAlert({ message: 'Thank you for posting!' });
     } catch (err) {
       // console.log(err)
       if (err.response?.status !== 401) {
@@ -192,7 +192,12 @@ function PostCreateForm() {
           </Col>
         </Row>
         <Row className="w-100 justify-content-center mt-3">
-          <Col xs={12} md={8} lg={6} className="d-flex justify-content-center m-2">
+          <Col
+            xs={12}
+            md={8}
+            lg={6}
+            className="d-flex justify-content-center m-2"
+          >
             <Button
               className={`${btnStyles.GreyButton} ${btnStyles.Button} mr-2`}
               onClick={() => history.goBack()}
