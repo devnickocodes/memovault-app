@@ -1,15 +1,17 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, {
+  createContext, useContext, useState, useEffect,
+} from 'react';
 
 // Create context for success alert
 const SuccessAlertContext = createContext();
 
 /**
  * SuccessAlertProvider component to manage and provide success alert state.
- * 
+ *
  * This component manages the state of success alerts, including displaying
  * and automatically hiding the alert after a set time. It provides the
  * `alert` state and `setAlert` function to its children via context.
- * 
+ *
  * The `useEffect` hook is used to clear the alert message after 3 seconds
  * if an alert message is present.
  */
@@ -19,10 +21,11 @@ export const SuccessAlertProvider = ({ children }) => {
 
   useEffect(() => {
     // Automatically clear the alert message after 3 seconds
+    let timer;
     if (alert.message) {
-      const timer = setTimeout(() => setAlert({ message: null }), 3000);
-      return () => clearTimeout(timer);
+      timer = setTimeout(() => setAlert({ message: null }), 3000);
     }
+    return () => clearTimeout(timer);
   }, [alert.message]);
 
   return (
@@ -34,7 +37,7 @@ export const SuccessAlertProvider = ({ children }) => {
 
 /**
  * Custom hook to access the success alert context.
- * 
+ *
  * This hook provides access to the `alert` state and `setAlert` function
  * from the SuccessAlertContext.
  */
