@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import btnStyles from "../../styles/Button.module.css";
 import { useSetProfileData } from '../../contexts/ProfileDataContext';
 import { scrollToTop } from '../../utils/scrollToTop';
+import postStyles from "../../styles/Post.module.css"
 
 const Profile = (props) => {
     const { profile, mobile } = props;
@@ -20,7 +21,7 @@ const Profile = (props) => {
         <div className={`d-flex ${mobile ? 'flex-column align-items-center' : 'align-items-center my-3'}`}>
             {/* Profile image and link to profile page */}
             <div className={`d-flex align-items-center ${mobile ? 'mb-2' : 'mr-3'}`}>
-                <Link onClick={handleScroll} to={`/profiles/${id}/`}>
+                <Link className={postStyles.avatarImage} onClick={handleScroll} to={`/profiles/${id}/`}>
                     <Avatar src={image} />
                 </Link>
             </div>
