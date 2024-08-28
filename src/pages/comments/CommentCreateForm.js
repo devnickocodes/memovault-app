@@ -1,28 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import Alert from "react-bootstrap/Alert";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Alert from 'react-bootstrap/Alert';
 
-import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../api/axiosDefaults";
+import Avatar from '../../components/Avatar';
+import { axiosRes } from '../../api/axiosDefaults';
 
-import styles from "../../styles/CommentCreateEditForm.module.css";
-import postStyles from "../../styles/Post.module.css";
-import btnStyles from "../../styles/Button.module.css"
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import styles from '../../styles/CommentCreateEditForm.module.css';
+import postStyles from '../../styles/Post.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
 
 /**
  * CommentCreateForm component allows users to create and submit comments for a post.
  * It includes form validation, error handling, and user feedback through alerts.
  */
 function CommentCreateForm(props) {
-  const { post, setPost, setComments, profileImage, profile_id } = props;
+  const {
+    post, setPost, setComments, profileImage, profile_id,
+  } = props;
   // State to hold the content of the comment
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
   // State to hold any error messages
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
 
   // Hook for success alerts
   const { setAlert } = useSuccessAlert();
@@ -41,7 +43,7 @@ function CommentCreateForm(props) {
     event.preventDefault();
     try {
       // Post the new comment to the server
-      const { data } = await axiosRes.post("/comments/", {
+      const { data } = await axiosRes.post('/comments/', {
         content,
         post,
       });
@@ -63,12 +65,12 @@ function CommentCreateForm(props) {
       }));
 
       // Clear the input field and show a success alert
-      setContent("");
-      setAlert({ message: "Thank you for commenting!" });
+      setContent('');
+      setAlert({ message: 'Thank you for commenting!' });
     } catch (err) {
       // Handle any errors that occur during the comment posting
       // console.log(err)
-      setError("Sorry an error occurred, please try again.");
+      setError('Sorry an error occurred, please try again.');
     }
   };
 

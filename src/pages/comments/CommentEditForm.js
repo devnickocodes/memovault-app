@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
+import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosRes } from '../../api/axiosDefaults';
 
-import styles from "../../styles/CommentCreateEditForm.module.css";
-import postStyles from "../../styles/Post.module.css";
-import btnStyles from "../../styles/Button.module.css"
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import styles from '../../styles/CommentCreateEditForm.module.css';
+import postStyles from '../../styles/Post.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
 
 /**
  * CommentEditForm component provides a form to edit an existing comment.
  * It allows users to update the content of the comment and handle errors.
  */
 function CommentEditForm(props) {
-  const { id, content, setShowEditForm, setComments } = props;
+  const {
+    id, content, setShowEditForm, setComments,
+  } = props;
 
   // State to manage the content of the form
   const [formContent, setFormContent] = useState(content);
@@ -31,7 +33,7 @@ function CommentEditForm(props) {
    */
   const handleChange = (event) => {
     // Update the formContent state with the new value
-    setFormContent(event.target.value); 
+    setFormContent(event.target.value);
   };
 
   /**
@@ -48,24 +50,22 @@ function CommentEditForm(props) {
       // Update the comments state with the edited comment
       setComments((prevComments) => ({
         ...prevComments,
-        results: prevComments.results.map((comment) => {
-          return comment.id === id
-            ? {
-                ...comment,
-                content: formContent.trim(), // Update comment content
-                updated_at: "now", // Update the timestamp (placeholder value for this example)
-              }
-            : comment;
-        }),
+        results: prevComments.results.map((comment) => (comment.id === id
+          ? {
+            ...comment,
+            content: formContent.trim(), // Update comment content
+            updated_at: 'now', // Update the timestamp (placeholder value for this example)
+          }
+          : comment)),
       }));
 
       // Hide the edit form and show a success alert
       setShowEditForm(false);
-      setAlert({ message: "Comment updated!" });
+      setAlert({ message: 'Comment updated!' });
     } catch (err) {
       // console.log(err)
       // Handle any errors that occur during the comment update
-      setError("Sorry an error occurred, please try again.");
+      setError('Sorry an error occurred, please try again.');
     }
   };
 
