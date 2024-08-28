@@ -1057,6 +1057,76 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 ## Testing
 
 
+You can find the testing and validation [here](TESTING.md)
+
+
+## Deployment
+
+
+### How to Fork
+
+
+- You can fork the repository, following the steps below.
+
+    - Sign Up or Log In if you have an account to Github.
+    - Go to the repository for the MemoVault project - [devnickocodes/MemoVault Project](https://github.com/devnickocodes/memovault-app)
+    - Click on the Fork button that is on the right side of the repository name.
+
+
+
+### How to Clone
+
+- You can make a local copy of the MemoVault project by writing the following command in your IDE terminal.
+
+    - `git clone https://github.com/devnickocodes/memovault-app.git` 
+
+
+
+### Deployment on Heroku
+
+Heroku is used for the deployment of the project, after you create your profile follow the steps bellow:
+
+Add Heroku deployment commands bellow:
+
+- Navigate to `package.json` file.
+- Add the `heroku-prebuild` prebuild command to the scripts section of the file like so:
+
+```json
+  "scripts": {
+    "heroku-prebuild": "npm install -g serve",
+  },
+```
+
+- Add a Procfile to the root of the repository with the following command:
+
+    - `web: serve -s build`
+
+
+
+- Fork or Clone this repository in GitHub
+
+- If you have cloned and deployed your own version of the MemoVault Django Rest Framework API, make sure to update the `axios.defaults.baseURL` in `src/api/axiosDefaults.js` to match the base heroku URL of your deployed API. If you’re using the original MemoVault API, you don't have to adjust this setting.
+
+- Click on 'New' at the top-right corner of your Dashboard, then select 'Create new app'
+
+- Choose a distinct app name (as no two projects can have the same name on Heroku) and choose your region
+
+- Click on 'Create App'
+
+- Navigate to the 'Deploy' tab, which is on the left side of the 'Settings' tab, in the deployment method section click on GitHub
+
+- To connect your GitHub code to Heroku, type in the name of your repository and then click on 'Search'. Once you see your repository show up click on 'Connect'
+
+- Choose a branch from which you wish to deploy.
+
+- You can choose to deploy your app manualy in the 'Manual Deploy' section click on 'Deploy Branch'
+
+- If you prefer you can also choose automatic deploys, in that case navigate to the 'Automatic Deploys' section and click on 'Enable Automatic Deploys', this method keeps the project up to date with your repository.
+
+
+
+
+
 
 
 
