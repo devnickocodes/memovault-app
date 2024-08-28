@@ -1125,6 +1125,56 @@ Add Heroku deployment commands bellow:
 
 
 
+## Credits
+
+- Some of the code is inspired by Code Institute's Moments Walkthrough project with some adjustments made to accomodate the needs for this app.
+
+- The favicon is from [icons8](https://icons8.com/icon/122835/image)
+- [Nunito](https://fonts.google.com/specimen/Nunito) is the font used.
+- The feature image is from [unsplash](https://unsplash.com/photos/white-and-black-box-on-black-textile-jIrsEPB4_iU)
+- The border for the post component is from [getcssscan](https://getcssscan.com/css-box-shadow-examples) (No 93)
+- Profile and post placeholders are from [Pixabay](https://pixabay.com/)
+- The code in `scrollToTop.js` can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo)
+- Scroll to top component can be found [here](https://www.npmjs.com/package/react-scroll-to-top)
+- The use of `!important` in `PostsPage.module.css` is to override styling as the Props table in [the docs](https://www.npmjs.com/package/react-scroll-to-top) says.
+- [This page](https://react-bootstrap-v4.netlify.app/components/modal/) helped with the creation of the modal.
+- The idea to include `const [showDeleteModal, setShowDeleteModal] = useState(false)` in `Post.js `, `Comment.js` and `NavBar.js` in `finally` block statement is from here because i am using it as a clean up function method to make sure its closed this is the site https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch and this is the sentence 
+- The idea to use the setter function from `const [showDeleteModal, setShowDeleteModal] = useState(false)` in the `finally` blocks in `Post.js `, `Comment.js` and `NavBar.js` to close the modal is from [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) because it says:
+
+    - "The finally block will always execute before control flow exits the try...catch...finally construct. It always executes, regardless of whether an exception was thrown or caught."
+
+as I am using it as a cleanup function.
+- I learned how to use `async` with `map` method for reports [here](https://stackoverflow.com/questions/40140149/use-async-await-with-array-map)
+- For automated testing the [Jest](https://jestjs.io/docs/getting-started) docs were researched
+- The [React](https://react.dev/reference/react) docs were also researched and referenced throughout the project.
+
+
+
+## Acknowledgements
+
+
+- I would like to acknowledge and thank the following people.
+
+    - Jubril Akolade - My Code Institute Mentor.
+    - The Code Institute Tutor Support - For their awesome and quick technical help.
+    - Thank you to everyone who took the time to use the app and give feedback.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
