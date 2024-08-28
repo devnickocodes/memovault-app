@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container"; 
-import Nav from "react-bootstrap/Nav";
-import Alert from "react-bootstrap/Alert";
-import styles from "../styles/NavBar.module.css";
-import { NavLink } from "react-router-dom";
-import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
-import Avatar from "./Avatar";
-import axios from "axios";
-import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
-import ConfirmationModal from "../utils/ConfirmationModal";
-import postStyles from "../styles/Post.module.css";
-import { removeTokenTimestamp } from "../utils/utils";
-import { useSuccessAlert } from "../contexts/SuccessAlertContext";
+import React, { useEffect, useState } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Alert from 'react-bootstrap/Alert';
+import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import styles from '../styles/NavBar.module.css';
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from '../contexts/CurrentUserContext';
+import Avatar from './Avatar';
+import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
+import ConfirmationModal from '../utils/ConfirmationModal';
+import postStyles from '../styles/Post.module.css';
+import { removeTokenTimestamp } from '../utils/utils';
+import { useSuccessAlert } from '../contexts/SuccessAlertContext';
 
 /**
- * The NavBar component renders a responsive navigation bar that adapts based on the user's authentication status.
+ * The NavBar component renders a responsive navigation bar that adapts
+ * based on the user's authentication status.
  *
  * - Displays application logo and links to the home page.
- * - Shows navigation options such as "Feed", "Reports", "Profile", and "Add Post" when the user is logged in.
+ * - Shows navigation options such as "Feed", "Reports", "Profile", and "Add Post"
+ * when the user is logged in.
  * - Provides sign-out functionality with a confirmation modal.
  * - Displays different links for users who are logged in vs. logged out.
  * - Manages error and success alerts for user feedback.
@@ -34,13 +39,13 @@ const NavBar = () => {
   // Handle user sign-out by making an API request and updating the application state
   const handleSignOut = async () => {
     try {
-      await axios.post("dj-rest-auth/logout/");
+      await axios.post('dj-rest-auth/logout/');
       setCurrentUser(null);
       removeTokenTimestamp();
       setAlert({ message: `Sorry to see you go ${currentUser.username}!` });
     } catch (err) {
       // console.log(err)
-      setError("Sorry an error occurred, please try again.");
+      setError('Sorry an error occurred, please try again.');
     } finally {
       setShowDeleteModal(false);
     }
@@ -62,7 +67,8 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/posts/create"
     >
-      <i className="fa-solid fa-circle-plus mr-1"></i>Add Post
+      <i className="fa-solid fa-circle-plus mr-1" />
+      Add Post
     </NavLink>
   );
 
@@ -73,7 +79,8 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/posts/create"
     >
-      <i className="fa-solid fa-circle-plus mr-1"></i>Add Post
+      <i className="fa-solid fa-circle-plus mr-1" />
+      Add Post
     </NavLink>
   );
 
@@ -85,7 +92,8 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/feed"
       >
-        <i className="fa-solid fa-bars-staggered mr-2"></i>Feed
+        <i className="fa-solid fa-bars-staggered mr-2" />
+        Feed
       </NavLink>
 
       {/* Conditionally render Reports link based on admin status */}
@@ -95,7 +103,8 @@ const NavBar = () => {
           activeClassName={styles.Active}
           to="/reports/admin"
         >
-          <i className="fa-solid fa-flag mr-2"></i>Reports
+          <i className="fa-solid fa-flag mr-2" />
+          Reports
         </NavLink>
       ) : (
         <NavLink
@@ -103,7 +112,8 @@ const NavBar = () => {
           activeClassName={styles.Active}
           to="/reports"
         >
-          <i className="fa-solid fa-flag mr-2"></i>Reports
+          <i className="fa-solid fa-flag mr-2" />
+          Reports
         </NavLink>
       )}
 
@@ -113,12 +123,21 @@ const NavBar = () => {
         to={`/profiles/${currentUser?.profile_id}`}
         onClick={() => {}}
       >
-        <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={32} />
+        <Avatar
+          src={currentUser?.profile_image}
+          text={currentUser?.username}
+          height={32}
+        />
       </NavLink>
 
       {/* Sign out link triggers the confirmation modal */}
-      <NavLink className={styles.NavLink} to="/" onClick={() => setShowDeleteModal(true)}>
-        <i className="fa-solid fa-arrow-right-from-bracket mr-2"></i>Sign Out
+      <NavLink
+        className={styles.NavLink}
+        to="/"
+        onClick={() => setShowDeleteModal(true)}
+      >
+        <i className="fa-solid fa-arrow-right-from-bracket mr-2" />
+        Sign Out
       </NavLink>
     </>
   );
@@ -131,14 +150,16 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/signin"
       >
-        <i className="fa-solid fa-right-to-bracket mr-1"></i>Sign In
+        <i className="fa-solid fa-right-to-bracket mr-1" />
+        Sign In
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/signup"
       >
-        <i className="fa-solid fa-user-plus mr-1"></i>Sign Up
+        <i className="fa-solid fa-user-plus mr-1" />
+        Sign Up
       </NavLink>
     </>
   );
@@ -146,14 +167,20 @@ const NavBar = () => {
   return (
     <>
       {/* Navbar component from react-bootstrap */}
-      <Navbar expanded={expanded} className={styles.navContainer} expand="md" fixed="top">
+      <Navbar
+        expanded={expanded}
+        className={styles.navContainer}
+        expand="md"
+        fixed="top"
+      >
         <Container>
           {/* Logo and link to the home page */}
           <NavLink className={styles.LogoLink} to="/">
             <Navbar.Brand>
               <h1 className={styles.Logo}>
-                Memo<span>Vault</span>
-                <i className="fa-solid fa-icons ml-3"></i>
+                Memo
+                <span>Vault</span>
+                <i className="fa-solid fa-icons ml-3" />
               </h1>
             </Navbar.Brand>
           </NavLink>
@@ -175,7 +202,8 @@ const NavBar = () => {
                 activeClassName={styles.Active}
                 to="/"
               >
-                <i className="fa-solid fa-house mr-1"></i>Home
+                <i className="fa-solid fa-house mr-1" />
+                Home
               </NavLink>
               {/* Show add post icon in dropdown menu if user is logged in */}
               {currentUser && dropdownAddPostIcon}

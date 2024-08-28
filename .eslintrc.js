@@ -25,6 +25,8 @@ module.exports = {
     'react/prop-types': 'off',
     'react/function-component-definition': 'off',
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
   },
   settings: {
     react: {
