@@ -1,38 +1,40 @@
-import { render, screen } from "@testing-library/react";
-import { BrowserRouter as Router } from "react-router-dom";
-import ReportPreview from "../ReportPreview";
+/* eslint-env jest */
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import ReportPreview from '../ReportPreview';
 
 const mockReportAdmin = {
   id: 1,
-  owner: "John Doe",
-  reason: "Spam",
-  custom_reason: "A spam post!",
+  owner: 'John Doe',
+  reason: 'Spam',
+  custom_reason: 'A spam post!',
   post: {
-    title: "Post Title",
-    content: "Post Content.",
+    title: 'Post Title',
+    content: 'Post Content.',
   },
   is_admin: true,
 };
 
 const mockReportNonAdmin = {
   id: 2,
-  owner: "Jane Doe",
-  reason: "Inappropriate",
-  custom_reason: "",
+  owner: 'Jane Doe',
+  reason: 'Inappropriate',
+  custom_reason: '',
   post: {
-    title: "Post Title",
-    content: "Post Content.",
+    title: 'Post Title',
+    content: 'Post Content.',
   },
   is_admin: false,
 };
 
-test("renders ReportPreview with correct content for admin", () => {
-  const apiEndpoint = "/reports/admin";
+test('renders ReportPreview with correct content for admin', () => {
+  const apiEndpoint = '/reports/admin';
 
   render(
     <Router>
       <ReportPreview report={mockReportAdmin} apiEndpoint={apiEndpoint} />
-    </Router>
+    </Router>,
   );
 
   // Check for the presence of the report owner
@@ -40,8 +42,8 @@ test("renders ReportPreview with correct content for admin", () => {
   expect(screen.getByText(mockReportAdmin.owner)).toBeInTheDocument();
 
   // Check that the link is correct for admins
-  const link = screen.getByRole("link");
-  expect(link).toHaveAttribute("href", `${apiEndpoint}/${mockReportAdmin.id}`);
+  const link = screen.getByRole('link');
+  expect(link).toHaveAttribute('href', `${apiEndpoint}/${mockReportAdmin.id}`);
 
   //  Check for "Reason:" label and its text
   const reasonLabels = screen.getAllByText(/Reason:/);
@@ -64,17 +66,17 @@ test("renders ReportPreview with correct content for admin", () => {
 
   // Check for the "View Full Report" button
   expect(
-    screen.getByRole("button", { name: /View Full Report/ })
+    screen.getByRole('button', { name: /View Full Report/ }),
   ).toBeInTheDocument();
 });
 
-test("renders ReportPreview with correct content for non-admin", () => {
-  const apiEndpoint = "/reports";
+test('renders ReportPreview with correct content for non-admin', () => {
+  const apiEndpoint = '/reports';
 
   render(
     <Router>
       <ReportPreview report={mockReportNonAdmin} apiEndpoint={apiEndpoint} />
-    </Router>
+    </Router>,
   );
 
   // Verify that "submitted by" elements are not present if not an admin
@@ -82,10 +84,10 @@ test("renders ReportPreview with correct content for non-admin", () => {
   expect(screen.queryByText(mockReportNonAdmin.owner)).toBeNull();
 
   // Check that the link is correct for non-admins
-  const link = screen.getByRole("link");
+  const link = screen.getByRole('link');
   expect(link).toHaveAttribute(
-    "href",
-    `${apiEndpoint}/${mockReportNonAdmin.id}`
+    'href',
+    `${apiEndpoint}/${mockReportNonAdmin.id}`,
   );
 
   //  Check for "Reason:" label and its text
@@ -98,7 +100,7 @@ test("renders ReportPreview with correct content for non-admin", () => {
     const additionalReasonLabels = screen.getAllByText(/Additional Reason:/);
     expect(additionalReasonLabels.length).toBeGreaterThan(0);
     expect(
-      screen.getByText(mockReportNonAdmin.custom_reason)
+      screen.getByText(mockReportNonAdmin.custom_reason),
     ).toBeInTheDocument();
   }
 
@@ -111,6 +113,6 @@ test("renders ReportPreview with correct content for non-admin", () => {
 
   // Check for the "View Full Report" button
   expect(
-    screen.getByRole("button", { name: /View Full Report/ })
+    screen.getByRole('button', { name: /View Full Report/ }),
   ).toBeInTheDocument();
 });
