@@ -11,19 +11,19 @@ import { SuccessAlertProvider } from './contexts/SuccessAlertContext';
 
 ReactDOM.render(
   <Router>
+    <SuccessAlertProvider>
+    {/* SuccessAlertProvider provides success alert context to its children */}
     <CurrentUserProvider>
       {/* CurrentUserProvider provides current user context to child elements */}
       <ProfileDataProvider>
         {/* ProfileDataProvider provides the profile data context to its children */}
         <PopularPostDataProvider>
           {/* PopularPostDataProvider provides popular post data context to its children */}
-          <SuccessAlertProvider>
-            {/* SuccessAlertProvider provides success alert context to its children */}
             <App />
-          </SuccessAlertProvider>
         </PopularPostDataProvider>
       </ProfileDataProvider>
     </CurrentUserProvider>
+    </SuccessAlertProvider>
   </Router>,
   document.getElementById('root'),
 );

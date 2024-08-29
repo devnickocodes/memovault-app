@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
 import Profile from './Profile';
 import navStyles from '../../styles/NavBar.module.css';
 import styles from '../../styles/PopularProfiles.module.css';
 import { useProfileData } from '../../contexts/ProfileDataContext';
+import { Alert } from 'react-bootstrap';
+import postStyles from "../../styles/Post.module.css"
 
 const PopularProfilesMostPosts = ({ mobile }) => {
   // Fetch profile data and potential errors from the context
-  const { profileData, popularProfilesError, mostPostsError } = useProfileData();
+  const { profileData, popularProfilesError, mostPostsError, followUnfollowError, setFollowUnfollowError } = useProfileData();
   const { popularProfiles, mostPosts } = profileData;
+
+
+    // Effect to clear the error message after 3 seconds
+    useEffect(() => {
+      let timer;
+      if (followUnfollowError) {
+        timer = setTimeout(() => setFollowUnfollowError(null), 3000);
+      }
+      return () => clearTimeout(timer);
+    }, [followUnfollowError]);
 
   return (
     <>
+    {followUnfollowError && <Alert className={`${postStyles.Alert} ${postStyles.ErrorAlert}`}>{followUnfollowError}</Alert>}
       <Container className={`${styles.Container} mb-3 ${mobile && 'd-lg-none text-center mb-2'}`}>
         {/* Show error message if there's an error fetching popular profiles */}
         {popularProfilesError ? (
