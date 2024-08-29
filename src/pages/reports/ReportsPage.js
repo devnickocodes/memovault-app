@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import InfiniteScroll from "react-infinite-scroll-component";
-import ScrollToTop from "react-scroll-to-top";
-import postsPageStyles from "../../styles/PostsPage.module.css";
-import postStyles from "../../styles/Post.module.css";
-import navStyles from "../../styles/NavBar.module.css";
-import Asset from "../../components/Asset";
-import NoResults from "../../assets/no-results.jpg";
-import PopularProfilesMostPosts from "../profiles/PopularProfilesMostPosts";
-import PopularPosts from "../posts/PopularPosts";
-import ReportPreview from "./ReportPreview";
-import { axiosReq } from "../../api/axiosDefaults";
-import { fetchMoreData } from "../../utils/utils";
-import { useRedirectIfNotAdmin } from "../../hooks/useRedirectIfNotAdmin";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useRedirect } from "../../hooks/useRedirect";
+import React, { useEffect, useState } from 'react';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import ScrollToTop from 'react-scroll-to-top';
+import postsPageStyles from '../../styles/PostsPage.module.css';
+import postStyles from '../../styles/Post.module.css';
+import navStyles from '../../styles/NavBar.module.css';
+import Asset from '../../components/Asset';
+import NoResults from '../../assets/no-results.jpg';
+import PopularProfilesMostPosts from '../profiles/PopularProfilesMostPosts';
+import PopularPosts from '../posts/PopularPosts';
+import ReportPreview from './ReportPreview';
+import { axiosReq } from '../../api/axiosDefaults';
+import { fetchMoreData } from '../../utils/utils';
+import { useRedirectIfNotAdmin } from '../../hooks/useRedirectIfNotAdmin';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { useRedirect } from '../../hooks/useRedirect';
 
 /**
  * ReportsPage is a component that displays a list of reports.
- * It fetches reports from the given API endpoint and displays them in an infinite scroll 
+ * It fetches reports from the given API endpoint and displays them in an infinite scroll
  * view with the ability to view more details. If apiEndpoint is leading to admins-only page
  * the list of reports will contain all the reports created, if it is leading to users' page
  * the list of reports will contain only reports that are created by the currently logged-in user.
  */
-const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
+const ReportsPage = ({
+  apiEndpoint, title, message, adminOnly,
+}) => {
   // State to hold the list of reports and pagination data
   const [reports, setReports] = useState({ results: [], next: null });
   // State to manage any errors encountered while fetching data
@@ -39,7 +41,7 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
   // Redirect to home if the user is not an admin
   useRedirectIfNotAdmin(apiEndpoint, '/');
   // Redirect users to login if they are not logged in
-  useRedirect("loggedOut")
+  useRedirect('loggedOut');
 
   useEffect(() => {
     /**
@@ -56,7 +58,7 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
           reportsData.results.map(async (report) => {
             const { data: postData } = await axiosReq.get(`/posts/${report.post}/`);
             return { ...report, post: postData };
-          })
+          }),
         );
 
         // Update state with the fetched reports and pagination info
@@ -65,7 +67,7 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
       } catch (err) {
         // console.log(err)
         // Handle errors
-        setError("Sorry, an error occurred. Please try again.");
+        setError('Sorry, an error occurred. Please try again.');
       }
     };
 
@@ -94,9 +96,15 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
         <Container className="mt-3">
           {/* Display the appropriate title based on the adminOnly flag */}
           {adminOnly ? (
-            <p className={navStyles.Logo}>All <span>{title}</span></p>
+            <p className={navStyles.Logo}>
+              All
+              <span>{title}</span>
+            </p>
           ) : (
-            <p className={navStyles.Logo}>My <span>{title}</span></p>
+            <p className={navStyles.Logo}>
+              My
+              <span>{title}</span>
+            </p>
           )}
 
           {/* Conditionally render the list of reports or a loading indicator */}
@@ -117,7 +125,7 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
                 />
               ) : (
                 // Display a message and image if no reports are found
-                <Asset message={message} src={NoResults} alt="Not Found" height={200} width={200} borderRadius="10px"/>
+                <Asset message={message} src={NoResults} alt="Not Found" height={200} width={200} borderRadius="10px" />
               )}
             </>
           ) : (
@@ -137,7 +145,7 @@ const ReportsPage = ({ apiEndpoint, title, message, adminOnly }) => {
           <PopularPosts />
         </div>
       </Col>
-      
+
       {/* Scroll-to-top button */}
       <ScrollToTop className={postsPageStyles.ScrollToTop} color="purple" smooth />
     </Row>

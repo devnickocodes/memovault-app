@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
-import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { useHistory, useParams } from "react-router-dom";
-import { axiosRes } from "../../api/axiosDefaults";
-import { useRedirect } from "../../hooks/useRedirect";
-import Asset from "../../components/Asset";
-import btnStyles from "../../styles/Button.module.css";
-import { useCheckOwnership } from "../../hooks/useCheckOwnership";
-import postStyles from "../../styles/Post.module.css";
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import React, { useEffect, useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { useHistory, useParams } from 'react-router-dom';
+import { axiosRes } from '../../api/axiosDefaults';
+import { useRedirect } from '../../hooks/useRedirect';
+import Asset from '../../components/Asset';
+import btnStyles from '../../styles/Button.module.css';
+import { useCheckOwnership } from '../../hooks/useCheckOwnership';
+import postStyles from '../../styles/Post.module.css';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
 
 /**
  * ReportEditForm allows users to edit an existing report.
- * The form retrieves the current report data and allows the user to update the reason and custom reason.
- * It also handles form submission, error states, and redirects the user after successful submission.
+ * The form retrieves the current report data and allows the user to
+ * update the reason and custom reason.
+ * It also handles form submission, error states, and redirects
+ * the user after successful submission.
  */
 const ReportEditForm = () => {
   // State to hold the report data that is being edited
   const [reportData, setReportData] = useState({
-    reason: "",
-    custom_reason: "",
+    reason: '',
+    custom_reason: '',
     post: null,
   });
   const { reason, custom_reason, post } = reportData;
@@ -40,17 +42,19 @@ const ReportEditForm = () => {
   const { id } = useParams();
 
   // Context to manage success alerts
-  const { setAlert } = useSuccessAlert(); 
+  const { setAlert } = useSuccessAlert();
 
   // Redirect users who are not logged in
-  useRedirect("loggedOut");
+  useRedirect('loggedOut');
 
   // Hook to ensure the current user owns the report
-  useCheckOwnership(id, "/reports");
+  useCheckOwnership(id, '/reports');
 
-  const { owner, image, title, content } = postDetails;
+  const {
+    owner, image, title, content,
+  } = postDetails;
 
-   /**
+  /**
    * Handles changes to the form input field.
    */
   const handleChange = (event) => {
@@ -61,7 +65,8 @@ const ReportEditForm = () => {
   };
 
   /**
-   * Fetch the report data and associated post data on component mount using the report ID from the URL.
+   * Fetch the report data and associated post data on component mount
+   * using the report ID from the URL.
    * If the report or post is not found, redirect to a 404 page.
    */
   useEffect(() => {
@@ -81,8 +86,8 @@ const ReportEditForm = () => {
         // console.log(err)
         // Handle the error
         if (err.response?.status === 404) {
-          history.push("/not-found");
-        } 
+          history.push('/not-found');
+        }
       }
     };
 
@@ -98,11 +103,11 @@ const ReportEditForm = () => {
     try {
       await axiosRes.put(`/reports/${id}/`, {
         ...reportData,
-        custom_reason: reason === "other" ? custom_reason : "",
+        custom_reason: reason === 'other' ? custom_reason : '',
         post,
       });
       history.push(`/reports/${id}`);
-      setAlert({ message: "Report has been updated!" });
+      setAlert({ message: 'Report has been updated!' });
     } catch (err) {
       // console.log(err)
       // Handle errors and set them in the state
@@ -134,11 +139,21 @@ const ReportEditForm = () => {
                 <Asset src={image} alt="Post Image" height="200" width="200" />
               </Col>
               <Col xs={12} md={9}>
-                <Card.Title><span className={postStyles.Font}>Title:</span> {title}</Card.Title>
+                <Card.Title>
+                  <span className={postStyles.Font}>Title:</span>
+                  {' '}
+                  {title}
+                </Card.Title>
                 <Card.Subtitle className="mb-2">
-                  <span className={postStyles.Font}>Posted by: </span> {owner}
+                  <span className={postStyles.Font}>Posted by: </span>
+                  {' '}
+                  {owner}
                 </Card.Subtitle>
-                <Card.Text><span className={postStyles.Font}>Content: </span> {content}</Card.Text>
+                <Card.Text>
+                  <span className={postStyles.Font}>Content: </span>
+                  {' '}
+                  {content}
+                </Card.Text>
               </Col>
             </Row>
           </Card.Body>
@@ -170,7 +185,7 @@ const ReportEditForm = () => {
         ))}
 
         {/* Conditionally render a custom reason field if 'Other' is selected */}
-        {reason === "other" && (
+        {reason === 'other' && (
           <Form.Group controlId="customReason">
             <Form.Label>Custom Reason</Form.Label>
             <Form.Control

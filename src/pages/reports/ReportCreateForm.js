@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
-import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { useHistory, useParams } from "react-router-dom";
-import { axiosRes } from "../../api/axiosDefaults";
-import { useRedirect } from "../../hooks/useRedirect";
-import Asset from "../../components/Asset";
-import btnStyles from "../../styles/Button.module.css";
-import postStyles from "../../styles/Post.module.css";
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import React, { useEffect, useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { useHistory, useParams } from 'react-router-dom';
+import { axiosRes } from '../../api/axiosDefaults';
+import { useRedirect } from '../../hooks/useRedirect';
+import Asset from '../../components/Asset';
+import btnStyles from '../../styles/Button.module.css';
+import postStyles from '../../styles/Post.module.css';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 /**
  * ReportCreateForm allows users to create a report on a specific post.
@@ -23,10 +23,9 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 const ReportCreateForm = () => {
   // State to hold the data of the report being created
   const [reportData, setReportData] = useState({
-    reason: "",
-    custom_reason: "",
+    reason: '',
+    custom_reason: '',
   });
-
 
   const { reason, custom_reason } = reportData;
 
@@ -40,18 +39,19 @@ const ReportCreateForm = () => {
   const history = useHistory();
   const { id } = useParams();
 
-  const currentUser = useCurrentUser()
+  const currentUser = useCurrentUser();
 
   // Context to manage success alerts
   const { setAlert } = useSuccessAlert();
 
   // Redirect users who are not logged in
-  useRedirect("loggedOut");
+  useRedirect('loggedOut');
 
- 
-  const { owner, image, title, content } = post;
+  const {
+    owner, image, title, content,
+  } = post;
 
- /**
+  /**
    * Handles changes to the form input field.
    */
   const handleChange = (event) => {
@@ -72,11 +72,11 @@ const ReportCreateForm = () => {
         setPost(data);
         // Redirect if the current user is the owner of the post
         if (data.owner === currentUser?.username) {
-          history.push("/");
+          history.push('/');
         }
       } catch (err) {
         if (err.response?.status === 404) {
-          history.push("/not-found");
+          history.push('/not-found');
         }
       }
     };
@@ -91,13 +91,13 @@ const ReportCreateForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axiosRes.post("/reports/", {
+      const { data } = await axiosRes.post('/reports/', {
         post: id,
         ...reportData,
-        custom_reason: reason === "other" ? custom_reason : "",
+        custom_reason: reason === 'other' ? custom_reason : '',
       });
       history.push(`/reports/${data.id}`);
-      setAlert({ message: "Report has been submitted!" });
+      setAlert({ message: 'Report has been submitted!' });
     } catch (err) {
       // console.log(err)
       // Handle errors
@@ -137,13 +137,19 @@ const ReportCreateForm = () => {
                 md={9}
               >
                 <Card.Title>
-                  <span className={postStyles.Font}>Title:</span> {title}
+                  <span className={postStyles.Font}>Title:</span>
+                  {' '}
+                  {title}
                 </Card.Title>
                 <Card.Subtitle className="mb-2">
-                  <span className={postStyles.Font}>Posted by:</span> {owner}
+                  <span className={postStyles.Font}>Posted by:</span>
+                  {' '}
+                  {owner}
                 </Card.Subtitle>
                 <Card.Text>
-                  <span className={postStyles.Font}>Content:</span> {content}
+                  <span className={postStyles.Font}>Content:</span>
+                  {' '}
+                  {content}
                 </Card.Text>
               </Col>
             </Row>
@@ -178,7 +184,7 @@ const ReportCreateForm = () => {
         ))}
 
         {/* Conditionally render a custom reason field if 'Other' is selected */}
-        {reason === "other" && (
+        {reason === 'other' && (
           <Form.Group controlId="customReason">
             <Form.Label>Custom Reason</Form.Label>
             <Form.Control
