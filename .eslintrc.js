@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    jest: true,
   },
   extends: [
     'eslint:recommended',
@@ -35,7 +36,7 @@ module.exports = {
     "no-shadow": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-children-prop": "off",
-    // "react/jsx-no-useless-fragment": "off"
+    "react/jsx-no-useless-fragment": "off"
   },
   settings: {
     react: {
