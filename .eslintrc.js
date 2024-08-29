@@ -37,6 +37,7 @@ module.exports = {
     "react/jsx-props-no-spreading": "off",
     "react/no-children-prop": "off",
     "react/jsx-no-useless-fragment": "off",
+    "import/no-extraneous-dependencies": "warn",
     "max-len": "warn",
     "react/jsx-no-constructed-context-values": "warn"
   },
