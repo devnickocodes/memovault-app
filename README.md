@@ -514,6 +514,13 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
+- **Feed Page (No Results)**
+
+
+    - If the user hasn't followed anyone there will be a "Not Found" image and a text saying "No results found. Try following someone!", prompting the user to follow other profiles to start accumulating posts in their Feed page.
+
+![Feed Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/feed-no-posts.png)
+
 - **Reports Page (User)**
 
 
@@ -994,7 +1001,9 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 - Implement a direct messaging system where users can privately communicate with each other, including features like group chats and media sharing.
 
+### Username Length Restriction
 
+- When signing up the username field will have a length restriction between 3 and 16 characters
 
 
 ## Frameworks, libraries and dependencies

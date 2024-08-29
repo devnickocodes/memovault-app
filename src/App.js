@@ -41,7 +41,7 @@ function App() {
             path="/feed"
             render={() => (
               <PostsPage
-                message="No results found."
+                message="No results found. Try following someone!"
                 filter={`owner__followed__owner__profile=${profile_id}&`}
               />
             )}
