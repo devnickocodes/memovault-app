@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import { useHistory, useParams } from "react-router-dom";
-import { axiosRes } from "../../api/axiosDefaults";
-import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserContext";
-import btnStyles from "../../styles/Button.module.css";
-import navBarStyles from "../../styles/NavBar.module.css";
-import postStyles from "../../styles/Post.module.css";
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import React, { useEffect, useState } from 'react';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import { useHistory, useParams } from 'react-router-dom';
+import { axiosRes } from '../../api/axiosDefaults';
+import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import btnStyles from '../../styles/Button.module.css';
+import navBarStyles from '../../styles/NavBar.module.css';
+import postStyles from '../../styles/Post.module.css';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
 
 /**
  * UsernameForm allows users to update their username.
@@ -20,23 +20,23 @@ import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
  */
 const UsernameForm = () => {
   // State to manage the input value for the username
-  const [username, setUsername] = useState("");
-  
+  const [username, setUsername] = useState('');
+
   // State to manage validation errors from the server
   const [errors, setErrors] = useState({});
 
   // Hook for navigation
   const history = useHistory();
-  
+
   // Hook to get the URL parameter
   const { id } = useParams();
 
   // Hook to get the current user data
   const currentUser = useCurrentUser();
-  
+
   // Hook to update the current user data
   const setCurrentUser = useSetCurrentUser();
-  
+
   // Hook to handle success alerts
   const { setAlert } = useSuccessAlert();
 
@@ -49,7 +49,7 @@ const UsernameForm = () => {
     if (currentUser?.profile_id?.toString() === id) {
       setUsername(currentUser.username);
     } else {
-      history.push("/");
+      history.push('/');
     }
   }, [currentUser, history, id]);
 
@@ -61,13 +61,13 @@ const UsernameForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosRes.put("/dj-rest-auth/user/", { username });
+      await axiosRes.put('/dj-rest-auth/user/', { username });
       setCurrentUser((prevUser) => ({
         ...prevUser,
         username,
       }));
       history.goBack();
-      setAlert({ message: "Username has been updated!" });
+      setAlert({ message: 'Username has been updated!' });
     } catch (err) {
       // console.log(err)
       // Set errors from the response data
@@ -93,7 +93,9 @@ const UsernameForm = () => {
           <Form onSubmit={handleSubmit} className="my-2">
             <Form.Group>
               <Form.Label className={`${navBarStyles.Logo} mb-4`}>
-                Change <span>Username</span>
+                Change
+                {' '}
+                <span>Username</span>
               </Form.Label>
               <Form.Control
                 placeholder="username"

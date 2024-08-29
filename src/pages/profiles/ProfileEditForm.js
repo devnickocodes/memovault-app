@@ -1,26 +1,26 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import { axiosReq } from "../../api/axiosDefaults";
-import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserContext";
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
-import postCreateStyles from "../../styles/PostCreateEditForm.module.css";
-import navBarStyles from "../../styles/NavBar.module.css";
-import postStyles from "../../styles/Post.module.css";
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import React, { useState, useEffect, useRef } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import { axiosReq } from '../../api/axiosDefaults';
+import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import btnStyles from '../../styles/Button.module.css';
+import appStyles from '../../App.module.css';
+import postCreateStyles from '../../styles/PostCreateEditForm.module.css';
+import navBarStyles from '../../styles/NavBar.module.css';
+import postStyles from '../../styles/Post.module.css';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
 
 const ProfileEditForm = () => {
   // Current user and function to update current user
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-  
+
   // Profile ID from URL parameters
   const { id } = useParams();
   const history = useHistory();
@@ -28,12 +28,14 @@ const ProfileEditForm = () => {
 
   // State for profile data
   const [profileData, setProfileData] = useState({
-    name: "",
-    bio: "",
-    hobbies: "",
-    image: "",
+    name: '',
+    bio: '',
+    hobbies: '',
+    image: '',
   });
-  const { name, bio, hobbies, image } = profileData;
+  const {
+    name, bio, hobbies, image,
+  } = profileData;
 
   // State for form errors
   const [errors, setErrors] = useState({});
@@ -46,14 +48,18 @@ const ProfileEditForm = () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, bio, hobbies, image } = data;
-          setProfileData({ name, bio, hobbies, image });
+          const {
+            name, bio, hobbies, image,
+          } = data;
+          setProfileData({
+            name, bio, hobbies, image,
+          });
         } catch (err) {
           // console.log(err)
-          history.push("/");
+          history.push('/');
         }
       } else {
-        history.push("/");
+        history.push('/');
       }
     };
 
@@ -72,12 +78,12 @@ const ProfileEditForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("bio", bio);
-    formData.append("hobbies", hobbies);
+    formData.append('name', name);
+    formData.append('bio', bio);
+    formData.append('hobbies', hobbies);
 
     if (imageFile?.current?.files[0]) {
-      formData.append("image", imageFile?.current?.files[0]);
+      formData.append('image', imageFile?.current?.files[0]);
     }
 
     try {
@@ -88,7 +94,7 @@ const ProfileEditForm = () => {
         profile_image: data.image,
       }));
       history.goBack();
-      setAlert({ message: "Profile has been updated!" });
+      setAlert({ message: 'Profile has been updated!' });
     } catch (err) {
       // console.log(err)
       // Set form errors if any
@@ -158,7 +164,10 @@ const ProfileEditForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Container className="d-flex flex-column align-items-center">
-        <Form.Label className={`${navBarStyles.Logo} mb-4`}>Edit <span>Profile</span></Form.Label>
+        <Form.Label className={`${navBarStyles.Logo} mb-4`}>
+          Edit
+          <span>Profile</span>
+        </Form.Label>
         <Row className="w-100 justify-content-center">
           <Col xs={12} md={8} lg={6} className="text-center">
             <Form.Group>

@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 
-import { useHistory, useParams } from "react-router-dom";
-import { axiosRes } from "../../api/axiosDefaults";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useHistory, useParams } from 'react-router-dom';
+import { axiosRes } from '../../api/axiosDefaults';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
-import navBarStyles from "../../styles/NavBar.module.css";
-import postStyles from "../../styles/Post.module.css";
-import { useSuccessAlert } from "../../contexts/SuccessAlertContext";
+import btnStyles from '../../styles/Button.module.css';
+import appStyles from '../../App.module.css';
+import navBarStyles from '../../styles/NavBar.module.css';
+import postStyles from '../../styles/Post.module.css';
+import { useSuccessAlert } from '../../contexts/SuccessAlertContext';
 
 const UserPasswordForm = () => {
   const history = useHistory(); // Hook for navigation
@@ -24,8 +24,8 @@ const UserPasswordForm = () => {
 
   // State to manage form input values
   const [userData, setUserData] = useState({
-    new_password1: "",
-    new_password2: "",
+    new_password1: '',
+    new_password2: '',
   });
   const { new_password1, new_password2 } = userData;
 
@@ -46,7 +46,7 @@ const UserPasswordForm = () => {
   // Redirect if the current user is not the same as the user in the URL
   useEffect(() => {
     if (currentUser?.profile_id?.toString() !== id) {
-      history.push("/");
+      history.push('/');
     }
   }, [currentUser, history, id]);
 
@@ -54,9 +54,9 @@ const UserPasswordForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosRes.post("/dj-rest-auth/password/change/", userData); // Send POST request to change password
+      await axiosRes.post('/dj-rest-auth/password/change/', userData); // Send POST request to change password
       history.goBack(); // Go back to the previous page
-      setAlert({ message: "Password has been changed!" }); // Set success alert
+      setAlert({ message: 'Password has been changed!' }); // Set success alert
     } catch (err) {
       // Handle errors if the request fails
       // console.log(err)
@@ -80,7 +80,9 @@ const UserPasswordForm = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label className={`${navBarStyles.Logo} mb-4`}>
-                New <span>Password</span>
+                New
+                {' '}
+                <span>Password</span>
               </Form.Label>
               <Form.Control
                 placeholder="new password"
@@ -97,7 +99,9 @@ const UserPasswordForm = () => {
             ))}
             <Form.Group>
               <Form.Label className={`${navBarStyles.Logo} mb-4`}>
-                Confirm <span>Password</span>
+                Confirm
+                {' '}
+                <span>Password</span>
               </Form.Label>
               <Form.Control
                 placeholder="confirm new password"

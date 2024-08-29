@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Image from "react-bootstrap/Image";
-import Asset from "../../components/Asset";
-import PopularProfilesMostPosts from "./PopularProfilesMostPosts";
-import PopularPosts from "../posts/PopularPosts";
-import Post from "../posts/Post";
-import InfiniteScroll from "react-infinite-scroll-component";
-import NoResults from "../../assets/no-results.jpg";
-import { fetchMoreData } from "../../utils/utils";
-import { useParams } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
-import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import styles from "../../styles/Button.module.css";
-import navStyles from "../../styles/NavBar.module.css";
-import postStyles from "../../styles/Post.module.css";
-import profilePageStyles from "../../styles/ProfilePage.module.css";
-import avatarStyles from "../../styles/Avatar.module.css";
-import { ProfileEditDropdown } from "../../components/DropdownOptions";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import postsStyles from "../../styles/PostsPage.module.css";
-import ScrollToTop from "react-scroll-to-top";
-
+import React, { useEffect, useState } from 'react';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Image from 'react-bootstrap/Image';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import ScrollToTop from 'react-scroll-to-top';
+import Asset from '../../components/Asset';
+import PopularProfilesMostPosts from './PopularProfilesMostPosts';
+import PopularPosts from '../posts/PopularPosts';
+import Post from '../posts/Post';
+import NoResults from '../../assets/no-results.jpg';
+import { fetchMoreData } from '../../utils/utils';
+import { axiosReq } from '../../api/axiosDefaults';
+import { useProfileData, useSetProfileData } from '../../contexts/ProfileDataContext';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import styles from '../../styles/Button.module.css';
+import navStyles from '../../styles/NavBar.module.css';
+import postStyles from '../../styles/Post.module.css';
+import profilePageStyles from '../../styles/ProfilePage.module.css';
+import avatarStyles from '../../styles/Avatar.module.css';
+import { ProfileEditDropdown } from '../../components/DropdownOptions';
+import postsStyles from '../../styles/PostsPage.module.css';
 
 /**
- * The ProfilePage component displays a user's profile information 
- * and their posts. It handles fetching profile and post data, 
+ * The ProfilePage component displays a user's profile information
+ * and their posts. It handles fetching profile and post data,
  * managing loading states and errors, and providing follow/unfollow functionality.
  */
 function ProfilePage() {
@@ -67,11 +66,10 @@ function ProfilePage() {
     const fetchData = async () => {
       try {
         // Fetch profile and posts data
-        const [{ data: profileData }, { data: profilePosts }] =
-          await Promise.all([
-            axiosReq.get(`/profiles/${id}/`),
-            axiosReq.get(`/posts/?owner__profile=${id}`),
-          ]);
+        const [{ data: profileData }, { data: profilePosts }] = await Promise.all([
+          axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/posts/?owner__profile=${id}`),
+        ]);
 
         // Update profile data context
         setProfileData((prevState) => ({
@@ -86,9 +84,9 @@ function ProfilePage() {
         // console.log(err)
         // Handle errors, such as profile not found
         if (err.response?.status === 404) {
-          history.push("/not-found");
+          history.push('/not-found');
         } else {
-          setError("Sorry, an error occurred. Please try again.");
+          setError('Sorry, an error occurred. Please try again.');
         }
       }
     };
@@ -159,9 +157,9 @@ function ProfilePage() {
               </Col>
             </Row>
             {profile?.hobbies && <Card.Text>{profile?.hobbies}</Card.Text>}
-            {currentUser &&
-              !profile?.is_owner &&
-              (profile?.following_id ? (
+            {currentUser
+              && !profile?.is_owner
+              && (profile?.following_id ? (
                 <Button onClick={() => handleUnfollow(profile)} className={`${styles.Button} ${styles.GreyButton}`}>
                   unfollow
                 </Button>
@@ -184,14 +182,16 @@ function ProfilePage() {
 
   /**
    * Renders the profile's posts with infinite scroll functionality.
-   * Shows a loading spinner while fetching more posts and handles 
+   * Shows a loading spinner while fetching more posts and handles
    * cases where no posts are available.
    */
   const mainProfilePosts = (
     <>
       <hr />
       <p className={`text-center ${navStyles.Logo}`}>
-        {profile?.owner}'s <span>posts</span>
+        {profile?.owner}
+        's
+        <span>posts</span>
       </p>
       <hr />
       {profilePosts.results.length ? (
@@ -218,27 +218,27 @@ function ProfilePage() {
 
   return (
     <>
-    <Row>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <PopularProfilesMostPosts mobile />
-        <Container>
-          {hasLoaded ? (
-            <>
-              {mainProfile}
-              {mainProfilePosts}
-            </>
-          ) : (
-            <Asset spinner />
-          )}
-        </Container>
-      </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfilesMostPosts />
-        <PopularPosts />
-      </Col>
-    </Row>
-    {/* Scroll to top button */}
-    <ScrollToTop className={postsStyles.ScrollToTop} color="purple" smooth />
+      <Row>
+        <Col className="py-2 p-0 p-lg-2" lg={8}>
+          <PopularProfilesMostPosts mobile />
+          <Container>
+            {hasLoaded ? (
+              <>
+                {mainProfile}
+                {mainProfilePosts}
+              </>
+            ) : (
+              <Asset spinner />
+            )}
+          </Container>
+        </Col>
+        <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+          <PopularProfilesMostPosts />
+          <PopularPosts />
+        </Col>
+      </Row>
+      {/* Scroll to top button */}
+      <ScrollToTop className={postsStyles.ScrollToTop} color="purple" smooth />
     </>
   );
 }
