@@ -635,8 +635,6 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 
-
-
 - **Comment (Owner)**
 
     - The owners of comments cannot like their own comments, an appropriate message is displayed to let the user know.
@@ -797,6 +795,38 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 ![Profile Page (Edit Password) Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/password-success.png)
 
+
+
+
+- **Follow Button**
+
+    - Clicking on the button the user will follow the profile.
+
+
+
+![Follow Button](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/follow-btn.png)
+
+
+- **Follow Button Success Message**
+
+    - After a successful follow, users are presented with a success message indicating that the user is followed.
+
+![Follow Button Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/user-followed.png)
+
+
+
+- **Unfollow Button**
+
+    - Clicking on the button the user will unfollow the profile.
+
+![Unfollow Button](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/unfollow-btn.png)
+
+
+- **Unfollow Button Success Message**
+
+    - After a successful unfollow, users are presented with a success message indicating that the user is unfollowed.
+
+![Unfollow Button Success Message](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/features/user-unfollowed.png)
 
 
 
