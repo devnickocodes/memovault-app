@@ -36,7 +36,9 @@ module.exports = {
     "no-shadow": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-children-prop": "off",
-    "react/jsx-no-useless-fragment": "off"
+    "react/jsx-no-useless-fragment": "off",
+    "max-len": "warn",
+    "react/jsx-no-constructed-context-values": "warn"
   },
   settings: {
     react: {
