@@ -125,7 +125,7 @@ export const ProfileDataProvider = ({ children }) => {
       } catch (err) {
         // console.log(err)
         setPopularProfilesError(
-          'An error occurred while loading popular profiles. Please try again.',
+          'An error occurred while loading popular profiles.',
         );
       }
 
@@ -141,7 +141,7 @@ export const ProfileDataProvider = ({ children }) => {
       } catch (err) {
         // console.log(err)
         setMostPostsError(
-          'An error occurred while loading profiles with most posts. Please try again.',
+          'An error occurred while loading profiles with most posts.',
         );
       }
     };
