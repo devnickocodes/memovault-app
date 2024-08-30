@@ -205,6 +205,21 @@
 ## Lighthouse Validation
 
 
+Some of the warnings have to do with Performance and Best Practices, which both will be worked on in the future you can find the major ones bellow:
+
+- Performance: 
+
+    - Image sizes
+    - Serve images in next-gen format
+    - Preload Largest Contentful Paint image 
+    - Avoid large layout shifts
+    - Reduce unsued JavaScript and CSS
+
+- Best Practices: 
+
+    - Uses third-party cookies 
+
+
 | Page | Screenshot | PASS/FAIL |
 | --- | --- | --- |
 | Homepage (Logged Out)| ![Homepage](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/homepage-logged-out-lighthouse.png) | PASS |
