@@ -195,3 +195,34 @@
 | Password Edit Page (Logged Out) |Change Password Edit Option | Logged out users will be redirected to the homepage when trying to access the password edit URL | PASS |
 | Password Edit Page (Logged In / Non Owner) | Change Password Edit Option | Logged in users will be redirected to the homepage when trying to access the password edit URL for another profile | PASS |
 | Password Edit Page (Logged In / Doesn't Exist) | Change Password Edit Option | Logged in users will be redirected to the homepage when trying to access the password edit URL with an id that doesn't exist | PASS |
+
+
+
+
+
+
+
+## Lighthouse Validation
+
+
+| Page | Screenshot | PASS/FAIL |
+| --- | --- | --- |
+| Homepage (Logged Out)| ![Homepage](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/homepage-logged-out-lighthouse.png) | PASS |
+| Homepage (Logged In)| ![Homepage](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/homepage-logged-in-lighthouse.png) | PASS |
+| Sign In | ![Sign In](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/signin-lighthouse.png) | PASS |
+| Sign Up | ![Sign Up](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/signup-lighthouse.png) | PASS |
+| Individual Post Page | ![Individual Post Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/individual-post-page-lighthouse.png) | PASS |
+| Feed Page | ![Feed Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/feed-page-lighthouse.png) | PASS |
+| Reports Page | ![Reports Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/reports-page-lighthouse.png) | PASS |
+| Full Report Card Page | ![Full Report Card Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/full-report-card-page-lighthouse.png) | PASS |
+| Post Create Page | ![Post Create Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/post-create-page-lighthouse.png) | PASS |
+| Post Edit Page | ![Post Edit Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/post-edit-page-lighthouse.png) | PASS |
+| Report Create Page | ![Report Create Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/report-create-page-lighthouse.png) | PASS |
+| Report Edit Page | ![Report Edit Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/report-edit-page-lighthouse.png) | PASS |
+| Profile Page | ![Profile Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/profile-page-lighthouse.png) | PASS |
+| Profile Edit Page | ![Profile Edit Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/profile-edit-page-lighthouse.png) | PASS |
+| Username Edit Page | ![Username Edit Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/username-edit-page-lighthouse.png) | PASS |
+| Password Edit Page | ![Password Edit Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/password-edit-page-lighthouse.png) | PASS |
+
+
+
