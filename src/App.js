@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import { Route, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import styles from './App.module.css';
 import NavBar from './components/NavBar';
 import './api/axiosDefaults';
@@ -40,10 +41,14 @@ function App() {
             exact
             path="/feed"
             render={() => (
-              <PostsPage
-                message="No results found. Try following someone!"
-                filter={`owner__followed__owner__profile=${profile_id}&`}
-              />
+              currentUser ? (
+                <PostsPage
+                  message="No results found. Try following someone!"
+                  filter={`owner__followed__owner__profile=${profile_id}&`}
+                />
+              ) : (
+                <Redirect to="/" />
+              )
             )}
           />
           <Route exact path="/signin" render={() => <SignInForm />} />

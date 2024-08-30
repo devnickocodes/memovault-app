@@ -1037,6 +1037,15 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 - When signing up the username field will have a length restriction between 3 and 16 characters
 
 
+### Improve Features according to Google DevTools' Lighthouse
+
+- Features will be improved as per the report returned by DevTools' Lighthouse
+
+### Display Popular Posts on small screens
+
+- Ensure popular posts are displayed effectively on smaller screens.
+
+
 ## Frameworks, libraries and dependencies
 
 ### React-Infinite-Scroll-Component
