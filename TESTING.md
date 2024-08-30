@@ -102,6 +102,7 @@
 | (Across Pages) | Unfollow Button Success | Upon successful unfollow, an appropriate message is displayed. | PASS |
 | (Across Pages) | Unfollow Button Issues | Upon unsuccessful unfollow, an appropriate error message is displayed. | PASS |
 | Feed Page | Posts Display | Posts by people who the currently requesting user is following are displayed utilising infitinty scroll| PASS |
+| Feed Page | Access | Logged out users will be redirected to the sign in page. | PASS |
 | Individual Post Page | Post Menu Toggle (Logged Out / Non Owner / Non Admin Users) | The toggle is not shown. | PASS |
 | Individual Post Page | Post Menu Toggle (Logged In / Owner / Non Admin Users) | The toggle displays edit and delete options. | PASS |
 | Individual Post Page | Post Menu Toggle (Logged In / Non Owner / Admin Users) | The toggle displays a delete option. | PASS |

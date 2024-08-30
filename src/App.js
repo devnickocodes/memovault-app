@@ -47,7 +47,7 @@ function App() {
                   filter={`owner__followed__owner__profile=${profile_id}&`}
                 />
               ) : (
-                <Redirect to="/" />
+                <Redirect to="/signin" />
               )
             )}
           />
