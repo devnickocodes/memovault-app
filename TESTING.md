@@ -1,5 +1,27 @@
 # Testing and Validation
 
+
+
+
+## Table of Contents
+
+
+- [Testing and Validation](#testing-and-validation)
+  * [CSS Validation](#css-validation)
+  * [ESLint JavaScript Validator](#eslint-javascript-validator)
+  * [Manual Testing](#manual-testing)
+  * [Lighthouse Validation](#lighthouse-validation)
+  * [Automated Testing](#automated-testing)
+  * [Browser Compatibility](#browser-compatibility)
+  * [Responsiveness](#responsiveness)
+
+Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io/markdown-toc/)
+
+
+
+
+
+
 ## CSS Validation
 
 [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) was used to validate the CSS code with all css files passing the check.
