@@ -7,6 +7,11 @@
 MemoVault is a social media app built with the React library, offering a wide range of user actions. Users can create and edit posts, follow or unfollow other profiles, like or unlike posts and comments, and delete content. They can also update their profiles, including username, password, and other details. Additionally, the app allows users to report posts and manage their reports. Admins are provided with tools to efficiently manage and review reported content.
 
 
+This is the repository for the React frontend of Memovault, a project that integrates with a Django Rest Framework web API. You can find the corresponding backend repository [here](https://github.com/devnickocodes/memovault-api).
+
+
+Live link for the app can be found [here](https://memovault-app-47c80676a966.herokuapp.com/)
+
 ## Table of contents
 
 - [MemoVault](#memovault)
@@ -21,20 +26,6 @@ MemoVault is a social media app built with the React library, offering a wide ra
   * [Features](#features)
     + [Existing Features](#existing-features)
   * [Re-use of Components](#re-use-of-components)
-    + [`Asset.js`](#-assetjs-)
-    + [`Avatar.js`](#-avatarjs-)
-    + [`DropdownOptions.js`](#-dropdownoptionsjs-)
-      - [GearToggle](#geartoggle)
-      - [`DropdownOptions`](#-dropdownoptions-)
-      - [`ProfileEditDropdown`](#-profileeditdropdown-)
-    + [`NotFound.js`](#-notfoundjs-)
-    + [`Comment.js`](#-commentjs-)
-    + [`PopularPosts.js`](#-popularpostsjs-)
-    + [`PopularPost.js`](#-popularpostjs-)
-    + [`PostPage.js`](#-postpagejs-)
-    + [`Post.js`](#-postjs-)
-    + [`PopularProfilesMostPosts.js`](#-popularprofilesmostpostsjs-)
-    + [`Profile.js`](#-profilejs-)
   * [Future Feautres](#future-feautres)
     + [State Synchronisation](#state-synchronisation)
     + [Notifications](#notifications)
