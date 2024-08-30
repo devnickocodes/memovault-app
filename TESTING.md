@@ -256,3 +256,57 @@ Some of the warnings have to do with Performance and Best Practices, which both 
 
 
 ![Automated Testing](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/automated-testing.png)
+
+
+
+
+## Browser Compatibility
+
+
+
+| Browser | Screenshot | PASS/FAIL |
+| --- | --- | --- |
+| Google Chrome | ![Google Chrome](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/chrome.png) | PASS |
+| Mozilla Firefox | ![Mozilla Firefox](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/mozilla.png) | PASS |
+| Microsoft Edge | ![Microsoft Edge](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/microsoft-edge.png) | PASS |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
