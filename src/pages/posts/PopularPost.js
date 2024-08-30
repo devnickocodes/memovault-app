@@ -56,6 +56,7 @@ const PopularPost = ({ post }) => {
               variant="top"
               src={image}
               className={styles.CardImage}
+              alt={title}
             />
           </div>
         </Link>

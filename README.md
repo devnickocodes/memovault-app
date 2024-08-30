@@ -1005,6 +1005,8 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 ### Search and Discovery Enhancements
 
 - Advanced Search Filters: Allow users to filter posts by date, popularity, hashtags, and user-specific tags to enhance content discovery.
+- Advanced Search Filters: Allow admins to filter reports by date and reason.
+
 
 
 ### UI/UX Refinements
@@ -1027,7 +1029,6 @@ I used [Balsamiq's Website](https://balsamiq.com/) to create the wireframes for 
 
 
 ### Direct Messaging
-
 
 - Implement a direct messaging system where users can privately communicate with each other, including features like group chats and media sharing.
 
