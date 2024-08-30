@@ -40,9 +40,8 @@ export const ProfileDataProvider = ({ children }) => {
   // State to manage error messages
   const [followUnfollowError, setFollowUnfollowError] = useState(null);
 
-   // Hook to manage success alerts
-   const { setAlert } = useSuccessAlert();
-
+  // Hook to manage success alerts
+  const { setAlert } = useSuccessAlert();
 
   // State to store error messages for popular profiles and profiles with most posts
   const [popularProfilesError, setPopularProfilesError] = useState(null);
@@ -81,7 +80,7 @@ export const ProfileDataProvider = ({ children }) => {
       setAlert({ message: 'User followed!' });
     } catch (err) {
       // console.log(err);
-      setFollowUnfollowError("Sorry an error occurred. Please try again.")
+      setFollowUnfollowError('Sorry an error occurred. Please try again.');
     }
   };
 
@@ -113,7 +112,7 @@ export const ProfileDataProvider = ({ children }) => {
       setAlert({ message: 'User unfollowed!' });
     } catch (err) {
       // console.log(err);
-      setFollowUnfollowError("Sorry an error occurred. Please try again.")
+      setFollowUnfollowError('Sorry an error occurred. Please try again.');
     }
   };
 
@@ -162,7 +161,9 @@ export const ProfileDataProvider = ({ children }) => {
 
   return (
     <ProfileDataContext.Provider
-      value={{ profileData, popularProfilesError, mostPostsError, followUnfollowError, setFollowUnfollowError }}
+      value={{
+        profileData, popularProfilesError, mostPostsError, followUnfollowError, setFollowUnfollowError,
+      }}
     >
       <SetProfileDataContext.Provider
         value={{ setProfileData, handleFollow, handleUnfollow }}
