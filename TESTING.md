@@ -240,4 +240,19 @@ Some of the warnings have to do with Performance and Best Practices, which both 
 | Password Edit Page | ![Password Edit Page](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/password-edit-page-lighthouse.png) | PASS |
 
 
+## Automated Testing
 
+
+- I utilized Jest and React Testing Library to implement a total of 7 automated tests across two suites. While these initial tests offered valuable insights, there is still room for additional testing to thoroughly validate the application's functionality.
+
+- The tests can be found in the following paths:
+
+    - `src/pages/reports/__tests__/ReportCreateForm.test.js`
+    - `src/pages/reports/__tests__/ReportPreview.test.js`
+
+- Tests can be run with the following command:
+
+    - `npm test` and then choosing `a` to run all tests.
+
+
+![Automated Testing](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/automated-testing.png)
