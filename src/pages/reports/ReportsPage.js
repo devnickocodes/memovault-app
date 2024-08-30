@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ScrollToTop from 'react-scroll-to-top';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import postsPageStyles from '../../styles/PostsPage.module.css';
 import postStyles from '../../styles/Post.module.css';
 import navStyles from '../../styles/NavBar.module.css';
@@ -43,6 +44,8 @@ const ReportsPage = ({
   // Redirect users to login if they are not logged in
   useRedirect('loggedOut');
 
+  const history = useHistory();
+
   useEffect(() => {
     /**
      * handleMount fetches the initial set of reports from the API,
@@ -52,7 +55,6 @@ const ReportsPage = ({
       try {
         // Fetch reports from the API
         const { data: reportsData } = await axiosReq.get(apiEndpoint);
-
         // Fetch related post data for each report and merge it with the report data
         const reportsWithPostDetails = await Promise.all(
           reportsData.results.map(async (report) => {
@@ -60,6 +62,10 @@ const ReportsPage = ({
             return { ...report, post: postData };
           }),
         );
+        // Redirect admins to the admin reports page
+        if (currentUser?.is_admin && apiEndpoint === '/reports') {
+          history.push('/reports/admin');
+        }
 
         // Update state with the fetched reports and pagination info
         setReports({ results: reportsWithPostDetails, next: reportsData.next });
@@ -72,7 +78,7 @@ const ReportsPage = ({
     };
 
     handleMount();
-  }, [apiEndpoint, currentUser]);
+  }, [apiEndpoint, currentUser, history]);
 
   useEffect(() => {
     /**

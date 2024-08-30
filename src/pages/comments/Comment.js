@@ -185,7 +185,7 @@ const Comment = (props) => {
               />
             ) : (
               // Otherwise, display the comment content
-              <p className={styles.CommentContent}>{content}</p>
+              <p className={`${styles.CommentContent} text-break`}>{content}</p>
             )}
             <div>
               {/* Handle like/unlike functionality */}
