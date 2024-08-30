@@ -273,7 +273,15 @@ Some of the warnings have to do with Performance and Best Practices, which both 
 
 
 
+## Responsiveness
 
+
+| Device | Screenshot | PASS/FAIL |
+| --- | --- | --- |
+| Desktop | ![Desktop](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/chrome.png) | PASS |
+| Laptop | ![Laptop](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/laptop-responsiveness.png) | PASS |
+| Tablet (Google DevTools) | ![Tablet](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/tablet-responsiveness.png) | PASS |
+| Mobile (Google DevTools) | ![Mobile](https://github.com/devnickocodes/memovault-app/blob/main/readme_docs/testing/mobile-responsiveness.png) | PASS |
 
 
 
